@@ -4,77 +4,140 @@
   <meta charset="UTF-8">
   <title>Скрипты техподдержки</title>
   <style>
-    body { 
-      font-family: Arial, sans-serif; 
-      max-width: 680px; 
-      margin: 20px auto; 
-      color: #333; 
+    :root {
+      --bg-color: #f7f9fc;
+      --card-bg: #ffffff;
+      --primary: #2c5aa0;
+      --accent: #38b764;
+      --danger: #ff5252;
+      --text: #333;
+      --border: #e1e6ed;
     }
-    h2 { 
-      text-align: center; 
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text);
+      max-width: 720px;
+      margin: 24px auto;
+      padding: 0 16px;
     }
-    .node { 
-      margin-bottom: 12px; 
+
+    h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 28px;
+      font-weight: 600;
     }
+
+    .node {
+      margin-bottom: 18px;
+    }
+
     .answer-btn {
       display: inline-block;
       margin: 4px 0;
-      padding: 8px 14px;
-      background: #f5f5f5;
-      border: 1px solid #ccc;
+      padding: 10px 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
       cursor: pointer;
-      border-radius: 6px;
       user-select: none;
+      color: var(--primary);
+      font-size: 1rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
-    .children { 
-      display: none; 
-      margin-left: 20px; 
-      margin-top: 6px; 
+
+    .answer-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
     }
-    .active-children { 
-      display: block; 
-    }
+
     .answer-btn.active {
-      background: #e0ffe0;
-      border-color: #4caf50;
-      color: #0a5713;
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 8px rgba(56, 183, 100, 0.25);
     }
+
+    .children {
+      display: none;
+      margin-left: 20px;
+      margin-top: 12px;
+      padding-left: 16px;
+      border-left: 3px solid var(--border);
+    }
+
+    .active-children {
+      display: block;
+    }
+
     .operator-text {
-      padding: 10px;
-      background: #fafafa;
-      border-left: 4px solid #4a90e2;
-      font-size: 0.95rem;
+      padding: 14px;
+      background: #f5f8fc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #4a5568;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      border-left-color: var(--primary);
     }
+
     .question-text {
       font-weight: 600;
-      margin: 8px 0 4px 0;
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 1.05rem;
     }
+
     .reset-btn {
-      display: inline-block;
-      margin: 4px 0 16px 0;
-      padding: 8px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
       background: #fff;
-      border: 1px solid #ff5252;
-      color: #ff5252;
-      cursor: pointer;
-      border-radius: 6px;
+      border: 1px solid var(--danger);
+      color: var(--danger);
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.95rem;
+      transition: all 0.2s;
     }
     .reset-btn:hover {
       background: #ffebee;
       border-color: #d32f2f;
       color: #d32f2f;
     }
+
+    .image-wrapper {
+      margin-top: 14px;
+      text-align: center;
+    }
+    .image-wrapper img {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: block;
+      margin: 0 auto;
+    }
+    .image-caption {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: #718096;
+    }
   </style>
 </head>
 <body>
-  <a href="" class="reset-btn" onclick="location.reload()">🔄 Начать заново</a>
+
+  <!-- Исправленная кнопка сброса -->
+  <button type="button" class="reset-btn" onclick="location.reload()">
+    🔄 Начать заново
+  </button>
 
   <h2>Скрипты техподдержки</h2>
-
-  <!-- ОСНОВНОЙ УРОВЕНЬ: Причина звонка -->
 
   <!-- ВЕТКА 1: Хочу у вас зарегистрироваться -->
   <div class="node">
@@ -85,12 +148,16 @@
         <div class="operator-text">
           «Для регистрации в САНДО Z вам нужно: 1) Заполнить заявку на сайте. 2) Предложить реквизиты компании. 3) Дождаться подтверждения от менеджера (обычно 1–2 рабочих дня). После этого вы получите доступ к бронированию рейсов.»
         </div>
+        <div class="image-wrapper">
+          <img src="https://raw.githubusercontent.com/VilpumV/support-tree/main/form-example.png" alt="Форма заявки" />
+          <div class="image-caption">Рис. 1. Пример формы заявки на регистрацию в САНДО Z</div>
+        </div>
       </div>
 
       <div class="answer-btn" onclick="toggleChildren(this)">Для получения электронных накладных</div>
       <div class="children">
         <div class="operator-text">
-          «Для получения электронных накладных нужно: 1) Зарегистрироваться в нашей системе ЭДО. 2) Указать оператора ЭДО, через которого вы работаете. 3) После регистрации накладные будут приходить автоматически в ваш ЭДО-оператор.»
+          «Для получения электронных накладных нужно: 1) Зарегистрироваться в нашей системе ЭДО. 2) Указать оператора ЭДО, через которого вы работаете. 3) После регистрации накладные будут приходить автоматически в ваш ЭДО‑оператор.»
         </div>
       </div>
     </div>
@@ -100,137 +167,72 @@
   <div class="node">
     <div class="question-text">Не пришла ЭТРН</div>
     <div class="options">
-
-      <!-- Шаг 1: Точно ли это ЭТРН? -->
       <div class="answer-btn" onclick="toggleChildren(this)">Уточнить: точно ли это ЭТРН?</div>
       <div class="children">
-        <div class="question-text">Уточните у звонящего, какой именно документ не пришёл.</div>
+        <div class="question-text" style="margin-bottom:8px;">Уточните у звонящего, какой именно документ не пришёл.</div>
         <div class="options">
           <div class="answer-btn" onclick="toggleChildren(this)">Да, точно ЭТРН</div>
           <div class="children">
-            <div class="operator-text">
-              «Хорошо, это ЭТРН. Дальше проверим, сколько времени прошло между отправкой и получением, и есть ли документ в нашей системе.»
-            </div>
+            <div class="operator-text">«Хорошо, это ЭТРН. Дальше проверим, сколько времени прошло между отправкой и получением, и есть ли документ в нашей системе.»</div>
           </div>
-
           <div class="answer-btn" onclick="toggleChildren(this)">Нет, это другой документ</div>
           <div class="children">
-            <div class="operator-text">
-              «Уточните, пожалуйста, какой именно документ вы ожидаете: транспортную накладную, счёт-фактуру, УПД или что-то другое? Я проверю, как его получить.»
-            </div>
+            <div class="operator-text">«Уточните, пожалуйста, какой именно документ вы ожидаете: транспортную накладную, счёт‑фактуру, УПД или что‑то другое? Я проверю, как его получить.»</div>
           </div>
         </div>
       </div>
 
-      <!-- Шаг 2: Сколько ждали? -->
       <div class="answer-btn" onclick="toggleChildren(this)">Сколько ждали между отправкой и получением?</div>
       <div class="children">
-        <div class="question-text">Уточните у звонящего, сколько времени прошло с момента отправки.</div>
+        <div class="question-text" style="margin-bottom:8px;">Уточните у звонящего, сколько времени прошло с момента отправки.</div>
         <div class="options">
           <div class="answer-btn" onclick="toggleChildren(this)">Менее 24 часов</div>
           <div class="children">
-            <div class="operator-text">
-              «ЭТРН может обрабатываться до 24 часов. Пожалуйста, подождите ещё — если документ не придёт в течение суток, позвоните нам снова.»
-            </div>
+            <div class="operator-text">«ЭТРН может обрабатываться до 24 часов. Пожалуйста, подождите ещё — если документ не придёт в течение суток, позвоните нам снова.»</div>
           </div>
-
           <div class="answer-btn" onclick="toggleChildren(this)">Более 24 часов</div>
           <div class="children">
-            <div class="operator-text">
-              «Раз прошло больше суток — проверим, есть ли ЭТРН в нашей системе и на какого оператора отправил грузоотправитель. Это поможет понять, где завис документ.»
-            </div>
+            <div class="operator-text">«Раз прошло больше суток — проверим, есть ли ЭТРН в нашей системе и на какого оператора отправил грузоотправитель. Это поможет понять, где завис документ.»</div>
           </div>
         </div>
       </div>
 
-      <!-- Шаг 3: Есть ли ЭТРН в системе? -->
       <div class="answer-btn" onclick="toggleChildren(this)">Проверить: есть ли ЭТРН в нашей системе</div>
       <div class="children">
-        <div class="question-text">Проверьте в системе по номеру накладной или номеру рейса.</div>
+        <div class="question-text" style="margin-bottom:8px;">Проверьте в системе по номеру накладной или номеру рейса.</div>
         <div class="options">
           <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН найдена в системе</div>
           <div class="children">
-            <div class="operator-text">
-              «ЭТРН есть в нашей системе. Значит, документ был сформирован, но, возможно, не отправлен в ваш ЭДО-оператор. Уточните, на какого оператора отправил грузоотправитель, и проверим совместимость.»
-            </div>
+            <div class="operator-text">«ЭТРН есть в нашей системе. Значит, документ был сформирован, но, возможно, не отправлен в ваш ЭДО‑оператор. Уточните, на какого оператора отправил грузоотправитель, и проверим совместимость.»</div>
           </div>
-
           <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН не найдена в системе</div>
           <div class="children">
-            <div class="operator-text">
-              «ЭТРН в нашей системе не найдена. Возможно, грузоотправитель ещё не отправил документ или отправил через другого оператора. Уточните у грузоотправителя, через какого оператора ЭДО он работает и отправлял ли он документ.»
-            </div>
+            <div class="operator-text">«ЭТРН в нашей системе не найдена. Возможно, грузоотправитель ещё не отправил документ или отправил через другого оператора. Уточните у грузоотправителя, через какого оператора ЭДО он работает и отправлял ли он документ.»</div>
           </div>
         </div>
       </div>
 
-      <!-- Шаг 4: На какого оператора отправил грузоотправитель? -->
       <div class="answer-btn" onclick="toggleChildren(this)">На какого оператора отправил грузоотправитель?</div>
       <div class="children">
-        <div class="question-text">Уточните у грузоотправителя, через какого оператора ЭДО он отправил ЭТРН.</div>
+        <div class="question-text" style="margin-bottom:8px;">Уточните у грузоотправителя, через какого оператора ЭДО он отправил ЭТРН.</div>
         <div class="options">
           <div class="answer-btn" onclick="toggleChildren(this)">Оператор совпадает с нашим</div>
           <div class="children">
-            <div class="operator-text">
-              «Операторы совпадают, значит, документ должен был дойти. Создаю заявку в техподдержку для проверки маршрута доставки ЭТРН. Вам перезвонят в течение рабочего дня.»
-            </div>
+            <div class="operator-text">«Операторы совпадают, значит, документ должен был дойти. Создаю заявку в техподдержку для проверки маршрута доставки ЭТРН. Вам перезвонят в течение рабочего дня.»</div>
           </div>
-
           <div class="answer-btn" onclick="toggleChildren(this)">Оператор НЕ совпадает</div>
           <div class="children">
-            <div class="operator-text">
-              «Операторы не совпадают — скорее всего, в этом причина. Грузоотправитель отправил ЭТРН через другого оператора ЭДО, и документ не дошёл до вашей системы. Попросите грузоотправителя переотправить ЭТРН через вашего оператора ЭДО.»
-            </div>
+            <div class="operator-text">«Операторы не совпадают — скорее всего, в этом причина. Грузоотправитель отправил ЭТРН через другого оператора ЭДО, и документ не дошёл до вашей системы. Попросите грузоотправителя переотправить ЭТРН через вашего оператора ЭДО.»</div>
           </div>
-
           <div class="answer-btn" onclick="toggleChildren(this)">Грузоотправитель не знает / не отвечает</div>
           <div class="children">
-            <div class="operator-text">
-              «Без информации об операторе ЭДО грузоотправителя мы не можем отследить документ. Попросите клиента связаться с грузоотправителем, уточнить оператора ЭДО и перезвонить нам. Если грузоотправитель недоступен — создаю заявку на ручную проверку.»
-            </div>
+            <div class="operator-text">«Без информации об операторе ЭДО грузоотправителя мы не можем отследить документ. Попросите клиента связаться с грузоотправителем, уточнить оператора ЭДО и перезвонить нам. Если грузоотправитель недоступен — создаю заявку на ручную проверку.»</div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <script>
-    function toggleChildren(btn) {
-      const children = btn.nextElementSibling;
-      if (!children || !children.classList.contains('children')) return;
-
-      const isActive = children.classList.toggle('active-children');
-      btn.classList.toggle('active', isActive);
-
-      saveState();
-    }
-
-    const STORAGE_KEY = 'support_tree_state_v2';
-
-    function saveState() {
-      const btns = document.querySelectorAll('.answer-btn.active');
-      const state = Array.from(btns).map(b => b.outerText.trim());
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
-
-    function restoreState() {
-      const saved = sessionStorage.getItem(STORAGE_KEY);
-      if (!saved) return;
-      const openTexts = JSON.parse(saved);
-      const allBtns = document.querySelectorAll('.answer-btn');
-      allBtns.forEach(btn => {
-        if (openTexts.includes(btn.outerText.trim())) {
-          const children = btn.nextElementSibling;
-          if (children && children.classList.contains('children')) {
-            children.classList.add('active-children');
-            btn.classList.add('active');
-          }
-        }
-      });
-    }
-
-    document.addEventListener('DOMContentLoaded', restoreState);
-  </script>
-</body>
-</html>
+  <!-- Блок заметок -->
+  <div style="margin-top: 32px; padding: 20px; background: #fff; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+    <h3 style="color: var(--primary); margin-top: 0; font-size: 1.1rem;">📝 Мои заметки</h3
