@@ -235,4 +235,74 @@
 
   <!-- Блок заметок -->
   <div style="margin-top: 32px; padding: 20px; background: #fff; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-    <h3 style="color: var(--primary); margin-top: 0; font-size: 1.1rem;">📝 Мои заметки</h3
+    <h3 style="color: var(--primary); margin-top: 0; font-size: 1.1rem;">📝 Мои заметки</h3>
+    <p style="font-size: 0.9rem; color: #666; margin-bottom: 12px;">
+      Здесь можно писать пометки по текущим обращениям — текст сохраняется в браузере.
+    </p>
+    <textarea id="notes-area" rows="5" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; box-sizing: border-box;"></textarea>
+    <div style="margin-top: 12px; display: flex; gap: 10px;">
+      <button type="button" onclick="saveNotes()" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 6px; cursor: pointer;">Сохранить</button>
+      <button type="button" onclick="clearNotes()" style="padding: 8px 16px; background: #f0f0f0; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer;">Очистить</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleChildren(btn) {
+      const children = btn.nextElementSibling;
+      if (!children || !children.classList.contains('children')) return;
+
+      const isActive = children.classList.toggle('active-children');
+      btn.classList.toggle('active', isActive);
+
+      saveState();
+    }
+
+    const STORAGE_KEY = 'support_tree_state_v3';
+
+    function saveState() {
+      const btns = document.querySelectorAll('.answer-btn.active');
+      const state = Array.from(btns).map(b => b.outerText.trim());
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function restoreState() {
+      const saved = sessionStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      const openTexts = JSON.parse(saved);
+      const allBtns = document.querySelectorAll('.answer-btn');
+      allBtns.forEach(btn => {
+        if (openTexts.includes(btn.outerText.trim())) {
+          const children = btn.nextElementSibling;
+          if (children && children.classList.contains('children')) {
+            children.classList.add('active-children');
+            btn.classList.add('active');
+          }
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', restoreState);
+
+    // Логика заметок
+    const NOTES_KEY = 'support_notes_v1';
+
+    function saveNotes() {
+      const text = document.getElementById('notes-area').value;
+      localStorage.setItem(NOTES_KEY, text);
+      alert('Заметки сохранены (в этом браузере).');
+    }
+
+    function clearNotes() {
+      document.getElementById('notes-area').value = '';
+      localStorage.removeItem(NOTES_KEY);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem(NOTES_KEY);
+      if (saved) {
+        document.getElementById('notes-area').value = saved;
+      }
+    });
+  </script>
+</body>
+</html>
