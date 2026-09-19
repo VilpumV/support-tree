@@ -12,6 +12,7 @@
       --danger: #ff5252;
       --text: #333;
       --border: #e1e6ed;
+      --search-bg: #fff;
     }
 
     body {
@@ -30,11 +31,47 @@
       font-weight: 600;
     }
 
+    /* --- Панель действий и Поиск --- */
     .top-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 16px;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
+      align-items: center;
+    }
+
+    .search-box {
+      flex-grow: 1;
+      display: flex;
+      gap: 8px;
+      min-width: 200px;
+    }
+
+    .search-input {
+      flex-grow: 1;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus {
+      border-color: var(--primary);
+    }
+
+    .search-btn {
+      padding: 10px 20px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .search-btn:hover {
+      background: #1f457a;
     }
 
     .action-btn {
@@ -54,33 +91,14 @@
       color: inherit;
       background: #fff;
     }
+    .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
+    .btn-reset { color: var(--danger); border: 1px solid #ffcccc; }
+    .btn-reset:hover { background-color: #ffebee; border-color: var(--danger); }
+    .btn-faq { color: var(--primary); border: 1px solid var(--border); }
+    .btn-faq:hover { background-color: #f0f7ff; border-color: var(--primary); }
 
-    .action-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    }
-
-    .btn-reset {
-      color: var(--danger);
-      border: 1px solid #ffcccc;
-    }
-    .btn-reset:hover {
-      background-color: #ffebee;
-      border-color: var(--danger);
-    }
-
-    .btn-faq {
-      color: var(--primary);
-      border: 1px solid var(--border);
-    }
-    .btn-faq:hover {
-      background-color: #f0f7ff;
-      border-color: var(--primary);
-    }
-
-    .node {
-      margin-bottom: 18px;
-    }
+    /* --- Элементы дерева --- */
+    .node { margin-bottom: 18px; }
 
     .answer-btn {
       display: inline-block;
@@ -96,13 +114,7 @@
       transition: all 0.2s ease;
       box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
-
-    .answer-btn:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-      transform: translateY(-1px);
-    }
-
+    .answer-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
     .answer-btn.active {
       background: var(--accent);
       border-color: var(--accent);
@@ -117,10 +129,7 @@
       padding-left: 16px;
       border-left: 3px solid var(--border);
     }
-
-    .active-children {
-      display: block;
-    }
+    .active-children { display: block; }
 
     .operator-text {
       padding: 14px;
@@ -140,6 +149,15 @@
       font-size: 1.05rem;
     }
 
+    /* --- Подсветка поиска --- */
+    .search-highlight {
+      background-color: #ffeb3b;
+      padding: 0 2px;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    /* --- Блок заметок --- */
     .notes-panel {
       margin-top: 32px;
       padding: 20px;
@@ -148,64 +166,39 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
-    .notes-panel h3 {
-      color: var(--primary);
-      margin-top: 0;
-      font-size: 1.1rem;
-    }
+    .notes-panel h3 { color: var(--primary); margin-top: 0; font-size: 1.1rem; }
     .notes-panel textarea {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      font-family: inherit;
-      box-sizing: border-box;
-      resize: vertical;
-      min-height: 100px;
+      width: 100%; padding: 10px; border: 1px solid var(--border);
+      border-radius: 6px; font-family: inherit; box-sizing: border-box;
+      resize: vertical; min-height: 100px;
     }
-    .notes-panel .btn-group {
-      margin-top: 12px;
-      display: flex;
-      gap: 10px;
-    }
+    .notes-panel .btn-group { margin-top: 12px; display: flex; gap: 10px; }
     .notes-panel button {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
+      padding: 8px 16px; border: none; border-radius: 6px;
+      cursor: pointer; font-weight: 600;
     }
-    .btn-save {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn-clear {
-      background: #f0f0f0;
-      color: #333;
-      border: 1px solid #ccc;
-    }
+    .btn-save { background: var(--accent); color: #fff; }
+    .btn-clear { background: #f0f0f0; color: #333; border: 1px solid #ccc; }
 
-    .image-wrapper {
-      margin-top: 14px;
-      text-align: center;
-    }
+    /* --- Изображения --- */
+    .image-wrapper { margin-top: 14px; text-align: center; }
     .image-wrapper img {
-      max-width: 100%;
-      border-radius: 8px;
+      max-width: 100%; border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      display: block;
-      margin: 0 auto;
+      display: block; margin: 0 auto;
     }
-    .image-caption {
-      margin-top: 8px;
-      font-size: 0.85rem;
-      color: #718096;
-    }
+    .image-caption { margin-top: 8px; font-size: 0.85rem; color: #718096; }
   </style>
 </head>
 <body>
 
+  <!-- ИСПРАВЛЕННАЯ ПАНЕЛЬ: Действия + Поиск -->
   <div class="top-actions">
+    <div class="search-box">
+      <input type="text" id="searchInput" class="search-input" placeholder="Поиск по скриптам (например: ЭТРН, регистрация)...">
+      <button type="button" id="searchBtn" class="search-btn">Найти</button>
+    </div>
+    
     <button type="button" class="action-btn btn-reset" onclick="location.reload()">
       🔄 Начать заново
     </button>
@@ -353,6 +346,7 @@
   </div>
 
   <script>
+    // --- ЛОГИКА СКРИПТОВ (сворачивание/разворачивание) ---
     function toggleChildren(btn) {
       const children = btn.nextElementSibling;
       if (!children || !children.classList.contains('children')) return;
@@ -364,7 +358,6 @@
     }
 
     const STORAGE_KEY = 'support_tree_state_v3';
-
     function saveState() {
       const btns = document.querySelectorAll('.answer-btn.active');
       const state = Array.from(btns).map(b => b.outerText.trim());
@@ -386,27 +379,75 @@
         }
       });
     }
-
     document.addEventListener('DOMContentLoaded', restoreState);
 
+    // --- ЛОГИКА ЗАМЕТОК ---
     const NOTES_KEY = 'support_notes_v1';
-
     function saveNotes() {
       const text = document.getElementById('notes-area').value;
       localStorage.setItem(NOTES_KEY, text);
       alert('Заметки сохранены (в этом браузере).');
     }
-
     function clearNotes() {
       document.getElementById('notes-area').value = '';
       localStorage.removeItem(NOTES_KEY);
     }
-
     window.addEventListener('DOMContentLoaded', () => {
       const saved = localStorage.getItem(NOTES_KEY);
-      if (saved) {
-        document.getElementById('notes-area').value = saved;
+      if (saved) document.getElementById('notes-area').value = saved;
+    });
+
+    // --- ЛОГИКА ПОИСКА ---
+    function performSearch() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      
+      // 1. Сбрасываем старую подсветку
+      const highlights = document.querySelectorAll('.search-highlight');
+      highlights.forEach(el => {
+        el.outerHTML = el.innerText; // Заменяем тег на обычный текст
+      });
+
+      if (!query) return;
+
+      // 2. Находим все текстовые узлы, которые нужно проверить
+      // Ищем в заголовках, вопросах, ответах, подписях, кнопках
+      const searchableElements = document.querySelectorAll(
+        '.question-text, .operator-text, .image-caption, .answer-btn, h2'
+      );
+
+      let found = false;
+
+      searchableElements.forEach(el => {
+        const originalText = el.innerText;
+        if (originalText.toLowerCase().includes(query)) {
+          found = true;
+          
+          // 3. Подсветка: оборачиваем совпадения в span
+          // Используем регулярное выражение для поиска всех вхождений
+          const regex = new RegExp(`(\${query})`, 'gi');
+          const highlightedText = originalText.replace(regex, '<span class="search-highlight">\$1</span>');
+          
+          el.innerHTML = highlightedText;
+        }
+      });
+
+      if (found) {
+        // 4. Скроллим к первому найденному элементу
+        const firstHighlight = document.querySelector('.search-highlight');
+        if (firstHighlight) {
+          firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      } else {
+        alert('Ничего не найдено по запросу: ' + query);
       }
+    }
+
+    // Запуск поиска по кнопке
+    document.getElementById('searchBtn').addEventListener('click', performSearch);
+
+    // Запуск поиска по клавише Enter
+    document.getElementById('searchInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') performSearch();
     });
   </script>
 </body>
