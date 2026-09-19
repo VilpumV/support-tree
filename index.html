@@ -12,7 +12,6 @@
       --danger: #ff5252;
       --text: #333;
       --border: #e1e6ed;
-      --search-bg: #fff;
     }
 
     body {
@@ -31,7 +30,6 @@
       font-weight: 600;
     }
 
-    /* --- Панель действий и Поиск --- */
     .top-actions {
       display: flex;
       flex-wrap: wrap;
@@ -56,9 +54,7 @@
       outline: none;
       transition: border-color 0.2s;
     }
-    .search-input:focus {
-      border-color: var(--primary);
-    }
+    .search-input:focus { border-color: var(--primary); }
 
     .search-btn {
       padding: 10px 20px;
@@ -70,9 +66,7 @@
       font-weight: 600;
       transition: background 0.2s;
     }
-    .search-btn:hover {
-      background: #1f457a;
-    }
+    .search-btn:hover { background: #1f457a; }
 
     .action-btn {
       padding: 12px 24px;
@@ -97,7 +91,6 @@
     .btn-faq { color: var(--primary); border: 1px solid var(--border); }
     .btn-faq:hover { background-color: #f0f7ff; border-color: var(--primary); }
 
-    /* --- Элементы дерева --- */
     .node { margin-bottom: 18px; }
 
     .answer-btn {
@@ -149,7 +142,6 @@
       font-size: 1.05rem;
     }
 
-    /* --- Подсветка поиска --- */
     .search-highlight {
       background-color: #ffeb3b;
       padding: 0 2px;
@@ -157,7 +149,6 @@
       font-weight: 700;
     }
 
-    /* --- Блок заметок --- */
     .notes-panel {
       margin-top: 32px;
       padding: 20px;
@@ -180,7 +171,6 @@
     .btn-save { background: var(--accent); color: #fff; }
     .btn-clear { background: #f0f0f0; color: #333; border: 1px solid #ccc; }
 
-    /* --- Изображения --- */
     .image-wrapper { margin-top: 14px; text-align: center; }
     .image-wrapper img {
       max-width: 100%; border-radius: 8px;
@@ -192,16 +182,16 @@
 </head>
 <body>
 
-  <!-- ИСПРАВЛЕННАЯ ПАНЕЛЬ: Действия + Поиск -->
   <div class="top-actions">
     <div class="search-box">
       <input type="text" id="searchInput" class="search-input" placeholder="Поиск по скриптам (например: ЭТРН, регистрация)...">
       <button type="button" id="searchBtn" class="search-btn">Найти</button>
     </div>
-    
-    <button type="button" class="action-btn btn-reset" onclick="location.reload()">
-      🔄 Начать заново
+
+    <button type="button" class="action-btn btn-reset" onclick="closeAllBranches()">
+      🔒 Закрыть все вкладки
     </button>
+
     <a href="faq.html" class="action-btn btn-faq">
       📘 База вопросов
     </a>
@@ -216,7 +206,6 @@
       <div class="answer-btn" onclick="toggleChildren(this)">Для бронирования рейсов (Санадо Z)</div>
       <div class="children">
         <div class="operator-text">
-          <!-- МЯУ: логика такая - либо сам в приложении, либо доки нам -->
           «Для регистрации необходимо либо заполнить заявку в приложении Санадор Z самостоятельно, либо выслать нам пакет документов по списку. Обратите внимание: списки документов для ООО и ИП отличаются.»
         </div>
         <div class="image-wrapper">
@@ -228,7 +217,6 @@
       <div class="answer-btn" onclick="toggleChildren(this)">Для получения электронных накладных</div>
       <div class="children">
         <div class="operator-text">
-          <!-- МЯУ: тут про флешку из налоговой и офис -->
           «Для получения электронных накладных клиенту потребуется носитель (флешка) с электронной подписью из налоговой и регистрация через сайт Санадор. Если у клиента нет компьютера, он может приехать в наш офис — мы поможем с регистрацией и сразу запросим необходимые документы.»
         </div>
       </div>
@@ -246,14 +234,12 @@
           <div class="answer-btn" onclick="toggleChildren(this)">Да, точно ЭТРН</div>
           <div class="children">
             <div class="operator-text">
-              <!-- МЯУ: тут надо спросить про время -->
               «Поняла, речь именно об ЭТРН. Давайте проверим статус документа. Уточните, пожалуйста, сколько времени прошло с момента отправки?»
             </div>
           </div>
           <div class="answer-btn" onclick="toggleChildren(this)">Нет, это другой документ</div>
           <div class="children">
             <div class="operator-text">
-              <!-- МЯУ: тут надо развернуть на нужный документ -->
               «Хорошо, значит, это не ЭТРН. Подскажите, пожалуйста, какой именно документ вы ожидаете: транспортную накладную, счёт-фактуру, УПД или что-то другое? Я подскажу, где его искать или как запросить.»
             </div>
           </div>
@@ -267,14 +253,12 @@
           <div class="answer-btn" onclick="toggleChildren(this)">Менее 30 минут</div>
           <div class="children">
             <div class="operator-text">
-              <!-- МЯУ: тут про ГИС ЭПД и регистрацию -->
               «Документ мог еще не дойти. ЭТРН проходит обработку в ГИС ЭПД. Важно также проверить, завершена ли регистрация клиента в ЭПД. Рекомендую подождать еще немного.»
             </div>
           </div>
           <div class="answer-btn" onclick="toggleChildren(this)">Более 30 минут</div>
           <div class="children">
             <div class="operator-text">
-              <!-- МЯУ: тут про то, чтобы трясти грузоотправителя и Калуга Астрал -->
               «Если прошло более 30 минут, стоит связаться с грузоотправителем и попросить его проверить отправку документа. Важно, чтобы отправка была произведена через оператора Калуга Астрал.»
             </div>
           </div>
@@ -288,14 +272,12 @@
           <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН найдена в системе</div>
           <div class="children">
             <div class="operator-text">
-              <!-- МЯУ: тут про приложение Z, ЭПД и сайт -->
               «Документ есть в нашей системе. Проверьте его наличие в приложении Санадор ЭПД или Санадор Z (если у клиента iPhone). В крайнем случае, документ можно найти в личном кабинете на сайте Санадор.»
             </div>
           </div>
           <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН не найдена в системе</div>
           <div class="children">
             <div class="operator-text">
-              <!-- МЯУ: тут про то, что надо трясти грузоотправителя -->
               «К сожалению, в нашей системе ЭТРН не найдена. Необходимо запросить статус документа у грузоотправителя — возможно, он еще не был отправлен или отправлен с ошибкой.»
             </div>
           </div>
@@ -309,21 +291,18 @@
           <div class="answer-btn" onclick="toggleChildren(this)">Оператор совпадает с нашим</div>
           <div class="children">
             <div class="operator-text">
-              <!-- ГОСПОДИ ПОМИЛУЙ: тут надо просить файл у грузоотправителя -->
               «Если оператор совпадает, но документа нет, запросите у грузоотправителя файл-подтверждение отправки (сам файл ЭТРН). Это поможет нам быстрее разобраться в ситуации.»
             </div>
           </div>
           <div class="answer-btn" onclick="toggleChildren(this)">Оператор НЕ совпадает</div>
           <div class="children">
             <div class="operator-text">
-              <!-- МЯУ: тут про переотправку на правильного оператора -->
               «Проблема может быть в том, что документ отправлен через другого оператора ЭДО. Попросите грузоотправителя переотправить ЭТРН через корректного оператора (Калуга Астрал).»
             </div>
           </div>
           <div class="answer-btn" onclick="toggleChildren(this)">Грузоотправитель не знает / не отвечает</div>
           <div class="children">
             <div class="operator-text">
-              <!-- МЯУ: тут про заявку на ручную проверку -->
               «Если грузоотправитель не может предоставить информацию, мы можем создать заявку на ручную проверку маршрута документа. Сообщите, если хотите оформить такую заявку.»
             </div>
           </div>
@@ -346,134 +325,144 @@
   </div>
 
   <script>
-  // --- Логика дерева ---
-  function toggleChildren(btn) {
-    const children = btn.nextElementSibling;
-    if (!children || !children.classList.contains('children')) return;
-    const isActive = children.classList.toggle('active-children');
-    btn.classList.toggle('active', isActive);
-    saveState();
-  }
+    // --- Открытие/закрытие веток ---
+    function toggleChildren(btn) {
+      const children = btn.nextElementSibling;
+      if (!children || !children.classList.contains('children')) return;
+      const isActive = children.classList.toggle('active-children');
+      btn.classList.toggle('active', isActive);
+      saveState();
+    }
 
-  const STORAGE_KEY = 'support_tree_state_v3';
-  function saveState() {
-    const btns = document.querySelectorAll('.answer-btn.active');
-    const state = Array.from(btns).map(b => b.textContent.trim());
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }
-  function restoreState() {
-    const saved = sessionStorage.getItem(STORAGE_KEY);
-    if (!saved) return;
-    const openTexts = JSON.parse(saved);
-    document.querySelectorAll('.answer-btn').forEach(btn => {
-      if (openTexts.includes(btn.textContent.trim())) {
-        const children = btn.nextElementSibling;
-        if (children && children.classList.contains('children')) {
-          children.classList.add('active-children');
-          btn.classList.add('active');
+    // --- Закрыть все ветки ---
+    function closeAllBranches() {
+      document.querySelectorAll('.children').forEach(el => {
+        el.classList.remove('active-children');
+      });
+      document.querySelectorAll('.answer-btn').forEach(el => {
+        el.classList.remove('active');
+      });
+      sessionStorage.removeItem('support_tree_state_v3');
+    }
+
+    // --- Сохранение состояния ---
+    const STORAGE_KEY = 'support_tree_state_v3';
+    function saveState() {
+      const btns = document.querySelectorAll('.answer-btn.active');
+      const state = Array.from(btns).map(b => b.textContent.trim());
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+    function restoreState() {
+      const saved = sessionStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      const openTexts = JSON.parse(saved);
+      document.querySelectorAll('.answer-btn').forEach(btn => {
+        if (openTexts.includes(btn.textContent.trim())) {
+          const children = btn.nextElementSibling;
+          if (children && children.classList.contains('children')) {
+            children.classList.add('active-children');
+            btn.classList.add('active');
+          }
+        }
+      });
+    }
+    document.addEventListener('DOMContentLoaded', restoreState);
+
+    // --- Заметки ---
+    const NOTES_KEY = 'support_notes_v1';
+    function saveNotes() {
+      localStorage.setItem(NOTES_KEY, document.getElementById('notes-area').value);
+      alert('Заметки сохранены.');
+    }
+    function clearNotes() {
+      document.getElementById('notes-area').value = '';
+      localStorage.removeItem(NOTES_KEY);
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem(NOTES_KEY);
+      if (saved) document.getElementById('notes-area').value = saved;
+    });
+
+    // --- Поиск ---
+    function clearHighlights() {
+      document.querySelectorAll('.search-highlight').forEach(el => {
+        const text = document.createTextNode(el.textContent);
+        el.parentNode.replaceChild(text, el);
+      });
+      document.body.normalize();
+    }
+
+    function highlightInElement(element, query) {
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null);
+      const textNodes = [];
+      let node;
+      while (node = walker.nextNode()) {
+        if (node.textContent.toLowerCase().includes(query)) {
+          textNodes.push(node);
         }
       }
-    });
-  }
-  document.addEventListener('DOMContentLoaded', restoreState);
-
-  // --- Заметки ---
-  const NOTES_KEY = 'support_notes_v1';
-  function saveNotes() {
-    localStorage.setItem(NOTES_KEY, document.getElementById('notes-area').value);
-    alert('Заметки сохранены.');
-  }
-  function clearNotes() {
-    document.getElementById('notes-area').value = '';
-    localStorage.removeItem(NOTES_KEY);
-  }
-  window.addEventListener('DOMContentLoaded', () => {
-    const saved = localStorage.getItem(NOTES_KEY);
-    if (saved) document.getElementById('notes-area').value = saved;
-  });
-
-  // --- Поиск (исправленный) ---
-  function clearHighlights() {
-    document.querySelectorAll('.search-highlight').forEach(el => {
-      const text = document.createTextNode(el.textContent);
-      el.parentNode.replaceChild(text, el);
-    });
-    document.body.normalize();
-  }
-
-  function highlightInElement(element, query) {
-    const walker = document.createTreeWalker(
-      element,
-      NodeFilter.SHOW_TEXT,
-      null
-    );
-    const textNodes = [];
-    let node;
-    while (node = walker.nextNode()) {
-      if (node.textContent.toLowerCase().includes(query)) {
-        textNodes.push(node);
-      }
+      textNodes.forEach(textNode => {
+        const text = textNode.textContent;
+        const lower = text.toLowerCase();
+        const idx = lower.indexOf(query);
+        if (idx === -1) return;
+        const frag = document.createDocumentFragment();
+        if (idx > 0) frag.appendChild(document.createTextNode(text.substring(0, idx)));
+        const span = document.createElement('span');
+        span.className = 'search-highlight';
+        span.textContent = text.substring(idx, idx + query.length);
+        frag.appendChild(span);
+        const rest = text.substring(idx + query.length);
+        if (rest) frag.appendChild(document.createTextNode(rest));
+        textNode.parentNode.replaceChild(frag, textNode);
+      });
     }
-    textNodes.forEach(textNode => {
-      const text = textNode.textContent;
-      const lower = text.toLowerCase();
-      const idx = lower.indexOf(query);
-      if (idx === -1) return;
-      const frag = document.createDocumentFragment();
-      if (idx > 0) frag.appendChild(document.createTextNode(text.substring(0, idx)));
-      const span = document.createElement('span');
-      span.className = 'search-highlight';
-      span.textContent = text.substring(idx, idx + query.length);
-      frag.appendChild(span);
-      const rest = text.substring(idx + query.length);
-      if (rest) frag.appendChild(document.createTextNode(rest));
-      textNode.parentNode.replaceChild(frag, textNode);
-    });
-  }
 
-  function openParentBranches(el) {
-    let parent = el.parentElement;
-    while (parent && parent !== document.body) {
-      if (parent.classList && parent.classList.contains('children')) {
-        parent.classList.add('active-children');
-        const btn = parent.previousElementSibling;
-        if (btn && btn.classList.contains('answer-btn')) {
-          btn.classList.add('active');
+    function openParentBranches(el) {
+      let parent = el.parentElement;
+      while (parent && parent !== document.body) {
+        if (parent.classList && parent.classList.contains('children')) {
+          parent.classList.add('active-children');
+          const btn = parent.previousElementSibling;
+          if (btn && btn.classList.contains('answer-btn')) {
+            btn.classList.add('active');
+          }
         }
+        parent = parent.parentElement;
       }
-      parent = parent.parentElement;
     }
-  }
 
-  function performSearch() {
-    const query = document.getElementById('searchInput').value.trim().toLowerCase();
-    clearHighlights();
-    if (!query) return;
+    function performSearch() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      clearHighlights();
+      if (!query) return;
 
-    const elements = document.querySelectorAll(
-      '.question-text, .operator-text, .image-caption, .answer-btn, h2'
-    );
-    let firstHighlight = null;
+      const elements = document.querySelectorAll(
+        '.question-text, .operator-text, .image-caption, .answer-btn, h2'
+      );
+      let firstHighlight = null;
 
-    elements.forEach(el => {
-      if (el.textContent.toLowerCase().includes(query)) {
-        openParentBranches(el);
-        highlightInElement(el, query);
-        if (!firstHighlight) {
-          firstHighlight = el.querySelector('.search-highlight');
+      elements.forEach(el => {
+        if (el.textContent.toLowerCase().includes(query)) {
+          openParentBranches(el);
+          highlightInElement(el, query);
+          if (!firstHighlight) {
+            firstHighlight = el.querySelector('.search-highlight');
+          }
         }
+      });
+
+      if (firstHighlight) {
+        firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        alert('Ничего не найдено по запросу: «' + query + '»');
       }
-    });
-
-    if (firstHighlight) {
-      firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } else {
-      alert('Ничего не найдено по запросу: «' + query + '»');
     }
-  }
 
-  document.getElementById('searchBtn').addEventListener('click', performSearch);
-  document.getElementById('searchInput').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') performSearch();
-  });
-</script>
+    document.getElementById('searchBtn').addEventListener('click', performSearch);
+    document.getElementById('searchInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') performSearch();
+    });
+  </script>
+</body>
+</html>
