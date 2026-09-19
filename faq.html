@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>База вопросов</title>
+  <style>
+    :root {
+      --bg-color: #f7f9fc;
+      --card-bg: #ffffff;
+      --primary: #2c5aa0;
+      --accent: #38b764;
+      --border: #e1e6ed;
+      --text: #333;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text);
+      max-width: 720px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 28px;
+      font-weight: 600;
+    }
+
+    .faq-item {
+      margin-bottom: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    }
+
+    .question-btn {
+      width: 100%;
+      text-align: left;
+      padding: 14px 18px;
+      background: #fff;
+      border: none;
+      color: var(--primary);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s;
+    }
+
+    .question-btn:hover {
+      background: #f5f8fc;
+    }
+
+    .arrow {
+      transition: transform 0.3s;
+    }
+
+    .question-btn.active .arrow {
+      transform: rotate(90deg);
+    }
+
+    .answer-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background: #fafbfc;
+    }
+
+    .answer-text {
+      padding: 16px 18px;
+      color: #4a5568;
+      line-height: 1.5;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-link">← Вернуться к скриптам</a>
+
+  <h2>База вопросов техподдержки</h2>
+
+  <!-- Вопрос 1 -->
+  <div class="faq-item">
+    <button type="button" class="question-btn" onclick="toggleFaq(this)">
+      <span class="arrow">▶</span>
+      Как зарегистрироваться в САНДО Z?
+    </button>
+    <div class="answer-content">
+      <div class="answer-text">
+        «Для регистрации в САНДО Z вам нужно: 1) Заполнить заявку на сайте. 2) Предложить реквизиты компании. 3) Дождаться подтверждения от менеджера (обычно 1–2 рабочих дня). После этого вы получите доступ к бронированию рейсов.»
+      </div>
+    </div>
+  </div>
+
+  <!-- Вопрос 2 -->
+  <div class="faq-item">
+    <button type="button" class="question-btn" onclick="toggleFaq(this)">
+      <span class="arrow">▶</span>
+      Что делать, если не пришла ЭТРН?
+    </button>
+    <div class="answer-content">
+      <div class="answer-text">
+        «Если ЭТРН не пришла: 1) Уточните, сколько времени прошло с момента отправки (до 24 часов — документ может обрабатываться). 2) Проверьте, есть ли документ в системе по номеру накладной или рейса. 3) Узнайте, через какого оператора ЭДО отправил грузоотправитель — если оператор не совпадает с вашим, документ не дойдёт. Попросите переотправить через вашего оператора.»
+      </div>
+    </div>
+  </div>
+
+  <!-- Вопрос 3 -->
+  <div class="faq-item">
+    <button type="button" class="question-btn" onclick="toggleFaq(this)">
+      <span class="arrow">▶</span>
+      Где взять банковские реквизиты перевозчика?
+    </button>
+    <div class="answer-content">
+      <div class="answer-text">
+        «Банковские реквизиты перевозчика содержатся в договоре и в карточке контрагента. Если вы работаете через систему САНДО, реквизиты можно посмотреть в профиле перевозчика в личном кабинете либо запросить у менеджера.»
+      </div>
+    </div>
+  </div>
+
+  <!-- Вопрос 4 -->
+  <div class="faq-item">
+    <button type="button" class="question-btn" onclick="toggleFaq(this)">
+      <span class="arrow">▶</span>
+      Как восстановить пароль в приложении «Санадор»?
+    </button>
+    <div class="answer-content">
+      <div class="answer-text">
+        «Чтобы восстановить пароль: 1) На экране входа нажмите «Забыли пароль?». 2) Введите номер телефона или e‑mail, привязанный к аккаунту. 3) Следуйте инструкциям в SMS или письме — ссылка для сброса пароля действует 1 час.»
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const content = item.querySelector('.answer-content');
+      const arrow = btn.querySelector('.arrow');
+
+      const isOpen = content.style.maxHeight;
+      if (isOpen) {
+        content.style.maxHeight = null;
+        btn.classList.remove('active');
+        arrow.textContent = '▶';
+      } else {
+        // Сначала измеряем высоту контента
+        content.style.maxHeight = content.scrollHeight + 'px';
+        btn.classList.add('active');
+        arrow.textContent = '▼';
+      }
+    }
+  </script>
+</body>
+</html>
