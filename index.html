@@ -23,7 +23,6 @@
       padding: 0 16px;
     }
 
-    /* --- Трёхколоночная раскладка --- */
     .layout {
       display: flex;
       gap: 20px;
@@ -86,68 +85,39 @@
     .btn-faq { color: var(--primary); border: 1px solid var(--border); }
     .btn-faq:hover { background-color: #f0f7ff; border-color: var(--primary); }
 
-    /* --- Левая колонка: партнёр + офисы --- */
     .left-col .partner-badge {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: flex; align-items: center; gap: 8px;
       padding: 12px 14px;
       background: linear-gradient(135deg, #2c5aa0, #38b764);
-      color: #fff;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.85rem;
+      color: #fff; border-radius: 8px;
+      font-weight: 600; font-size: 0.85rem;
       margin-bottom: 16px;
       box-shadow: 0 3px 10px rgba(44, 90, 160, 0.25);
-      text-align: center;
       justify-content: center;
     }
     .left-col .partner-badge .partner-icon { font-size: 1.2rem; }
 
     .offices-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
-      margin-bottom: 16px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 8px; padding: 16px; margin-bottom: 16px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     .offices-card h3 {
-      color: var(--primary);
-      margin: 0 0 12px 0;
-      font-size: 0.95rem;
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 8px;
+      color: var(--primary); margin: 0 0 12px 0;
+      font-size: 0.95rem; border-bottom: 2px solid var(--border); padding-bottom: 8px;
     }
-    .office-item {
-      padding: 10px 0;
-      border-bottom: 1px dashed var(--border);
-    }
+    .office-item { padding: 10px 0; border-bottom: 1px dashed var(--border); }
     .office-item:last-child { border-bottom: none; }
     .office-city {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 0.88rem;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
+      font-weight: 700; color: var(--primary);
+      font-size: 0.88rem; margin-bottom: 4px;
+      display: flex; align-items: center; gap: 4px;
     }
-    .office-addr {
-      font-size: 0.82rem;
-      color: #4a5568;
-      line-height: 1.4;
-    }
-    .office-staff {
-      font-size: 0.78rem;
-      color: #999;
-      margin-top: 4px;
-      font-style: italic;
-    }
+    .office-addr { font-size: 0.82rem; color: #4a5568; line-height: 1.4; }
+    .office-staff { font-size: 0.78rem; color: #999; margin-top: 4px; font-style: italic; }
 
     .sticky-wrap { position: sticky; top: 24px; }
 
-    /* --- Дерево --- */
     .node { margin-bottom: 18px; }
     .answer-btn {
       display: inline-block; margin: 4px 0; padding: 10px 16px;
@@ -156,7 +126,7 @@
       color: var(--primary); font-size: 1rem;
       transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
-    .answer-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
+    .answer-btn:hover { border-color: var(--primary); transform: translateY(-1px); }
     .answer-btn.active {
       background: var(--accent); border-color: var(--accent);
       color: #fff; box-shadow: 0 4px 8px rgba(56, 183, 100, 0.25);
@@ -209,23 +179,35 @@
     }
     .image-caption { margin-top: 8px; font-size: 0.85rem; color: #718096; }
 
-    /* --- Правая колонка --- */
+    /* Кнопка-ссылка на инструкцию */
+    .instruction-link-btn {
+      display: flex; align-items: center; gap: 10px;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, #2c5aa0, #1f457a);
+      color: #fff; border-radius: 10px;
+      font-weight: 600; font-size: 1rem;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 8px rgba(44, 90, 160, 0.3);
+      margin-bottom: 18px;
+    }
+    .instruction-link-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(44, 90, 160, 0.4);
+    }
+    .instruction-link-btn .link-icon { font-size: 1.3rem; }
+
     .sidebar-card {
       background: #fff; border: 1px solid var(--border);
-      border-radius: 8px; padding: 20px;
-      margin-bottom: 20px;
+      border-radius: 8px; padding: 20px; margin-bottom: 20px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     .sidebar-card h3 {
       color: var(--primary); margin: 0 0 14px 0;
-      font-size: 1.05rem;
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 10px;
+      font-size: 1.05rem; border-bottom: 2px solid var(--border); padding-bottom: 10px;
     }
-
     .news-item {
-      padding: 10px 0;
-      border-bottom: 1px dashed var(--border);
+      padding: 10px 0; border-bottom: 1px dashed var(--border);
       font-size: 0.9rem; color: #4a5568; line-height: 1.5;
     }
     .news-item:last-child { border-bottom: none; }
@@ -237,8 +219,7 @@
 
     .phone-item {
       display: flex; align-items: center; gap: 10px;
-      padding: 10px 0;
-      border-bottom: 1px dashed var(--border);
+      padding: 10px 0; border-bottom: 1px dashed var(--border);
     }
     .phone-item:last-child { border-bottom: none; }
     .phone-icon { font-size: 1.2rem; flex-shrink: 0; }
@@ -254,25 +235,21 @@
     .phone-number:hover { text-decoration: underline; }
 
     .phone-unlock-btn {
-      width: 100%; padding: 10px;
-      background: var(--primary); color: #fff;
-      border: none; border-radius: 6px;
-      cursor: pointer; font-weight: 600;
+      width: 100%; padding: 10px; background: var(--primary); color: #fff;
+      border: none; border-radius: 6px; cursor: pointer; font-weight: 600;
       transition: background 0.2s;
     }
     .phone-unlock-btn:hover { background: #1f457a; }
     .phone-prompt { padding: 12px; text-align: center; }
     .phone-prompt input {
-      width: 100%; padding: 8px 12px;
-      border: 1px solid var(--border);
+      width: 100%; padding: 8px 12px; border: 1px solid var(--border);
       border-radius: 6px; font-size: 0.95rem;
       box-sizing: border-box; margin-bottom: 8px;
       text-align: center; letter-spacing: 2px;
     }
     .phone-prompt button {
-      padding: 8px 16px; background: var(--accent);
-      color: #fff; border: none; border-radius: 6px;
-      cursor: pointer; font-weight: 600;
+      padding: 8px 16px; background: var(--accent); color: #fff;
+      border: none; border-radius: 6px; cursor: pointer; font-weight: 600;
     }
     .phone-prompt .wrong-pass {
       color: var(--danger); font-size: 0.85rem; margin-top: 6px;
@@ -298,28 +275,24 @@
 
   <div class="layout">
 
-    <!-- ЛЕВАЯ КОЛОНКА: партнёр + офисы -->
+    <!-- ЛЕВАЯ КОЛОНКА -->
     <div class="left-col">
       <div class="sticky-wrap">
         <div class="partner-badge">
           <span class="partner-icon">🤝</span>
           Официальный партнёр «Калуга Астрал»
         </div>
-
         <div class="offices-card">
           <h3>🏢 Наши офисы</h3>
-
           <div class="office-item">
             <div class="office-city">📍 Краснодар</div>
             <div class="office-addr">Российская улица, 630, 2 этаж</div>
           </div>
-
           <div class="office-item">
             <div class="office-city">📍 Славянск-на-Кубани</div>
             <div class="office-addr">Улица Дружбы Народов, 63</div>
             <div class="office-staff">Сотрудники: Галина, Юлия</div>
           </div>
-
           <div class="office-item">
             <div class="office-city">📍 Станица Тбилисская</div>
             <div class="office-addr">Элеваторная улица, 7</div>
@@ -329,7 +302,7 @@
       </div>
     </div>
 
-    <!-- ЦЕНТРАЛЬНАЯ КОЛОНКА: скрипты + заметки -->
+    <!-- ЦЕНТРАЛЬНАЯ КОЛОНКА -->
     <div class="main-col">
 
       <!-- ВЕТКА 1 -->
@@ -346,7 +319,6 @@
               <div class="image-caption">Рис. 1. Пример формы заявки на регистрацию в САНДО Z</div>
             </div>
           </div>
-
           <div class="answer-btn" onclick="toggleChildren(this)">Для получения электронных накладных</div>
           <div class="children">
             <div class="operator-text">
@@ -366,83 +338,68 @@
             <div class="options">
               <div class="answer-btn" onclick="toggleChildren(this)">Да, точно ЭТРН</div>
               <div class="children">
-                <div class="operator-text">
-                  «Поняла, речь именно об ЭТРН. Давайте проверим статус документа. Уточните, пожалуйста, сколько времени прошло с момента отправки?»
-                </div>
+                <div class="operator-text">«Поняла, речь именно об ЭТРН. Давайте проверим статус документа. Уточните, пожалуйста, сколько времени прошло с момента отправки?»</div>
               </div>
               <div class="answer-btn" onclick="toggleChildren(this)">Нет, это другой документ</div>
               <div class="children">
-                <div class="operator-text">
-                  «Хорошо, значит, это не ЭТРН. Подскажите, пожалуйста, какой именно документ вы ожидаете: транспортную накладную, счёт-фактуру, УПД или что-то другое? Я подскажу, где его искать или как запросить.»
-                </div>
+                <div class="operator-text">«Хорошо, значит, это не ЭТРН. Подскажите, пожалуйста, какой именно документ вы ожидаете: транспортную накладную, счёт-фактуру, УПД или что-то другое? Я подскажу, где его искать или как запросить.»</div>
               </div>
             </div>
           </div>
-
           <div class="answer-btn" onclick="toggleChildren(this)">Сколько времени ждали между отправкой и получением?</div>
           <div class="children">
             <div class="question-text" style="margin-bottom:8px;">Уточните у звонящего, сколько времени прошло с момента отправки.</div>
             <div class="options">
               <div class="answer-btn" onclick="toggleChildren(this)">Менее 30 минут</div>
               <div class="children">
-                <div class="operator-text">
-                  «Документ мог еще не дойти. ЭТРН проходит обработку в ГИС ЭПД. Важно также проверить, завершена ли регистрация клиента в ЭПД. Рекомендую подождать еще немного.»
-                </div>
+                <div class="operator-text">«Документ мог еще не дойти. ЭТРН проходит обработку в ГИС ЭПД. Важно также проверить, завершена ли регистрация клиента в ЭПД. Рекомендую подождать еще немного.»</div>
               </div>
               <div class="answer-btn" onclick="toggleChildren(this)">Более 30 минут</div>
               <div class="children">
-                <div class="operator-text">
-                  «Если прошло более 30 минут, стоит связаться с грузоотправителем и попросить его проверить отправку документа. Важно, чтобы отправка была произведена через оператора Калуга Астрал.»
-                </div>
+                <div class="operator-text">«Если прошло более 30 минут, стоит связаться с грузоотправителем и попросить его проверить отправку документа. Важно, чтобы отправка была произведена через оператора Калуга Астрал.»</div>
               </div>
             </div>
           </div>
-
           <div class="answer-btn" onclick="toggleChildren(this)">Есть ли ЭТРН в нашей системе</div>
           <div class="children">
             <div class="question-text" style="margin-bottom:8px;">Попросите у клиента ФИО/ИНН и проверьте наличие документа в админке.</div>
             <div class="options">
               <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН найдена в системе</div>
               <div class="children">
-                <div class="operator-text">
-                  «Документ есть в нашей системе. Проверьте его наличие в приложении Санадор ЭПД или Санадор Z (если у клиента iPhone). В крайнем случае, документ можно найти в личном кабинете на сайте Санадор.»
-                </div>
+                <div class="operator-text">«Документ есть в нашей системе. Проверьте его наличие в приложении Санадор ЭПД или Санадор Z (если у клиента iPhone). В крайнем случае, документ можно найти в личном кабинете на сайте Санадор.»</div>
               </div>
               <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН не найдена в системе</div>
               <div class="children">
-                <div class="operator-text">
-                  «К сожалению, в нашей системе ЭТРН не найдена. Необходимо запросить статус документа у грузоотправителя — возможно, он еще не был отправлен или отправлен с ошибкой.»
-                </div>
+                <div class="operator-text">«К сожалению, в нашей системе ЭТРН не найдена. Необходимо запросить статус документа у грузоотправителя — возможно, он еще не был отправлен или отправлен с ошибкой.»</div>
               </div>
             </div>
           </div>
-
           <div class="answer-btn" onclick="toggleChildren(this)">На какого оператора отправил грузоотправитель?</div>
           <div class="children">
             <div class="question-text" style="margin-bottom:8px;">Уточните у грузоотправителя, через какого оператора ЭПД он отправил ЭТРН.</div>
             <div class="options">
               <div class="answer-btn" onclick="toggleChildren(this)">Оператор совпадает с нашим</div>
               <div class="children">
-                <div class="operator-text">
-                  «Если оператор совпадает, но документа нет, запросите у грузоотправителя файл-подтверждение отправки (сам файл ЭТРН). Это поможет нам быстрее разобраться в ситуации.»
-                </div>
+                <div class="operator-text">«Если оператор совпадает, но документа нет, запросите у грузоотправителя файл-подтверждение отправки (сам файл ЭТРН). Это поможет нам быстрее разобраться в ситуации.»</div>
               </div>
               <div class="answer-btn" onclick="toggleChildren(this)">Оператор НЕ совпадает</div>
               <div class="children">
-                <div class="operator-text">
-                  «Проблема может быть в том, что документ отправлен через другого оператора ЭДО. Попросите грузоотправителя переотправить ЭТРН через корректного оператора (Калуга Астрал).»
-                </div>
+                <div class="operator-text">«Проблема может быть в том, что документ отправлен через другого оператора ЭДО. Попросите грузоотправителя переотправить ЭТРН через корректного оператора (Калуга Астрал).»</div>
               </div>
               <div class="answer-btn" onclick="toggleChildren(this)">Грузоотправитель не знает / не отвечает</div>
               <div class="children">
-                <div class="operator-text">
-                  «Если грузоотправитель не может предоставить информацию, мы можем создать заявку на ручную проверку маршрута документа. Сообщите, если хотите оформить такую заявку.»
-                </div>
+                <div class="operator-text">«Если грузоотправитель не может предоставить информацию, мы можем создать заявку на ручную проверку маршрута документа. Сообщите, если хотите оформить такую заявку.»</div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Кнопка на инструкцию КриптоПро -->
+      <a href="cryptopro.html" class="instruction-link-btn">
+        <span class="link-icon">🔐</span>
+        Инструкция по установке КриптоПро (с картинками)
+      </a>
 
       <div class="notes-panel">
         <h3>📝 Мои заметки</h3>
@@ -458,10 +415,9 @@
 
     </div>
 
-    <!-- ПРАВАЯ КОЛОНКА: новости + телефоны -->
+    <!-- ПРАВАЯ КОЛОНКА -->
     <div class="side-col">
       <div class="sticky-wrap">
-
         <div class="sidebar-card">
           <h3>📢 Последние новости</h3>
           <div class="news-item">
@@ -473,16 +429,11 @@
             <strong>Автонабор в CRM</strong> — теперь доступна функция автонабора номеров прямо из CRM.
           </div>
         </div>
-
         <div class="sidebar-card">
           <h3>📞 Контактные телефоны</h3>
           <div id="phone-locked">
-            <p style="font-size: 0.85rem; color: #999; margin-bottom: 12px;">
-              Телефоны доступны только для сотрудников.
-            </p>
-            <button type="button" id="phone-unlock-btn" class="phone-unlock-btn">
-              🔓 Показать номера
-            </button>
+            <p style="font-size: 0.85rem; color: #999; margin-bottom: 12px;">Телефоны доступны только для сотрудников.</p>
+            <button type="button" id="phone-unlock-btn" class="phone-unlock-btn">🔓 Показать номера</button>
           </div>
           <div id="phone-list" style="display: none;">
             <div class="phone-item">
@@ -536,7 +487,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
 
@@ -550,17 +500,11 @@
       btn.classList.toggle('active', isActive);
       saveState();
     }
-
     function closeAllBranches() {
-      document.querySelectorAll('.children').forEach(el => {
-        el.classList.remove('active-children');
-      });
-      document.querySelectorAll('.answer-btn').forEach(el => {
-        el.classList.remove('active');
-      });
+      document.querySelectorAll('.children').forEach(el => el.classList.remove('active-children'));
+      document.querySelectorAll('.answer-btn').forEach(el => el.classList.remove('active'));
       sessionStorage.removeItem('support_tree_state_v3');
     }
-
     const STORAGE_KEY = 'support_tree_state_v3';
     function saveState() {
       const btns = document.querySelectorAll('.answer-btn.active');
@@ -582,7 +526,6 @@
       });
     }
     document.addEventListener('DOMContentLoaded', restoreState);
-
     const NOTES_KEY = 'support_notes_v1';
     function saveNotes() {
       localStorage.setItem(NOTES_KEY, document.getElementById('notes-area').value);
@@ -596,7 +539,6 @@
       const saved = localStorage.getItem(NOTES_KEY);
       if (saved) document.getElementById('notes-area').value = saved;
     });
-
     function clearHighlights() {
       document.querySelectorAll('.search-highlight').forEach(el => {
         const text = document.createTextNode(el.textContent);
@@ -609,9 +551,7 @@
       const textNodes = [];
       let node;
       while (node = walker.nextNode()) {
-        if (node.textContent.toLowerCase().includes(query)) {
-          textNodes.push(node);
-        }
+        if (node.textContent.toLowerCase().includes(query)) textNodes.push(node);
       }
       textNodes.forEach(textNode => {
         const text = textNode.textContent;
@@ -635,9 +575,7 @@
         if (parent.classList && parent.classList.contains('children')) {
           parent.classList.add('active-children');
           const btn = parent.previousElementSibling;
-          if (btn && btn.classList.contains('answer-btn')) {
-            btn.classList.add('active');
-          }
+          if (btn && btn.classList.contains('answer-btn')) btn.classList.add('active');
         }
         parent = parent.parentElement;
       }
@@ -654,9 +592,7 @@
         if (el.textContent.toLowerCase().includes(query)) {
           openParentBranches(el);
           highlightInElement(el, query);
-          if (!firstHighlight) {
-            firstHighlight = el.querySelector('.search-highlight');
-          }
+          if (!firstHighlight) firstHighlight = el.querySelector('.search-highlight');
         }
       });
       if (firstHighlight) {
@@ -669,7 +605,6 @@
     document.getElementById('searchInput').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') performSearch();
     });
-
     const PHONE_PASS = 'sanador2026';
     document.getElementById('phone-unlock-btn').addEventListener('click', () => {
       const locked = document.getElementById('phone-locked');
