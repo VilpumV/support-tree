@@ -2,19 +2,16 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>База вопросов (FAQ) — Санадор</title>
+  <title>База вопросов — Санадор</title>
   <style>
     :root {
       --bg-color: #f7f9fc;
-      --card-bg: #ffffff;
       --primary: #2c5aa0;
       --accent: #38b764;
       --danger: #ff5252;
       --text: #333;
       --border: #e1e6ed;
-      --search-bg: #fff;
     }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-color);
@@ -23,15 +20,14 @@
       margin: 24px auto;
       padding: 0 16px;
     }
-
     h2 {
       text-align: center;
       color: var(--primary);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       font-weight: 600;
     }
 
-    /* Панель действий и поиск */
+    /* Панель действий */
     .top-actions {
       display: flex;
       flex-wrap: wrap;
@@ -39,14 +35,12 @@
       margin-bottom: 24px;
       align-items: center;
     }
-
     .search-box {
       flex-grow: 1;
       display: flex;
       gap: 8px;
       min-width: 200px;
     }
-
     .search-input {
       flex-grow: 1;
       padding: 10px 16px;
@@ -56,10 +50,7 @@
       outline: none;
       transition: border-color 0.2s;
     }
-    .search-input:focus {
-      border-color: var(--primary);
-    }
-
+    .search-input:focus { border-color: var(--primary); }
     .search-btn {
       padding: 10px 20px;
       background: var(--primary);
@@ -68,11 +59,8 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      transition: background 0.2s;
     }
-    .search-btn:hover {
-      background: #1f457a;
-    }
+    .search-btn:hover { background: #1f457a; }
 
     .action-btn {
       padding: 12px 24px;
@@ -88,46 +76,104 @@
       justify-content: center;
       gap: 8px;
       text-decoration: none;
-      color: inherit;
+      color: var(--primary);
       background: #fff;
+      border: 1px solid var(--border);
     }
-    .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-    .btn-faq { color: var(--primary); border: 1px solid var(--border); }
-    .btn-faq:hover { background-color: #f0f7ff; border-color: var(--primary); }
+    .action-btn:hover {
+      background-color: #f0f7ff;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
 
-    /* Блок FAQ: вопрос-ответ */
-    .faq-item {
-      margin-bottom: 18px;
+    /* Форма добавления */
+    .add-form {
       background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .add-form h3 { margin: 0 0 14px 0; color: var(--primary); font-size: 1.1rem; }
+    .add-form input, .add-form textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    .add-form textarea { resize: vertical; min-height: 60px; }
+    .add-form button {
+      padding: 10px 20px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* FAQ-элементы */
+    .faq-item {
+      margin-bottom: 12px;
       border: 1px solid var(--border);
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 2px 4px rgba(0,0,0,0.04);
     }
-    .faq-question {
+    .question-btn {
+      width: 100%;
+      text-align: left;
       padding: 14px 18px;
-      font-weight: 600;
+      background: #fff;
+      border: none;
       color: var(--primary);
+      font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
-      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.2s;
     }
-    .faq-answer {
-      padding: 0 18px 14px 18px;
-      color: #4a5568;
-      line-height: 1.5;
-      display: none; /* скрыто по умолчанию */
-      border-top: 1px dashed var(--border);
+    .question-btn:hover { background: #f5f8fc; }
+    .question-btn.active .arrow { transform: rotate(90deg); }
+    .arrow { transition: transform 0.3s; flex-shrink: 0; }
+
+    .answer-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #fafbfc;
     }
-    .faq-item.open .faq-answer { display: block; }
-    .faq-item.open .faq-question::after { transform: rotate(180deg); }
-    .faq-question::after {
-      float: right;
-      content: "▼";
+    .answer-text { padding: 16px 18px; color: #4a5568; line-height: 1.5; }
+
+    .delete-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 14px;
+      background: #fff;
+      border: 1px solid var(--danger);
+      color: var(--danger);
+      border-radius: 6px;
+      cursor: pointer;
       font-size: 0.85rem;
-      transition: transform 0.3s ease;
+      font-weight: 600;
+    }
+    .delete-btn:hover { background: #ffebee; }
+    .user-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-left: 8px;
     }
 
-    /* Подсветка поиска */
+    /* Подсветка */
     .search-highlight {
       background-color: #ffeb3b;
       padding: 0 2px;
@@ -138,92 +184,213 @@
 </head>
 <body>
 
-  <!-- Панель: Поиск + кнопка назад -->
   <div class="top-actions">
     <div class="search-box">
-      <input type="text" id="searchInput" class="search-input" placeholder="Поиск по FAQ (например: ЭТРН, регистрация)...">
+      <input type="text" id="searchInput" class="search-input" placeholder="Поиск по базе вопросов...">
       <button type="button" id="searchBtn" class="search-btn">Найти</button>
     </div>
-    
-    <a href="index.html" class="action-btn btn-faq">
-      🔙 К скриптам техподдержки
-    </a>
+    <a href="index.html" class="action-btn">🔙 К скриптам</a>
   </div>
 
-  <h2>База часто задаваемых вопросов (FAQ)</h2>
+  <h2>База вопросов техподдержки</h2>
 
-  <!-- Пример FAQ-блоков — замени или дополни своими вопросами -->
-  <div class="faq-item">
-    <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Как зарегистрироваться в Санадор Z?</div>
-    <div class="faq-answer">
-      Для регистрации необходимо либо заполнить заявку в приложении Санадор Z самостоятельно, либо выслать нам пакет документов по списку. Обратите внимание: списки документов для ООО и ИП отличаются.
-    </div>
+  <!-- Форма добавления -->
+  <div class="add-form">
+    <h3>➕ Добавить свой вопрос</h3>
+    <input type="text" id="new-question" placeholder="Введите вопрос…" />
+    <textarea id="new-answer" placeholder="Введите ответ…"></textarea>
+    <button type="button" onclick="addCustomFaq()">Добавить в базу</button>
   </div>
 
-  <div class="faq-item">
-    <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Что делать, если не пришла ЭТРН?</div>
-    <div class="faq-answer">
-      Если ЭТРН не пришла, сначала уточните, точно ли речь идёт именно об ЭТРН (а не о приглашении или другом документе). Если прошло менее 30 минут — документ может ещё обрабатываться в ГИС ЭПД. Если более 30 минут — запросите у грузоотправителя статус отправки и убедитесь, что отправка была через оператора Калуга Астрал.
-    </div>
-  </div>
+  <!-- Пользовательские вопросы -->
+  <div id="custom-faq-container"></div>
 
+  <!-- Стандартные вопросы -->
   <div class="faq-item">
-    <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Где искать ЭТРН после отправки?</div>
-    <div class="faq-answer">
-      Проверьте наличие документа в приложении Санадор ЭПД или Санадор Z (если у клиента iPhone). В крайнем случае, документ можно найти в личном кабинете на сайте Санадор.
-    </div>
+    <button type="button" class="question-btn" onclick="toggleFaq(this)">
+      <span class="arrow">▶</span> Как зарегистрироваться в Санадор Z?
+    </button>
+    <div class="answer-content"><div class="answer-text">
+      Для регистрации необходимо либо заполнить заявку в приложении Санадор Z самостоятельно, либо выслать нам пакет документов по списку. Списки для ООО и ИП отличаются.
+    </div></div>
   </div>
 
   <div class="faq-item">
-    <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">Какой оператор ЭДО используется для ЭТРН в Санадор?</div>
-    <div class="faq-answer">
-      Для передачи ЭТРН используется оператор Калуга Астрал. Если документ отправлен через другого оператора ЭДО, он не отобразится в нашей системе — грузоотправитель должен переотправить ЭТРН через корректного оператора.
-    </div>
+    <button type="button" class="question-btn" onclick="toggleFaq(this)">
+      <span class="arrow">▶</span> Что делать, если не пришла ЭТРН?
+    </button>
+    <div class="answer-content"><div class="answer-text">
+      Уточните, точно ли это ЭТРН. Если прошло менее 30 минут — документ может обрабатываться в ГИС ЭПД. Если более 30 минут — запросите у грузоотправителя статус отправки. Отправка должна быть через оператора Калуга Астрал.
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <button type="button" class="question-btn" onclick="toggleFaq(this)">
+      <span class="arrow">▶</span> Где искать ЭТРН после отправки?
+    </button>
+    <div class="answer-content"><div class="answer-text">
+      Проверьте в приложении Санадор ЭПД или Санадор Z (для iPhone). В крайнем случае — в личном кабинете на сайте Санадор.
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <button type="button" class="question-btn" onclick="toggleFaq(this)">
+      <span class="arrow">▶</span> Какой оператор ЭДО используется для ЭТРН?
+    </button>
+    <div class="answer-content"><div class="answer-text">
+      Используется оператор Калуга Астрал. Если документ отправлен через другого оператора, он не отобразится в системе — грузоотправитель должен переотправить через корректного оператора.
+    </div></div>
   </div>
 
   <script>
-    // --- Логика поиска (та же, что и в index.html) ---
+    // --- Открытие/закрытие FAQ ---
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const content = item.querySelector('.answer-content');
+      const arrow = btn.querySelector('.arrow');
+      if (content.style.maxHeight) {
+        content.style.maxHeight = null;
+        btn.classList.remove('active');
+        arrow.textContent = '▶';
+      } else {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        btn.classList.add('active');
+        arrow.textContent = '▼';
+      }
+    }
+
+    // --- Пользовательские вопросы ---
+    const CUSTOM_KEY = 'custom_faq_v1';
+    function getCustom() {
+      const raw = localStorage.getItem(CUSTOM_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }
+    function saveCustom(items) {
+      localStorage.setItem(CUSTOM_KEY, JSON.stringify(items));
+    }
+    function addCustomFaq() {
+      const q = document.getElementById('new-question').value.trim();
+      const a = document.getElementById('new-answer').value.trim();
+      if (!q || !a) { alert('Заполните и вопрос, и ответ.'); return; }
+      const items = getCustom();
+      items.push({ question: q, answer: a });
+      saveCustom(items);
+      document.getElementById('new-question').value = '';
+      document.getElementById('new-answer').value = '';
+      renderCustom();
+    }
+    function deleteCustomFaq(index) {
+      const items = getCustom();
+      items.splice(index, 1);
+      saveCustom(items);
+      renderCustom();
+    }
+    function renderCustom() {
+      const container = document.getElementById('custom-faq-container');
+      const items = getCustom();
+      container.innerHTML = '';
+      items.forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = 'faq-item';
+        div.innerHTML = `
+          <button type="button" class="question-btn" onclick="toggleFaq(this)">
+            <span class="arrow">▶</span> ${escapeHtml(item.question)}
+            <span class="user-tag">свой</span>
+          </button>
+          <div class="answer-content"><div class="answer-text">
+            ${escapeHtml(item.answer)}
+            <br><button type="button" class="delete-btn" onclick="deleteCustomFaq(${i})">🗑 Удалить</button>
+          </div></div>
+        `;
+        container.appendChild(div);
+      });
+    }
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+    renderCustom();
+
+    // --- Поиск (исправленный) ---
+    function clearHighlights() {
+      document.querySelectorAll('.search-highlight').forEach(el => {
+        const text = document.createTextNode(el.textContent);
+        el.parentNode.replaceChild(text, el);
+      });
+      document.body.normalize();
+    }
+
+    function highlightInElement(element, query) {
+      const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null);
+      const textNodes = [];
+      let node;
+      while (node = walker.nextNode()) {
+        if (node.textContent.toLowerCase().includes(query)) {
+          textNodes.push(node);
+        }
+      }
+      textNodes.forEach(textNode => {
+        const text = textNode.textContent;
+        const lower = text.toLowerCase();
+        const idx = lower.indexOf(query);
+        if (idx === -1) return;
+        const frag = document.createDocumentFragment();
+        if (idx > 0) frag.appendChild(document.createTextNode(text.substring(0, idx)));
+        const span = document.createElement('span');
+        span.className = 'search-highlight';
+        span.textContent = text.substring(idx, idx + query.length);
+        frag.appendChild(span);
+        const rest = text.substring(idx + query.length);
+        if (rest) frag.appendChild(document.createTextNode(rest));
+        textNode.parentNode.replaceChild(frag, textNode);
+      });
+    }
+
+    function openFaqItem(el) {
+      let parent = el.parentElement;
+      while (parent && parent !== document.body) {
+        if (parent.classList && parent.classList.contains('faq-item')) {
+          const btn = parent.querySelector('.question-btn');
+          const content = parent.querySelector('.answer-content');
+          if (btn && content && !content.style.maxHeight) {
+            content.style.maxHeight = content.scrollHeight + 'px';
+            btn.classList.add('active');
+            const arrow = btn.querySelector('.arrow');
+            if (arrow) arrow.textContent = '▼';
+          }
+        }
+        parent = parent.parentElement;
+      }
+    }
+
     function performSearch() {
       const query = document.getElementById('searchInput').value.trim().toLowerCase();
-      
-      // Сбрасываем старую подсветку
-      const highlights = document.querySelectorAll('.search-highlight');
-      highlights.forEach(el => {
-        el.outerHTML = el.innerText;
-      });
-
+      clearHighlights();
       if (!query) return;
 
-      // Ищем в вопросах и ответах
-      const searchableElements = document.querySelectorAll(
-        '.faq-question, .faq-answer'
-      );
+      const elements = document.querySelectorAll('.question-btn, .answer-text');
+      let firstHighlight = null;
 
-      let found = false;
-
-      searchableElements.forEach(el => {
-        const originalText = el.innerText;
-        if (originalText.toLowerCase().includes(query)) {
-          found = true;
-          const regex = new RegExp(`(${query})`, 'gi');
-          const highlightedText = originalText.replace(regex, '<span class="search-highlight">$1</span>');
-          el.innerHTML = highlightedText;
+      elements.forEach(el => {
+        if (el.textContent.toLowerCase().includes(query)) {
+          openFaqItem(el);
+          highlightInElement(el, query);
+          if (!firstHighlight) {
+            firstHighlight = el.querySelector('.search-highlight');
+          }
         }
       });
 
-      if (found) {
-        const firstHighlight = document.querySelector('.search-highlight');
-        if (firstHighlight) {
-          firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+      if (firstHighlight) {
+        firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
-        alert('Ничего не найдено по запросу: ' + query);
+        alert('Ничего не найдено по запросу: «' + query + '»');
       }
     }
 
     document.getElementById('searchBtn').addEventListener('click', performSearch);
-
-    document.getElementById('searchInput').addEventListener('keypress', (e) => {
+    document.getElementById('searchInput').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') performSearch();
     });
   </script>
