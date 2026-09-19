@@ -18,9 +18,22 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text);
-      max-width: 720px;
+      max-width: 1100px;
       margin: 24px auto;
       padding: 0 16px;
+    }
+
+    .layout {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .main-col { flex: 1; min-width: 0; }
+    .side-col { width: 300px; flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      .layout { flex-direction: column; }
+      .side-col { width: 100%; }
     }
 
     h2 {
@@ -37,53 +50,28 @@
       margin-bottom: 24px;
       align-items: center;
     }
-
-    .search-box {
-      flex-grow: 1;
-      display: flex;
-      gap: 8px;
-      min-width: 200px;
-    }
-
+    .search-box { flex-grow: 1; display: flex; gap: 8px; min-width: 200px; }
     .search-input {
-      flex-grow: 1;
-      padding: 10px 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.2s;
+      flex-grow: 1; padding: 10px 16px;
+      border: 1px solid var(--border); border-radius: 8px;
+      font-size: 1rem; outline: none; transition: border-color 0.2s;
     }
     .search-input:focus { border-color: var(--primary); }
-
     .search-btn {
-      padding: 10px 20px;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.2s;
+      padding: 10px 20px; background: var(--primary); color: #fff;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-weight: 600; transition: background 0.2s;
     }
     .search-btn:hover { background: #1f457a; }
 
     .action-btn {
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
+      padding: 12px 24px; border-radius: 10px;
+      font-size: 1rem; font-weight: 600; cursor: pointer;
       transition: all 0.2s ease;
       box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      text-decoration: none;
-      color: inherit;
-      background: #fff;
+      border: none; display: inline-flex;
+      align-items: center; justify-content: center; gap: 8px;
+      text-decoration: none; color: inherit; background: #fff;
     }
     .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
     .btn-reset { color: var(--danger); border: 1px solid #ffcccc; }
@@ -92,76 +80,49 @@
     .btn-faq:hover { background-color: #f0f7ff; border-color: var(--primary); }
 
     .node { margin-bottom: 18px; }
-
     .answer-btn {
-      display: inline-block;
-      margin: 4px 0;
-      padding: 10px 16px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      cursor: pointer;
-      user-select: none;
-      color: var(--primary);
-      font-size: 1rem;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+      display: inline-block; margin: 4px 0; padding: 10px 16px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 8px; cursor: pointer; user-select: none;
+      color: var(--primary); font-size: 1rem;
+      transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
     .answer-btn:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-1px); }
     .answer-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-      box-shadow: 0 4px 8px rgba(56, 183, 100, 0.25);
+      background: var(--accent); border-color: var(--accent);
+      color: #fff; box-shadow: 0 4px 8px rgba(56, 183, 100, 0.25);
     }
-
     .children {
-      display: none;
-      margin-left: 20px;
-      margin-top: 12px;
-      padding-left: 16px;
-      border-left: 3px solid var(--border);
+      display: none; margin-left: 20px; margin-top: 12px;
+      padding-left: 16px; border-left: 3px solid var(--border);
     }
     .active-children { display: block; }
-
     .operator-text {
-      padding: 14px;
-      background: #f5f8fc;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: #4a5568;
-      line-height: 1.5;
-      margin-bottom: 12px;
+      padding: 14px; background: #f5f8fc;
+      border: 1px solid var(--border); border-radius: 8px;
+      color: #4a5568; line-height: 1.5; margin-bottom: 12px;
       border-left-color: var(--primary);
     }
-
     .question-text {
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 10px;
-      font-size: 1.05rem;
+      font-weight: 600; color: var(--primary);
+      margin-bottom: 10px; font-size: 1.05rem;
     }
 
     .search-highlight {
-      background-color: #ffeb3b;
-      padding: 0 2px;
-      border-radius: 3px;
-      font-weight: 700;
+      background-color: #ffeb3b; padding: 0 2px;
+      border-radius: 3px; font-weight: 700;
     }
 
     .notes-panel {
-      margin-top: 32px;
-      padding: 20px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      margin-top: 32px; padding: 20px; background: #fff;
+      border: 1px solid var(--border); border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     .notes-panel h3 { color: var(--primary); margin-top: 0; font-size: 1.1rem; }
     .notes-panel textarea {
       width: 100%; padding: 10px; border: 1px solid var(--border);
-      border-radius: 6px; font-family: inherit; box-sizing: border-box;
-      resize: vertical; min-height: 100px;
+      border-radius: 6px; font-family: inherit;
+      box-sizing: border-box; resize: vertical; min-height: 100px;
     }
     .notes-panel .btn-group { margin-top: 12px; display: flex; gap: 10px; }
     .notes-panel button {
@@ -178,154 +139,275 @@
       display: block; margin: 0 auto;
     }
     .image-caption { margin-top: 8px; font-size: 0.85rem; color: #718096; }
+
+    /* Боковая панель */
+    .sidebar-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 8px; padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .sidebar-card h3 {
+      color: var(--primary); margin: 0 0 14px 0;
+      font-size: 1.05rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .news-item {
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.9rem; color: #4a5568; line-height: 1.5;
+    }
+    .news-item:last-child { border-bottom: none; }
+    .news-date {
+      display: inline-block; font-size: 0.75rem;
+      color: #999; font-weight: 600; margin-bottom: 4px;
+    }
+    .news-item strong { color: var(--text); }
+
+    .phone-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .phone-item:last-child { border-bottom: none; }
+    .phone-icon { font-size: 1.2rem; flex-shrink: 0; }
+    .phone-info { flex-grow: 1; }
+    .phone-label {
+      font-size: 0.75rem; color: #999; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .phone-number {
+      font-size: 0.95rem; font-weight: 700; color: var(--primary);
+      text-decoration: none;
+    }
+    .phone-number:hover { text-decoration: underline; }
+
+    .sticky-wrap { position: sticky; top: 24px; }
   </style>
 </head>
 <body>
+
+  <h2>Скрипты техподдержки Санадор</h2>
 
   <div class="top-actions">
     <div class="search-box">
       <input type="text" id="searchInput" class="search-input" placeholder="Поиск по скриптам (например: ЭТРН, регистрация)...">
       <button type="button" id="searchBtn" class="search-btn">Найти</button>
     </div>
-
     <button type="button" class="action-btn btn-reset" onclick="closeAllBranches()">
       🔒 Закрыть все вкладки
     </button>
-
     <a href="faq.html" class="action-btn btn-faq">
       📘 База вопросов
     </a>
   </div>
 
-  <h2>Скрипты техподдержки Санадор</h2>
+  <div class="layout">
 
-  <!-- ВЕТКА 1: Хочу у вас зарегистрироваться -->
-  <div class="node">
-    <div class="question-text">Хочу у вас зарегистрироваться</div>
-    <div class="options">
-      <div class="answer-btn" onclick="toggleChildren(this)">Для бронирования рейсов (Санадо Z)</div>
-      <div class="children">
-        <div class="operator-text">
-          «Для регистрации необходимо либо заполнить заявку в приложении Санадор Z самостоятельно, либо выслать нам пакет документов по списку. Обратите внимание: списки документов для ООО и ИП отличаются.»
-        </div>
-        <div class="image-wrapper">
-          <img src="https://raw.githubusercontent.com/VilpumV/support-tree/main/form-example.png" alt="Форма заявки" />
-          <div class="image-caption">Рис. 1. Пример формы заявки на регистрацию в САНДО Z</div>
+    <!-- ЛЕВАЯ КОЛОНКА -->
+    <div class="main-col">
+
+      <div class="node">
+        <div class="question-text">Хочу у вас зарегистрироваться</div>
+        <div class="options">
+          <div class="answer-btn" onclick="toggleChildren(this)">Для бронирования рейсов (Санадо Z)</div>
+          <div class="children">
+            <div class="operator-text">
+              «Для регистрации необходимо либо заполнить заявку в приложении Санадор Z самостоятельно, либо выслать нам пакет документов по списку. Обратите внимание: списки документов для ООО и ИП отличаются.»
+            </div>
+            <div class="image-wrapper">
+              <img src="https://raw.githubusercontent.com/VilpumV/support-tree/main/form-example.png" alt="Форма заявки" />
+              <div class="image-caption">Рис. 1. Пример формы заявки на регистрацию в САНДО Z</div>
+            </div>
+          </div>
+
+          <div class="answer-btn" onclick="toggleChildren(this)">Для получения электронных накладных</div>
+          <div class="children">
+            <div class="operator-text">
+              «Для получения электронных накладных клиенту потребуется носитель (флешка) с электронной подписью из налоговой и регистрация через сайт Санадор. Если у клиента нет компьютера, он может приехать в наш офис — мы поможем с регистрацией и сразу запросим необходимые документы.»
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="answer-btn" onclick="toggleChildren(this)">Для получения электронных накладных</div>
-      <div class="children">
-        <div class="operator-text">
-          «Для получения электронных накладных клиенту потребуется носитель (флешка) с электронной подписью из налоговой и регистрация через сайт Санадор. Если у клиента нет компьютера, он может приехать в наш офис — мы поможем с регистрацией и сразу запросим необходимые документы.»
+      <div class="node">
+        <div class="question-text">Не пришла ЭТРН</div>
+        <div class="options">
+          <div class="answer-btn" onclick="toggleChildren(this)">Уточнить: точно ли это ЭТРН, а не ЭЗЗ или приглашение?</div>
+          <div class="children">
+            <div class="question-text" style="margin-bottom:8px;">Уточните у клиента, какой именно документ не пришёл.</div>
+            <div class="options">
+              <div class="answer-btn" onclick="toggleChildren(this)">Да, точно ЭТРН</div>
+              <div class="children">
+                <div class="operator-text">
+                  «Поняла, речь именно об ЭТРН. Давайте проверим статус документа. Уточните, пожалуйста, сколько времени прошло с момента отправки?»
+                </div>
+              </div>
+              <div class="answer-btn" onclick="toggleChildren(this)">Нет, это другой документ</div>
+              <div class="children">
+                <div class="operator-text">
+                  «Хорошо, значит, это не ЭТРН. Подскажите, пожалуйста, какой именно документ вы ожидаете: транспортную накладную, счёт-фактуру, УПД или что-то другое? Я подскажу, где его искать или как запросить.»
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="answer-btn" onclick="toggleChildren(this)">Сколько времени ждали между отправкой и получением?</div>
+          <div class="children">
+            <div class="question-text" style="margin-bottom:8px;">Уточните у звонящего, сколько времени прошло с момента отправки.</div>
+            <div class="options">
+              <div class="answer-btn" onclick="toggleChildren(this)">Менее 30 минут</div>
+              <div class="children">
+                <div class="operator-text">
+                  «Документ мог еще не дойти. ЭТРН проходит обработку в ГИС ЭПД. Важно также проверить, завершена ли регистрация клиента в ЭПД. Рекомендую подождать еще немного.»
+                </div>
+              </div>
+              <div class="answer-btn" onclick="toggleChildren(this)">Более 30 минут</div>
+              <div class="children">
+                <div class="operator-text">
+                  «Если прошло более 30 минут, стоит связаться с грузоотправителем и попросить его проверить отправку документа. Важно, чтобы отправка была произведена через оператора Калуга Астрал.»
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="answer-btn" onclick="toggleChildren(this)">Есть ли ЭТРН в нашей системе</div>
+          <div class="children">
+            <div class="question-text" style="margin-bottom:8px;">Попросите у клиента ФИО/ИНН и проверьте наличие документа в админке.</div>
+            <div class="options">
+              <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН найдена в системе</div>
+              <div class="children">
+                <div class="operator-text">
+                  «Документ есть в нашей системе. Проверьте его наличие в приложении Санадор ЭПД или Санадор Z (если у клиента iPhone). В крайнем случае, документ можно найти в личном кабинете на сайте Санадор.»
+                </div>
+              </div>
+              <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН не найдена в системе</div>
+              <div class="children">
+                <div class="operator-text">
+                  «К сожалению, в нашей системе ЭТРН не найдена. Необходимо запросить статус документа у грузоотправителя — возможно, он еще не был отправлен или отправлен с ошибкой.»
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="answer-btn" onclick="toggleChildren(this)">На какого оператора отправил грузоотправитель?</div>
+          <div class="children">
+            <div class="question-text" style="margin-bottom:8px;">Уточните у грузоотправителя, через какого оператора ЭПД он отправил ЭТРН.</div>
+            <div class="options">
+              <div class="answer-btn" onclick="toggleChildren(this)">Оператор совпадает с нашим</div>
+              <div class="children">
+                <div class="operator-text">
+                  «Если оператор совпадает, но документа нет, запросите у грузоотправителя файл-подтверждение отправки (сам файл ЭТРН). Это поможет нам быстрее разобраться в ситуации.»
+                </div>
+              </div>
+              <div class="answer-btn" onclick="toggleChildren(this)">Оператор НЕ совпадает</div>
+              <div class="children">
+                <div class="operator-text">
+                  «Проблема может быть в том, что документ отправлен через другого оператора ЭДО. Попросите грузоотправителя переотправить ЭТРН через корректного оператора (Калуга Астрал).»
+                </div>
+              </div>
+              <div class="answer-btn" onclick="toggleChildren(this)">Грузоотправитель не знает / не отвечает</div>
+              <div class="children">
+                <div class="operator-text">
+                  «Если грузоотправитель не может предоставить информацию, мы можем создать заявку на ручную проверку маршрута документа. Сообщите, если хотите оформить такую заявку.»
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="notes-panel">
+        <h3>📝 Мои заметки</h3>
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 12px;">
+          Здесь можно писать пометки по текущим обращениям — текст сохраняется в браузере.
+        </p>
+        <textarea id="notes-area"></textarea>
+        <div class="btn-group">
+          <button type="button" class="btn-save" onclick="saveNotes()">Сохранить</button>
+          <button type="button" class="btn-clear" onclick="clearNotes()">Очистить</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ПРАВАЯ КОЛОНКА -->
+    <div class="side-col">
+      <div class="sticky-wrap">
+
+        <div class="sidebar-card">
+          <h3>📢 Последние новости</h3>
+          <div class="news-item">
+            <div class="news-date">19 сентября 2026</div><br>
+            <strong>Приглашения через сайт</strong> — теперь пользователи могут сами принимать приглашения через сайт Санадор, без приложения.
+          </div>
+          <div class="news-item">
+            <div class="news-date">18 сентября 2026</div><br>
+            <strong>Автонабор в CRM</strong> — теперь доступна функция автонабора номеров прямо из CRM.
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>📞 Контактные телефоны</h3>
+
+          <div class="phone-item">
+            <span class="phone-icon">☎️</span>
+            <div class="phone-info">
+              <div class="phone-label">Общая поддержка</div>
+              <a href="tel:+792803744545" class="phone-number">+7 928 037-44-545</a>
+            </div>
+          </div>
+
+          <div class="phone-item">
+            <span class="phone-icon">👩</span>
+            <div class="phone-info">
+              <div class="phone-label">Мария Кургаева</div>
+              <a href="tel:+79384248020" class="phone-number">+7 938 424-80-20</a>
+            </div>
+          </div>
+
+          <div class="phone-item">
+            <span class="phone-icon">👩</span>
+            <div class="phone-info">
+              <div class="phone-label">Анна Демидова</div>
+              <a href="tel:+79385068020" class="phone-number">+7 938 506-80-20</a>
+            </div>
+          </div>
+
+          <div class="phone-item">
+            <span class="phone-icon">👩</span>
+            <div class="phone-info">
+              <div class="phone-label">Анна Кан</div>
+              <a href="tel:+79385078020" class="phone-number">+7 938 507-80-20</a>
+            </div>
+          </div>
+
+          <div class="phone-item">
+            <span class="phone-icon">👩</span>
+            <div class="phone-info">
+              <div class="phone-label">Катерина Туркасова</div>
+              <a href="tel:+79384168020" class="phone-number">+7 938 416-80-20</a>
+            </div>
+          </div>
+
+          <div class="phone-item">
+            <span class="phone-icon">👩</span>
+            <div class="phone-info">
+              <div class="phone-label">Елена Руденко</div>
+              <a href="tel:+7298268020" class="phone-number">+7 298 268-02-0</a>
+            </div>
+          </div>
+
+        </div>
+
       </div>
     </div>
-  </div>
 
-  <!-- ВЕТКА 2: Не пришла ЭТРН -->
-  <div class="node">
-    <div class="question-text">Не пришла ЭТРН</div>
-    <div class="options">
-      <div class="answer-btn" onclick="toggleChildren(this)">Уточнить: точно ли это ЭТРН, а не ЭЗЗ или приглашение?</div>
-      <div class="children">
-        <div class="question-text" style="margin-bottom:8px;">Уточните у клиента, какой именно документ не пришёл.</div>
-        <div class="options">
-          <div class="answer-btn" onclick="toggleChildren(this)">Да, точно ЭТРН</div>
-          <div class="children">
-            <div class="operator-text">
-              «Поняла, речь именно об ЭТРН. Давайте проверим статус документа. Уточните, пожалуйста, сколько времени прошло с момента отправки?»
-            </div>
-          </div>
-          <div class="answer-btn" onclick="toggleChildren(this)">Нет, это другой документ</div>
-          <div class="children">
-            <div class="operator-text">
-              «Хорошо, значит, это не ЭТРН. Подскажите, пожалуйста, какой именно документ вы ожидаете: транспортную накладную, счёт-фактуру, УПД или что-то другое? Я подскажу, где его искать или как запросить.»
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="answer-btn" onclick="toggleChildren(this)">Сколько времени ждали между отправкой и получением?</div>
-      <div class="children">
-        <div class="question-text" style="margin-bottom:8px;">Уточните у звонящего, сколько времени прошло с момента отправки.</div>
-        <div class="options">
-          <div class="answer-btn" onclick="toggleChildren(this)">Менее 30 минут</div>
-          <div class="children">
-            <div class="operator-text">
-              «Документ мог еще не дойти. ЭТРН проходит обработку в ГИС ЭПД. Важно также проверить, завершена ли регистрация клиента в ЭПД. Рекомендую подождать еще немного.»
-            </div>
-          </div>
-          <div class="answer-btn" onclick="toggleChildren(this)">Более 30 минут</div>
-          <div class="children">
-            <div class="operator-text">
-              «Если прошло более 30 минут, стоит связаться с грузоотправителем и попросить его проверить отправку документа. Важно, чтобы отправка была произведена через оператора Калуга Астрал.»
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="answer-btn" onclick="toggleChildren(this)">Есть ли ЭТРН в нашей системе</div>
-      <div class="children">
-        <div class="question-text" style="margin-bottom:8px;">Попросите у клиента ФИО/ИНН и проверьте наличие документа в админке.</div>
-        <div class="options">
-          <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН найдена в системе</div>
-          <div class="children">
-            <div class="operator-text">
-              «Документ есть в нашей системе. Проверьте его наличие в приложении Санадор ЭПД или Санадор Z (если у клиента iPhone). В крайнем случае, документ можно найти в личном кабинете на сайте Санадор.»
-            </div>
-          </div>
-          <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН не найдена в системе</div>
-          <div class="children">
-            <div class="operator-text">
-              «К сожалению, в нашей системе ЭТРН не найдена. Необходимо запросить статус документа у грузоотправителя — возможно, он еще не был отправлен или отправлен с ошибкой.»
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="answer-btn" onclick="toggleChildren(this)">На какого оператора отправил грузоотправитель?</div>
-      <div class="children">
-        <div class="question-text" style="margin-bottom:8px;">Уточните у грузоотправителя, через какого оператора ЭПД он отправил ЭТРН.</div>
-        <div class="options">
-          <div class="answer-btn" onclick="toggleChildren(this)">Оператор совпадает с нашим</div>
-          <div class="children">
-            <div class="operator-text">
-              «Если оператор совпадает, но документа нет, запросите у грузоотправителя файл-подтверждение отправки (сам файл ЭТРН). Это поможет нам быстрее разобраться в ситуации.»
-            </div>
-          </div>
-          <div class="answer-btn" onclick="toggleChildren(this)">Оператор НЕ совпадает</div>
-          <div class="children">
-            <div class="operator-text">
-              «Проблема может быть в том, что документ отправлен через другого оператора ЭДО. Попросите грузоотправителя переотправить ЭТРН через корректного оператора (Калуга Астрал).»
-            </div>
-          </div>
-          <div class="answer-btn" onclick="toggleChildren(this)">Грузоотправитель не знает / не отвечает</div>
-          <div class="children">
-            <div class="operator-text">
-              «Если грузоотправитель не может предоставить информацию, мы можем создать заявку на ручную проверку маршрута документа. Сообщите, если хотите оформить такую заявку.»
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Блок заметок -->
-  <div class="notes-panel">
-    <h3>📝 Мои заметки</h3>
-    <p style="font-size: 0.9rem; color: #666; margin-bottom: 12px;">
-      Здесь можно писать пометки по текущим обращениям — текст сохраняется в браузере.
-    </p>
-    <textarea id="notes-area"></textarea>
-    <div class="btn-group">
-      <button type="button" class="btn-save" onclick="saveNotes()">Сохранить</button>
-      <button type="button" class="btn-clear" onclick="clearNotes()">Очистить</button>
-    </div>
   </div>
 
   <script>
-    // --- Открытие/закрытие веток ---
     function toggleChildren(btn) {
       const children = btn.nextElementSibling;
       if (!children || !children.classList.contains('children')) return;
@@ -334,7 +416,6 @@
       saveState();
     }
 
-    // --- Закрыть все ветки ---
     function closeAllBranches() {
       document.querySelectorAll('.children').forEach(el => {
         el.classList.remove('active-children');
@@ -345,7 +426,6 @@
       sessionStorage.removeItem('support_tree_state_v3');
     }
 
-    // --- Сохранение состояния ---
     const STORAGE_KEY = 'support_tree_state_v3';
     function saveState() {
       const btns = document.querySelectorAll('.answer-btn.active');
@@ -368,7 +448,6 @@
     }
     document.addEventListener('DOMContentLoaded', restoreState);
 
-    // --- Заметки ---
     const NOTES_KEY = 'support_notes_v1';
     function saveNotes() {
       localStorage.setItem(NOTES_KEY, document.getElementById('notes-area').value);
@@ -383,7 +462,6 @@
       if (saved) document.getElementById('notes-area').value = saved;
     });
 
-    // --- Поиск ---
     function clearHighlights() {
       document.querySelectorAll('.search-highlight').forEach(el => {
         const text = document.createTextNode(el.textContent);
@@ -391,7 +469,6 @@
       });
       document.body.normalize();
     }
-
     function highlightInElement(element, query) {
       const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null);
       const textNodes = [];
@@ -417,7 +494,6 @@
         textNode.parentNode.replaceChild(frag, textNode);
       });
     }
-
     function openParentBranches(el) {
       let parent = el.parentElement;
       while (parent && parent !== document.body) {
@@ -431,17 +507,14 @@
         parent = parent.parentElement;
       }
     }
-
     function performSearch() {
       const query = document.getElementById('searchInput').value.trim().toLowerCase();
       clearHighlights();
       if (!query) return;
-
       const elements = document.querySelectorAll(
         '.question-text, .operator-text, .image-caption, .answer-btn, h2'
       );
       let firstHighlight = null;
-
       elements.forEach(el => {
         if (el.textContent.toLowerCase().includes(query)) {
           openParentBranches(el);
@@ -451,14 +524,12 @@
           }
         }
       });
-
       if (firstHighlight) {
         firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } else {
         alert('Ничего не найдено по запросу: «' + query + '»');
       }
     }
-
     document.getElementById('searchBtn').addEventListener('click', performSearch);
     document.getElementById('searchInput').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') performSearch();
