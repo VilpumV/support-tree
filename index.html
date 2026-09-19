@@ -18,22 +18,29 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text);
-      max-width: 1100px;
+      max-width: 1300px;
       margin: 24px auto;
       padding: 0 16px;
     }
 
+    /* --- Трёхколоночная раскладка --- */
     .layout {
       display: flex;
-      gap: 24px;
+      gap: 20px;
       align-items: flex-start;
     }
+    .left-col { width: 240px; flex-shrink: 0; }
     .main-col { flex: 1; min-width: 0; }
-    .side-col { width: 300px; flex-shrink: 0; }
+    .side-col { width: 280px; flex-shrink: 0; }
 
+    @media (max-width: 1024px) {
+      .layout { flex-wrap: wrap; }
+      .left-col { width: 100%; }
+      .side-col { width: 100%; }
+    }
     @media (max-width: 768px) {
       .layout { flex-direction: column; }
-      .side-col { width: 100%; }
+      .left-col, .side-col, .main-col { width: 100%; }
     }
 
     h2 {
@@ -79,62 +86,68 @@
     .btn-faq { color: var(--primary); border: 1px solid var(--border); }
     .btn-faq:hover { background-color: #f0f7ff; border-color: var(--primary); }
 
-    .partner-badge {
-      display: inline-flex;
+    /* --- Левая колонка: партнёр + офисы --- */
+    .left-col .partner-badge {
+      display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 18px;
+      gap: 8px;
+      padding: 12px 14px;
       background: linear-gradient(135deg, #2c5aa0, #38b764);
       color: #fff;
       border-radius: 8px;
       font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
       box-shadow: 0 3px 10px rgba(44, 90, 160, 0.25);
+      text-align: center;
+      justify-content: center;
     }
-    .partner-badge .partner-icon { font-size: 1.3rem; }
+    .left-col .partner-badge .partner-icon { font-size: 1.2rem; }
 
     .offices-card {
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 24px;
+      padding: 16px;
+      margin-bottom: 16px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     .offices-card h3 {
       color: var(--primary);
-      margin: 0 0 14px 0;
-      font-size: 1.05rem;
+      margin: 0 0 12px 0;
+      font-size: 0.95rem;
       border-bottom: 2px solid var(--border);
-      padding-bottom: 10px;
+      padding-bottom: 8px;
     }
     .office-item {
-      padding: 12px 0;
+      padding: 10px 0;
       border-bottom: 1px dashed var(--border);
     }
     .office-item:last-child { border-bottom: none; }
     .office-city {
       font-weight: 700;
       color: var(--primary);
-      font-size: 0.95rem;
+      font-size: 0.88rem;
       margin-bottom: 4px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
     .office-addr {
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       color: #4a5568;
-      line-height: 1.5;
+      line-height: 1.4;
     }
     .office-staff {
-      font-size: 0.85rem;
+      font-size: 0.78rem;
       color: #999;
-      margin-top: 6px;
+      margin-top: 4px;
       font-style: italic;
     }
 
+    .sticky-wrap { position: sticky; top: 24px; }
+
+    /* --- Дерево --- */
     .node { margin-bottom: 18px; }
     .answer-btn {
       display: inline-block; margin: 4px 0; padding: 10px 16px;
@@ -196,6 +209,7 @@
     }
     .image-caption { margin-top: 8px; font-size: 0.85rem; color: #718096; }
 
+    /* --- Правая колонка --- */
     .sidebar-card {
       background: #fff; border: 1px solid var(--border);
       border-radius: 8px; padding: 20px;
@@ -238,8 +252,6 @@
       text-decoration: none;
     }
     .phone-number:hover { text-decoration: underline; }
-
-    .sticky-wrap { position: sticky; top: 24px; }
 
     .phone-unlock-btn {
       width: 100%; padding: 10px;
@@ -286,36 +298,39 @@
 
   <div class="layout">
 
-    <!-- ЛЕВАЯ КОЛОНКА -->
+    <!-- ЛЕВАЯ КОЛОНКА: партнёр + офисы -->
+    <div class="left-col">
+      <div class="sticky-wrap">
+        <div class="partner-badge">
+          <span class="partner-icon">🤝</span>
+          Официальный партнёр «Калуга Астрал»
+        </div>
+
+        <div class="offices-card">
+          <h3>🏢 Наши офисы</h3>
+
+          <div class="office-item">
+            <div class="office-city">📍 Краснодар</div>
+            <div class="office-addr">Российская улица, 630, 2 этаж</div>
+          </div>
+
+          <div class="office-item">
+            <div class="office-city">📍 Славянск-на-Кубани</div>
+            <div class="office-addr">Улица Дружбы Народов, 63</div>
+            <div class="office-staff">Сотрудники: Галина, Юлия</div>
+          </div>
+
+          <div class="office-item">
+            <div class="office-city">📍 Станица Тбилисская</div>
+            <div class="office-addr">Элеваторная улица, 7</div>
+            <div class="office-staff">Сотрудники: Алина, Наталия</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЦЕНТРАЛЬНАЯ КОЛОНКА: скрипты + заметки -->
     <div class="main-col">
-
-      <!-- Партнёр -->
-      <div class="partner-badge">
-        <span class="partner-icon">🤝</span>
-        Официальный партнёр «Калуга Астрал»
-      </div>
-
-      <!-- Адреса офисов -->
-      <div class="offices-card">
-        <h3>🏢 Наши офисы</h3>
-
-        <div class="office-item">
-          <div class="office-city">📍 Краснодар</div>
-          <div class="office-addr">Российская улица, 630, 2 этаж</div>
-        </div>
-
-        <div class="office-item">
-          <div class="office-city">📍 Славянск-на-Кубани</div>
-          <div class="office-addr">Улица Дружбы Народов, 63</div>
-          <div class="office-staff">Сотрудники: Галина, Юлия</div>
-        </div>
-
-        <div class="office-item">
-          <div class="office-city">📍 Станица Тбилисская</div>
-          <div class="office-addr">Элеваторная улица, 7</div>
-          <div class="office-staff">Сотрудники: Алина, Наталия</div>
-        </div>
-      </div>
 
       <!-- ВЕТКА 1 -->
       <div class="node">
@@ -443,7 +458,7 @@
 
     </div>
 
-    <!-- ПРАВАЯ КОЛОНКА -->
+    <!-- ПРАВАЯ КОЛОНКА: новости + телефоны -->
     <div class="side-col">
       <div class="sticky-wrap">
 
