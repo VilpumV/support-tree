@@ -4,9 +4,18 @@
   <meta charset="UTF-8">
   <title>Скрипты техподдержки</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 640px; margin: 20px auto; color: #333; }
-    h2 { text-align: center; }
-    .node { margin-bottom: 12px; }
+    body { 
+      font-family: Arial, sans-serif; 
+      max-width: 640px; 
+      margin: 20px auto; 
+      color: #333; 
+    }
+    h2 { 
+      text-align: center; 
+    }
+    .node { 
+      margin-bottom: 12px; 
+    }
     .answer-btn {
       display: inline-block;
       margin: 4px 0;
@@ -17,8 +26,14 @@
       border-radius: 6px;
       user-select: none;
     }
-    .children { display: none; margin-left: 20px; margin-top: 6px; }
-    .active-children { display: block; }
+    .children { 
+      display: none; 
+      margin-left: 20px; 
+      margin-top: 6px; 
+    }
+    .active-children { 
+      display: block; 
+    }
     .answer-btn.active {
       background: #e0ffe0;
       border-color: #4caf50;
@@ -30,92 +45,77 @@
       border-left: 4px solid #4a90e2;
       font-size: 0.95rem;
     }
+    /* Стиль для кнопки сброса */
+    .reset-btn {
+      display: inline-block;
+      margin: 4px 0 16px 0;
+      padding: 8px 14px;
+      background: #fff;
+      border: 1px solid #ff5252;
+      color: #ff5252;
+      cursor: pointer;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .reset-btn:hover {
+      background: #ffebee;
+      border-color: #d32f2f;
+      color: #d32f2f;
+    }
   </style>
 </head>
 <body>
-  <h2>Скрипты техподдержки (дерево)</h2>
+  <!-- Кнопка сброса дерева -->
+  <a href="" class="reset-btn" onclick="location.reload()">🔄 Начать заново (сброс дерева)</a>
 
-  <div id="root" class="node">
-    <div>Клиент пишет: «Не вижу накладную». Что отвечаем?</div>
-    <div class="options">
-      <div class="answer-btn" onclick="toggleChildren(this)">Проверить статус в ЭДО</div>
-      <div class="children">
-        <div class="node">Статус «Отправлена». Что делаем?</div>
-        <div class="options">
-          <div class="answer-btn" onclick="toggleChildren(this)">Отправить инструкцию по поиску</div>
-          <div class="children">
-            <div class="operator-text">
-              «Зайдите в раздел “Документы” → фильтр по номеру накладной. Если не находится — пришлите скриншот.»
-            </div>
-          </div>
+  <h2>Скрипты техподдержки</h2>
 
-          <div class="answer-btn" onclick="toggleChildren(this)">Запросить скриншот экрана</div>
-          <div class="children">
-            <div class="operator-text">
-              «Пришлите, пожалуйста, скриншот экрана, где видно, что накладной нет — так быстрее найдём причину.»
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Пример узла 1 -->
+  <div class="node">
+    <button class="answer-btn">Проблема с треком</button>
+    <div class="children">
+      <div class="operator-text">Проверьте GPS и статус заказа в CRM.</div>
+      <!-- Сюда можно добавлять новые кнопки внутри ветки -->
+    </div>
+  </div>
 
-      <div class="answer-btn" onclick="toggleChildren(this)">Накладной вообще нет в системе</div>
-      <div class="children">
-        <div class="node">Что делаем дальше?</div>
-        <div class="options">
-          <div class="answer-btn" onclick="toggleChildren(this)">Проверить отправку у перевозчика</div>
-          <div class="children">
-            <div class="operator-text">
-              «Уточните у перевозчика, была ли накладная отправлена в ЭДО. Если да — пришлите номер и дату отправки.»
-            </div>
-          </div>
+  <!-- Пример узла 2 -->
+  <div class="node">
+    <button class="answer-btn">Клиент не видит заказ</button>
+    <div class="children">
+      <div class="operator-text">Проверьте, не истёк ли срок хранения и статус «Доставлен».</div>
+    </div>
+  </div>
 
-          <div class="answer-btn" onclick="toggleChildren(this)">Создать задачу на проверку</div>
-          <div class="children">
-            <div class="operator-text">
-              «Создаю задачу на проверку отсутствия накладной. Укажите номер ТС и дату отгрузки.»
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Пример узла 3 -->
+  <div class="node">
+    <button class="answer-btn">Курьер не может проставить статус</button>
+    <div class="children">
+      <div class="operator-text">Попросите курьера перезагрузить приложение и проверить интернет.</div>
     </div>
   </div>
 
   <script>
-    const STORAGE_KEY = 'support_tree_state_v1';
+    // Логика раскрытия веток дерева
+    document.querySelectorAll('.answer-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const children = this.nextElementSibling;
+        const isActive = children.classList.contains('active-children');
 
-    function toggleChildren(btn) {
-      const children = btn.nextElementSibling;
-      if (!children || !children.classList.contains('children')) return;
-
-      const isActive = children.classList.toggle('active-children');
-      btn.classList.toggle('active', isActive);
-
-      saveState();
-    }
-
-    function saveState() {
-      const btns = document.querySelectorAll('.answer-btn.active');
-      const state = Array.from(btns).map(b => b.outerText.trim());
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
-
-    function restoreState() {
-      const saved = sessionStorage.getItem(STORAGE_KEY);
-      if (!saved) return;
-      const openTexts = JSON.parse(saved);
-      const allBtns = document.querySelectorAll('.answer-btn');
-      allBtns.forEach(btn => {
-        if (openTexts.includes(btn.outerText.trim())) {
-          const children = btn.nextElementSibling;
-          if (children && children.classList.contains('children')) {
-            children.classList.add('active-children');
-            btn.classList.add('active');
-          }
+        // Если ветка уже открыта — закрываем её
+        if (isActive) {
+          children.classList.remove('active-children');
+          this.classList.remove('active');
+          return;
         }
-      });
-    }
 
-    document.addEventListener('DOMContentLoaded', restoreState);
+        // Если ветка закрыта — открываем её
+        children.classList.add('active-children');
+        this.classList.add('active');
+      });
+    });
   </script>
 </body>
 </html>
