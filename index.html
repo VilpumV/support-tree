@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Скрипты техподдержки</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 640px; margin: 20px auto; color: #333; }
+    h2 { text-align: center; }
+    .node { margin-bottom: 12px; }
+    .answer-btn {
+      display: inline-block;
+      margin: 4px 0;
+      padding: 8px 14px;
+      background: #f5f5f5;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      border-radius: 6px;
+      user-select: none;
+    }
+    .children { display: none; margin-left: 20px; margin-top: 6px; }
+    .active-children { display: block; }
+    .answer-btn.active {
+      background: #e0ffe0;
+      border-color: #4caf50;
+      color: #0a5713;
+    }
+    .operator-text {
+      padding: 10px;
+      background: #fafafa;
+      border-left: 4px solid #4a90e2;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <h2>Скрипты техподдержки (дерево)</h2>
+
+  <div id="root" class="node">
+    <div>Клиент пишет: «Не вижу накладную». Что отвечаем?</div>
+    <div class="options">
+      <div class="answer-btn" onclick="toggleChildren(this)">Проверить статус в ЭДО</div>
+      <div class="children">
+        <div class="node">Статус «Отправлена». Что делаем?</div>
+        <div class="options">
+          <div class="answer-btn" onclick="toggleChildren(this)">Отправить инструкцию по поиску</div>
+          <div class="children">
+            <div class="operator-text">
+              «Зайдите в раздел “Документы” → фильтр по номеру накладной. Если не находится — пришлите скриншот.»
+            </div>
+          </div>
+
+          <div class="answer-btn" onclick="toggleChildren(this)">Запросить скриншот экрана</div>
+          <div class="children">
+            <div class="operator-text">
+              «Пришлите, пожалуйста, скриншот экрана, где видно, что накладной нет — так быстрее найдём причину.»
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="answer-btn" onclick="toggleChildren(this)">Накладной вообще нет в системе</div>
+      <div class="children">
+        <div class="node">Что делаем дальше?</div>
+        <div class="options">
+          <div class="answer-btn" onclick="toggleChildren(this)">Проверить отправку у перевозчика</div>
+          <div class="children">
+            <div class="operator-text">
+              «Уточните у перевозчика, была ли накладная отправлена в ЭДО. Если да — пришлите номер и дату отправки.»
+            </div>
+          </div>
+
+          <div class="answer-btn" onclick="toggleChildren(this)">Создать задачу на проверку</div>
+          <div class="children">
+            <div class="operator-text">
+              «Создаю задачу на проверку отсутствия накладной. Укажите номер ТС и дату отгрузки.»
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'support_tree_state_v1';
+
+    function toggleChildren(btn) {
+      const children = btn.nextElementSibling;
+      if (!children || !children.classList.contains('children')) return;
+
+      const isActive = children.classList.toggle('active-children');
+      btn.classList.toggle('active', isActive);
+
+      saveState();
+    }
+
+    function saveState() {
+      const btns = document.querySelectorAll('.answer-btn.active');
+      const state = Array.from(btns).map(b => b.outerText.trim());
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function restoreState() {
+      const saved = sessionStorage.getItem(STORAGE_KEY);
+      if (!saved) return;
+      const openTexts = JSON.parse(saved);
+      const allBtns = document.querySelectorAll('.answer-btn');
+      allBtns.forEach(btn => {
+        if (openTexts.includes(btn.outerText.trim())) {
+          const children = btn.nextElementSibling;
+          if (children && children.classList.contains('children')) {
+            children.classList.add('active-children');
+            btn.classList.add('active');
+          }
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', restoreState);
+  </script>
+</body>
+</html>
