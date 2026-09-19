@@ -346,109 +346,134 @@
   </div>
 
   <script>
-    // --- ЛОГИКА СКРИПТОВ (сворачивание/разворачивание) ---
-    function toggleChildren(btn) {
-      const children = btn.nextElementSibling;
-      if (!children || !children.classList.contains('children')) return;
+  // --- Логика дерева ---
+  function toggleChildren(btn) {
+    const children = btn.nextElementSibling;
+    if (!children || !children.classList.contains('children')) return;
+    const isActive = children.classList.toggle('active-children');
+    btn.classList.toggle('active', isActive);
+    saveState();
+  }
 
-      const isActive = children.classList.toggle('active-children');
-      btn.classList.toggle('active', isActive);
-
-      saveState();
-    }
-
-    const STORAGE_KEY = 'support_tree_state_v3';
-    function saveState() {
-      const btns = document.querySelectorAll('.answer-btn.active');
-      const state = Array.from(btns).map(b => b.outerText.trim());
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    }
-
-    function restoreState() {
-      const saved = sessionStorage.getItem(STORAGE_KEY);
-      if (!saved) return;
-      const openTexts = JSON.parse(saved);
-      const allBtns = document.querySelectorAll('.answer-btn');
-      allBtns.forEach(btn => {
-        if (openTexts.includes(btn.outerText.trim())) {
-          const children = btn.nextElementSibling;
-          if (children && children.classList.contains('children')) {
-            children.classList.add('active-children');
-            btn.classList.add('active');
-          }
+  const STORAGE_KEY = 'support_tree_state_v3';
+  function saveState() {
+    const btns = document.querySelectorAll('.answer-btn.active');
+    const state = Array.from(btns).map(b => b.textContent.trim());
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+  function restoreState() {
+    const saved = sessionStorage.getItem(STORAGE_KEY);
+    if (!saved) return;
+    const openTexts = JSON.parse(saved);
+    document.querySelectorAll('.answer-btn').forEach(btn => {
+      if (openTexts.includes(btn.textContent.trim())) {
+        const children = btn.nextElementSibling;
+        if (children && children.classList.contains('children')) {
+          children.classList.add('active-children');
+          btn.classList.add('active');
         }
-      });
-    }
-    document.addEventListener('DOMContentLoaded', restoreState);
-
-    // --- ЛОГИКА ЗАМЕТОК ---
-    const NOTES_KEY = 'support_notes_v1';
-    function saveNotes() {
-      const text = document.getElementById('notes-area').value;
-      localStorage.setItem(NOTES_KEY, text);
-      alert('Заметки сохранены (в этом браузере).');
-    }
-    function clearNotes() {
-      document.getElementById('notes-area').value = '';
-      localStorage.removeItem(NOTES_KEY);
-    }
-    window.addEventListener('DOMContentLoaded', () => {
-      const saved = localStorage.getItem(NOTES_KEY);
-      if (saved) document.getElementById('notes-area').value = saved;
+      }
     });
+  }
+  document.addEventListener('DOMContentLoaded', restoreState);
 
-    // --- ЛОГИКА ПОИСКА ---
-    function performSearch() {
-      const query = document.getElementById('searchInput').value.trim().toLowerCase();
-      
-      // 1. Сбрасываем старую подсветку
-      const highlights = document.querySelectorAll('.search-highlight');
-      highlights.forEach(el => {
-        el.outerHTML = el.innerText; // Заменяем тег на обычный текст
-      });
+  // --- Заметки ---
+  const NOTES_KEY = 'support_notes_v1';
+  function saveNotes() {
+    localStorage.setItem(NOTES_KEY, document.getElementById('notes-area').value);
+    alert('Заметки сохранены.');
+  }
+  function clearNotes() {
+    document.getElementById('notes-area').value = '';
+    localStorage.removeItem(NOTES_KEY);
+  }
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(NOTES_KEY);
+    if (saved) document.getElementById('notes-area').value = saved;
+  });
 
-      if (!query) return;
+  // --- Поиск (исправленный) ---
+  function clearHighlights() {
+    document.querySelectorAll('.search-highlight').forEach(el => {
+      const text = document.createTextNode(el.textContent);
+      el.parentNode.replaceChild(text, el);
+    });
+    document.body.normalize();
+  }
 
-      // 2. Находим все текстовые узлы, которые нужно проверить
-      // Ищем в заголовках, вопросах, ответах, подписях, кнопках
-      const searchableElements = document.querySelectorAll(
-        '.question-text, .operator-text, .image-caption, .answer-btn, h2'
-      );
-
-      let found = false;
-
-      searchableElements.forEach(el => {
-        const originalText = el.innerText;
-        if (originalText.toLowerCase().includes(query)) {
-          found = true;
-          
-          // 3. Подсветка: оборачиваем совпадения в span
-          // Используем регулярное выражение для поиска всех вхождений
-          const regex = new RegExp(`(\${query})`, 'gi');
-          const highlightedText = originalText.replace(regex, '<span class="search-highlight">\$1</span>');
-          
-          el.innerHTML = highlightedText;
-        }
-      });
-
-      if (found) {
-        // 4. Скроллим к первому найденному элементу
-        const firstHighlight = document.querySelector('.search-highlight');
-        if (firstHighlight) {
-          firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      } else {
-        alert('Ничего не найдено по запросу: ' + query);
+  function highlightInElement(element, query) {
+    const walker = document.createTreeWalker(
+      element,
+      NodeFilter.SHOW_TEXT,
+      null
+    );
+    const textNodes = [];
+    let node;
+    while (node = walker.nextNode()) {
+      if (node.textContent.toLowerCase().includes(query)) {
+        textNodes.push(node);
       }
     }
-
-    // Запуск поиска по кнопке
-    document.getElementById('searchBtn').addEventListener('click', performSearch);
-
-    // Запуск поиска по клавише Enter
-    document.getElementById('searchInput').addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') performSearch();
+    textNodes.forEach(textNode => {
+      const text = textNode.textContent;
+      const lower = text.toLowerCase();
+      const idx = lower.indexOf(query);
+      if (idx === -1) return;
+      const frag = document.createDocumentFragment();
+      if (idx > 0) frag.appendChild(document.createTextNode(text.substring(0, idx)));
+      const span = document.createElement('span');
+      span.className = 'search-highlight';
+      span.textContent = text.substring(idx, idx + query.length);
+      frag.appendChild(span);
+      const rest = text.substring(idx + query.length);
+      if (rest) frag.appendChild(document.createTextNode(rest));
+      textNode.parentNode.replaceChild(frag, textNode);
     });
-  </script>
-</body>
-</html>
+  }
+
+  function openParentBranches(el) {
+    let parent = el.parentElement;
+    while (parent && parent !== document.body) {
+      if (parent.classList && parent.classList.contains('children')) {
+        parent.classList.add('active-children');
+        const btn = parent.previousElementSibling;
+        if (btn && btn.classList.contains('answer-btn')) {
+          btn.classList.add('active');
+        }
+      }
+      parent = parent.parentElement;
+    }
+  }
+
+  function performSearch() {
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    clearHighlights();
+    if (!query) return;
+
+    const elements = document.querySelectorAll(
+      '.question-text, .operator-text, .image-caption, .answer-btn, h2'
+    );
+    let firstHighlight = null;
+
+    elements.forEach(el => {
+      if (el.textContent.toLowerCase().includes(query)) {
+        openParentBranches(el);
+        highlightInElement(el, query);
+        if (!firstHighlight) {
+          firstHighlight = el.querySelector('.search-highlight');
+        }
+      }
+    });
+
+    if (firstHighlight) {
+      firstHighlight.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      alert('Ничего не найдено по запросу: «' + query + '»');
+    }
+  }
+
+  document.getElementById('searchBtn').addEventListener('click', performSearch);
+  document.getElementById('searchInput').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') performSearch();
+  });
+</script>
