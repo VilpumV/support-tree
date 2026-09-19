@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Поддержка</title>
+  <title>Скрипты техподдержки Санадор</title>
   <style>
     :root {
       --bg-color: #f7f9fc;
@@ -79,6 +79,62 @@
     .btn-faq { color: var(--primary); border: 1px solid var(--border); }
     .btn-faq:hover { background-color: #f0f7ff; border-color: var(--primary); }
 
+    .partner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      background: linear-gradient(135deg, #2c5aa0, #38b764);
+      color: #fff;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 10px rgba(44, 90, 160, 0.25);
+    }
+    .partner-badge .partner-icon { font-size: 1.3rem; }
+
+    .offices-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .offices-card h3 {
+      color: var(--primary);
+      margin: 0 0 14px 0;
+      font-size: 1.05rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 10px;
+    }
+    .office-item {
+      padding: 12px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .office-item:last-child { border-bottom: none; }
+    .office-city {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .office-addr {
+      font-size: 0.9rem;
+      color: #4a5568;
+      line-height: 1.5;
+    }
+    .office-staff {
+      font-size: 0.85rem;
+      color: #999;
+      margin-top: 6px;
+      font-style: italic;
+    }
+
     .node { margin-bottom: 18px; }
     .answer-btn {
       display: inline-block; margin: 4px 0; padding: 10px 16px;
@@ -140,7 +196,6 @@
     }
     .image-caption { margin-top: 8px; font-size: 0.85rem; color: #718096; }
 
-    /* Боковая панель */
     .sidebar-card {
       background: #fff; border: 1px solid var(--border);
       border-radius: 8px; padding: 20px;
@@ -185,11 +240,36 @@
     .phone-number:hover { text-decoration: underline; }
 
     .sticky-wrap { position: sticky; top: 24px; }
+
+    .phone-unlock-btn {
+      width: 100%; padding: 10px;
+      background: var(--primary); color: #fff;
+      border: none; border-radius: 6px;
+      cursor: pointer; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .phone-unlock-btn:hover { background: #1f457a; }
+    .phone-prompt { padding: 12px; text-align: center; }
+    .phone-prompt input {
+      width: 100%; padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px; font-size: 0.95rem;
+      box-sizing: border-box; margin-bottom: 8px;
+      text-align: center; letter-spacing: 2px;
+    }
+    .phone-prompt button {
+      padding: 8px 16px; background: var(--accent);
+      color: #fff; border: none; border-radius: 6px;
+      cursor: pointer; font-weight: 600;
+    }
+    .phone-prompt .wrong-pass {
+      color: var(--danger); font-size: 0.85rem; margin-top: 6px;
+    }
   </style>
 </head>
 <body>
 
-  <h2>Поддержка поддержит всех</h2>
+  <h2>Скрипты техподдержки Санадор</h2>
 
   <div class="top-actions">
     <div class="search-box">
@@ -197,7 +277,7 @@
       <button type="button" id="searchBtn" class="search-btn">Найти</button>
     </div>
     <button type="button" class="action-btn btn-reset" onclick="closeAllBranches()">
-      ❌ Закрыть все вкладки
+      🔒 Закрыть все вкладки
     </button>
     <a href="faq.html" class="action-btn btn-faq">
       📘 База вопросов
@@ -209,6 +289,35 @@
     <!-- ЛЕВАЯ КОЛОНКА -->
     <div class="main-col">
 
+      <!-- Партнёр -->
+      <div class="partner-badge">
+        <span class="partner-icon">🤝</span>
+        Официальный партнёр «Калуга Астрал»
+      </div>
+
+      <!-- Адреса офисов -->
+      <div class="offices-card">
+        <h3>🏢 Наши офисы</h3>
+
+        <div class="office-item">
+          <div class="office-city">📍 Краснодар</div>
+          <div class="office-addr">Российская улица, 630, 2 этаж</div>
+        </div>
+
+        <div class="office-item">
+          <div class="office-city">📍 Славянск-на-Кубани</div>
+          <div class="office-addr">Улица Дружбы Народов, 63</div>
+          <div class="office-staff">Сотрудники: Галина, Юлия</div>
+        </div>
+
+        <div class="office-item">
+          <div class="office-city">📍 Станица Тбилисская</div>
+          <div class="office-addr">Элеваторная улица, 7</div>
+          <div class="office-staff">Сотрудники: Алина, Наталия</div>
+        </div>
+      </div>
+
+      <!-- ВЕТКА 1 -->
       <div class="node">
         <div class="question-text">Хочу у вас зарегистрироваться</div>
         <div class="options">
@@ -232,6 +341,7 @@
         </div>
       </div>
 
+      <!-- ВЕТКА 2 -->
       <div class="node">
         <div class="question-text">Не пришла ЭТРН</div>
         <div class="options">
@@ -322,7 +432,7 @@
       <div class="notes-panel">
         <h3>📝 Мои заметки</h3>
         <p style="font-size: 0.9rem; color: #666; margin-bottom: 12px;">
-          Здесь можно писать пометки ,их увидете только вы.
+          Здесь можно писать пометки по текущим обращениям — текст сохраняется в браузере.
         </p>
         <textarea id="notes-area"></textarea>
         <div class="btn-group">
@@ -341,7 +451,7 @@
           <h3>📢 Последние новости</h3>
           <div class="news-item">
             <div class="news-date">19 сентября 2026</div><br>
-            <strong>Приглашения через сайт</strong> — теперь пользователи могут сами принимать приглашения через сайт Санадор, без Маши (ура).
+            <strong>Приглашения через сайт</strong> — теперь пользователи могут сами принимать приглашения через сайт Санадор, без приложения.
           </div>
           <div class="news-item">
             <div class="news-date">18 сентября 2026</div><br>
@@ -351,63 +461,65 @@
 
         <div class="sidebar-card">
           <h3>📞 Контактные телефоны</h3>
-
-          <div class="phone-item">
-            <span class="phone-icon">☎️</span>
-            <div class="phone-info">
-              <div class="phone-label">Общая поддержка</div>
-              <a href="tel:+792803744545" class="phone-number">+7 928 037-44-545</a>
+          <div id="phone-locked">
+            <p style="font-size: 0.85rem; color: #999; margin-bottom: 12px;">
+              Телефоны доступны только для сотрудников.
+            </p>
+            <button type="button" id="phone-unlock-btn" class="phone-unlock-btn">
+              🔓 Показать номера
+            </button>
+          </div>
+          <div id="phone-list" style="display: none;">
+            <div class="phone-item">
+              <span class="phone-icon">☎️</span>
+              <div class="phone-info">
+                <div class="phone-label">Общая поддержка</div>
+                <a href="tel:+792803744545" class="phone-number">+7 928 037-44-545</a>
+              </div>
+            </div>
+            <div class="phone-item">
+              <span class="phone-icon">👩</span>
+              <div class="phone-info">
+                <div class="phone-label">Мария Кургаева</div>
+                <a href="tel:+79384248020" class="phone-number">+7 938 424-80-20</a>
+              </div>
+            </div>
+            <div class="phone-item">
+              <span class="phone-icon">👩</span>
+              <div class="phone-info">
+                <div class="phone-label">Анна Демидова</div>
+                <a href="tel:+79385068020" class="phone-number">+7 938 506-80-20</a>
+              </div>
+            </div>
+            <div class="phone-item">
+              <span class="phone-icon">👩</span>
+              <div class="phone-info">
+                <div class="phone-label">Анна Кан</div>
+                <a href="tel:+79385078020" class="phone-number">+7 938 507-80-20</a>
+              </div>
+            </div>
+            <div class="phone-item">
+              <span class="phone-icon">👩</span>
+              <div class="phone-info">
+                <div class="phone-label">Катерина Туркасова</div>
+                <a href="tel:+79384168020" class="phone-number">+7 938 416-80-20</a>
+              </div>
+            </div>
+            <div class="phone-item">
+              <span class="phone-icon">👩</span>
+              <div class="phone-info">
+                <div class="phone-label">Елена Руденко</div>
+                <a href="tel:+7298268020" class="phone-number">+7 298 268-02-0</a>
+              </div>
+            </div>
+            <div class="phone-item">
+              <span class="phone-icon">👩</span>
+              <div class="phone-info">
+                <div class="phone-label">Галина Топорчикова</div>
+                <a href="tel:+79086904339" class="phone-number">+7 908 690-43-39</a>
+              </div>
             </div>
           </div>
-
-          <div class="phone-item">
-            <span class="phone-icon">👩</span>
-            <div class="phone-info">
-              <div class="phone-label">Мария Кургаева</div>
-              <a href="tel:+79384248020" class="phone-number">+7 938 424-80-20</a>
-            </div>
-          </div>
-
-          <div class="phone-item">
-            <span class="phone-icon">👩</span>
-            <div class="phone-info">
-              <div class="phone-label">Анна Демидова</div>
-              <a href="tel:+79385068020" class="phone-number">+7 938 506-80-20</a>
-            </div>
-          </div>
-
-          <div class="phone-item">
-            <span class="phone-icon">👩</span>
-            <div class="phone-info">
-              <div class="phone-label">Анна Кан</div>
-              <a href="tel:+79385078020" class="phone-number">+7 938 507-80-20</a>
-            </div>
-          </div>
-
-          <div class="phone-item">
-            <span class="phone-icon">👩</span>
-            <div class="phone-info">
-              <div class="phone-label">Катерина Туркасова</div>
-              <a href="tel:+79384168020" class="phone-number">+7 938 416-80-20</a>
-            </div>
-          </div>
-
-          <div class="phone-item">
-            <span class="phone-icon">👩</span>
-            <div class="phone-info">
-              <div class="phone-label">Елена Руденко</div>
-              <a href="tel:+7298268020" class="phone-number">+7 929 826-80-20</a>
-            </div>
-          </div> 
-          
-          <div class="phone-item">
-            <span class="phone-icon">👩</span>
-            <div class="phone-info">
-              <div class="phone-label">Галина Топорчикова</div>
-              <a href="tel:+7298268020" class="phone-number">+7 908 690-43-39</a>
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -520,7 +632,7 @@
       clearHighlights();
       if (!query) return;
       const elements = document.querySelectorAll(
-        '.question-text, .operator-text, .image-caption, .answer-btn, h2'
+        '.question-text, .operator-text, .image-caption, .answer-btn, h2, .office-city, .office-addr, .office-staff, .partner-badge'
       );
       let firstHighlight = null;
       elements.forEach(el => {
@@ -542,6 +654,32 @@
     document.getElementById('searchInput').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') performSearch();
     });
+
+    const PHONE_PASS = 'sanador2026';
+    document.getElementById('phone-unlock-btn').addEventListener('click', () => {
+      const locked = document.getElementById('phone-locked');
+      locked.innerHTML = `
+        <div class="phone-prompt">
+          <p style="font-size: 0.85rem; color: #999; margin-bottom: 10px;">Введите пароль:</p>
+          <input type="password" id="phone-pass-input" placeholder="••••••••" autofocus>
+          <button type="button" id="phone-pass-submit">Войти</button>
+          <div id="phone-wrong" class="wrong-pass" style="display: none;">Неверный пароль</div>
+        </div>
+      `;
+      document.getElementById('phone-pass-submit').addEventListener('click', checkPhonePass);
+      document.getElementById('phone-pass-input').addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') checkPhonePass();
+      });
+    });
+    function checkPhonePass() {
+      const input = document.getElementById('phone-pass-input').value;
+      if (input === PHONE_PASS) {
+        document.getElementById('phone-locked').style.display = 'none';
+        document.getElementById('phone-list').style.display = 'block';
+      } else {
+        document.getElementById('phone-wrong').style.display = 'block';
+      }
+    }
   </script>
 </body>
 </html>
