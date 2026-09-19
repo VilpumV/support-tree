@@ -30,6 +30,54 @@
       font-weight: 600;
     }
 
+    .top-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .action-btn {
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      color: inherit;
+      background: #fff;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .btn-reset {
+      color: var(--danger);
+      border: 1px solid #ffcccc;
+    }
+    .btn-reset:hover {
+      background-color: #ffebee;
+      border-color: var(--danger);
+    }
+
+    .btn-faq {
+      color: var(--primary);
+      border: 1px solid var(--border);
+    }
+    .btn-faq:hover {
+      background-color: #f0f7ff;
+      border-color: var(--primary);
+    }
+
     .node {
       margin-bottom: 18px;
     }
@@ -92,24 +140,49 @@
       font-size: 1.05rem;
     }
 
-    .reset-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 18px;
+    .notes-panel {
+      margin-top: 32px;
+      padding: 20px;
       background: #fff;
-      border: 1px solid var(--danger);
-      color: var(--danger);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
-    .reset-btn:hover {
-      background: #ffebee;
-      border-color: #d32f2f;
-      color: #d32f2f;
+    .notes-panel h3 {
+      color: var(--primary);
+      margin-top: 0;
+      font-size: 1.1rem;
+    }
+    .notes-panel textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit;
+      box-sizing: border-box;
+      resize: vertical;
+      min-height: 100px;
+    }
+    .notes-panel .btn-group {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+    }
+    .notes-panel button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-save {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-clear {
+      background: #f0f0f0;
+      color: #333;
+      border: 1px solid #ccc;
     }
 
     .image-wrapper {
@@ -132,15 +205,14 @@
 </head>
 <body>
 
-  <!-- Исправленная кнопка сброса -->
-  <button type="button" class="reset-btn" onclick="location.reload()">
-     Начать заново(пока не работает)
-    </p>
-    <p style="margin-top: 16px; text-align: center;">
-  <a href="faq.html" style="color: var(--primary); text-decoration: underline; font-weight: 600;">📘 База вопросов</a>
-</p>
-
-  </button>
+  <div class="top-actions">
+    <button type="button" class="action-btn btn-reset" onclick="location.reload()">
+      🔄 Начать заново
+    </button>
+    <a href="faq.html" class="action-btn btn-faq">
+      📘 База вопросов
+    </a>
+  </div>
 
   <h2>Скрипты техподдержки Санадор</h2>
 
@@ -151,18 +223,20 @@
       <div class="answer-btn" onclick="toggleChildren(this)">Для бронирования рейсов (Санадо Z)</div>
       <div class="children">
         <div class="operator-text">
-          «Для регистрации шлем его либо в приложение санадор Z .пусть сам заполняет или просим документы нам выслать по СПИСКУ ООО И ИП отличаются мяу»
+          <!-- МЯУ: логика такая - либо сам в приложении, либо доки нам -->
+          «Для регистрации необходимо либо заполнить заявку в приложении Санадор Z самостоятельно, либо выслать нам пакет документов по списку. Обратите внимание: списки документов для ООО и ИП отличаются.»
         </div>
         <div class="image-wrapper">
           <img src="https://raw.githubusercontent.com/VilpumV/support-tree/main/form-example.png" alt="Форма заявки" />
-          <div class="image-caption">Рис. 1. мяу мяу картинку добавлю</div>
+          <div class="image-caption">Рис. 1. Пример формы заявки на регистрацию в САНДО Z</div>
         </div>
       </div>
 
       <div class="answer-btn" onclick="toggleChildren(this)">Для получения электронных накладных</div>
       <div class="children">
         <div class="operator-text">
-          «Для получения электронных накладных говорим ,что ему нужно флешечку с налоговой и регистрация через сайт санадор ,если компа нет пусть едет к нам в офис и кстаи тут тоже доки просим»
+          <!-- МЯУ: тут про флешку из налоговой и офис -->
+          «Для получения электронных накладных клиенту потребуется носитель (флешка) с электронной подписью из налоговой и регистрация через сайт Санадор. Если у клиента нет компьютера, он может приехать в наш офис — мы поможем с регистрацией и сразу запросим необходимые документы.»
         </div>
       </div>
     </div>
@@ -172,17 +246,23 @@
   <div class="node">
     <div class="question-text">Не пришла ЭТРН</div>
     <div class="options">
-      <div class="answer-btn" onclick="toggleChildren(this)">Точно ли это ЭТРН ,а не ЭЗЗ или приглос?</div>
+      <div class="answer-btn" onclick="toggleChildren(this)">Уточнить: точно ли это ЭТРН, а не ЭЗЗ или приглашение?</div>
       <div class="children">
-        <div class="question-text" style="margin-bottom:8px;">Уточните у чела, какой именно документ не пришёл.</div>
+        <div class="question-text" style="margin-bottom:8px;">Уточните у клиента, какой именно документ не пришёл.</div>
         <div class="options">
           <div class="answer-btn" onclick="toggleChildren(this)">Да, точно ЭТРН</div>
           <div class="children">
-            <div class="operator-text">«дальше логику позже распишу,пока лень :D.»</div>
+            <div class="operator-text">
+              <!-- МЯУ: тут надо спросить про время -->
+              «Поняла, речь именно об ЭТРН. Давайте проверим статус документа. Уточните, пожалуйста, сколько времени прошло с момента отправки?»
+            </div>
           </div>
           <div class="answer-btn" onclick="toggleChildren(this)">Нет, это другой документ</div>
           <div class="children">
-            <div class="operator-text">«я тупая ,пока не понимаю как сделать круг назад (сори).»</div>
+            <div class="operator-text">
+              <!-- МЯУ: тут надо развернуть на нужный документ -->
+              «Хорошо, значит, это не ЭТРН. Подскажите, пожалуйста, какой именно документ вы ожидаете: транспортную накладную, счёт-фактуру, УПД или что-то другое? Я подскажу, где его искать или как запросить.»
+            </div>
           </div>
         </div>
       </div>
@@ -193,26 +273,38 @@
         <div class="options">
           <div class="answer-btn" onclick="toggleChildren(this)">Менее 30 минут</div>
           <div class="children">
-            <div class="operator-text">«ЭТРН еще не прийти ,жди гис эпд (тут важно еще когда прошла регистраиц я в ЭПД).»</div>
+            <div class="operator-text">
+              <!-- МЯУ: тут про ГИС ЭПД и регистрацию -->
+              «Документ мог еще не дойти. ЭТРН проходит обработку в ГИС ЭПД. Важно также проверить, завершена ли регистрация клиента в ЭПД. Рекомендую подождать еще немного.»
+            </div>
           </div>
           <div class="answer-btn" onclick="toggleChildren(this)">Более 30 минут</div>
           <div class="children">
-            <div class="operator-text">«ну и лошара ,хотелось бы мне сказать ,но нет .Пусть трясет грузоотправителя и говорит ОТПРАВЬ НА КАЛУГУ АСТРАЛ»</div>
+            <div class="operator-text">
+              <!-- МЯУ: тут про то, чтобы трясти грузоотправителя и Калуга Астрал -->
+              «Если прошло более 30 минут, стоит связаться с грузоотправителем и попросить его проверить отправку документа. Важно, чтобы отправка была произведена через оператора Калуга Астрал.»
+            </div>
           </div>
         </div>
       </div>
 
       <div class="answer-btn" onclick="toggleChildren(this)">Есть ли ЭТРН в нашей системе</div>
       <div class="children">
-        <div class="question-text" style="margin-bottom:8px;">фио проси и проверяй в админке.</div>
+        <div class="question-text" style="margin-bottom:8px;">Попросите у клиента ФИО/ИНН и проверьте наличие документа в админке.</div>
         <div class="options">
           <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН найдена в системе</div>
           <div class="children">
-            <div class="operator-text">«во дурак ,пусть смотрит в приложении санадор эпд или z если айфон ,на крайняк на сайте санадор»</div>
+            <div class="operator-text">
+              <!-- МЯУ: тут про приложение Z, ЭПД и сайт -->
+              «Документ есть в нашей системе. Проверьте его наличие в приложении Санадор ЭПД или Санадор Z (если у клиента iPhone). В крайнем случае, документ можно найти в личном кабинете на сайте Санадор.»
+            </div>
           </div>
           <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН не найдена в системе</div>
           <div class="children">
-            <div class="operator-text">«Ну дела....... пусть трясет грузоотправителя»</div>
+            <div class="operator-text">
+              <!-- МЯУ: тут про то, что надо трясти грузоотправителя -->
+              «К сожалению, в нашей системе ЭТРН не найдена. Необходимо запросить статус документа у грузоотправителя — возможно, он еще не был отправлен или отправлен с ошибкой.»
+            </div>
           </div>
         </div>
       </div>
@@ -223,15 +315,24 @@
         <div class="options">
           <div class="answer-btn" onclick="toggleChildren(this)">Оператор совпадает с нашим</div>
           <div class="children">
-            <div class="operator-text">«ГОСПОДИ ПОМИЛУУУУУУУУУУУУУУУУУЙ,ПРОСИ ФАЙЛ у грузоотправителя эйто этрн »</div>
+            <div class="operator-text">
+              <!-- ГОСПОДИ ПОМИЛУЙ: тут надо просить файл у грузоотправителя -->
+              «Если оператор совпадает, но документа нет, запросите у грузоотправителя файл-подтверждение отправки (сам файл ЭТРН). Это поможет нам быстрее разобраться в ситуации.»
+            </div>
           </div>
           <div class="answer-btn" onclick="toggleChildren(this)">Оператор НЕ совпадает</div>
           <div class="children">
-            <div class="operator-text">«лох,пусть отправит правильно»</div>
+            <div class="operator-text">
+              <!-- МЯУ: тут про переотправку на правильного оператора -->
+              «Проблема может быть в том, что документ отправлен через другого оператора ЭДО. Попросите грузоотправителя переотправить ЭТРН через корректного оператора (Калуга Астрал).»
+            </div>
           </div>
           <div class="answer-btn" onclick="toggleChildren(this)">Грузоотправитель не знает / не отвечает</div>
           <div class="children">
-            <div class="operator-text">«Жаль этого добряка»</div>
+            <div class="operator-text">
+              <!-- МЯУ: тут про заявку на ручную проверку -->
+              «Если грузоотправитель не может предоставить информацию, мы можем создать заявку на ручную проверку маршрута документа. Сообщите, если хотите оформить такую заявку.»
+            </div>
           </div>
         </div>
       </div>
@@ -239,15 +340,15 @@
   </div>
 
   <!-- Блок заметок -->
-  <div style="margin-top: 32px; padding: 20px; background: #fff; border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
-    <h3 style="color: var(--primary); margin-top: 0; font-size: 1.1rem;">📝 Мои заметки</h3>
+  <div class="notes-panel">
+    <h3>📝 Мои заметки</h3>
     <p style="font-size: 0.9rem; color: #666; margin-bottom: 12px;">
-      Здесь можно писать пометки по текущим обращениям — текст сохраняется в браузере(я пока не сделала общие заметки сорян ,это только личные .Как допру как ,то сделаю).
+      Здесь можно писать пометки по текущим обращениям — текст сохраняется в браузере.
     </p>
-    <textarea id="notes-area" rows="5" style="width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; box-sizing: border-box;"></textarea>
-    <div style="margin-top: 12px; display: flex; gap: 10px;">
-      <button type="button" onclick="saveNotes()" style="padding: 8px 16px; background: var(--accent); color: #fff; border: none; border-radius: 6px; cursor: pointer;">Сохранить</button>
-      <button type="button" onclick="clearNotes()" style="padding: 8px 16px; background: #f0f0f0; color: #333; border: 1px solid #ccc; border-radius: 6px; cursor: pointer;">Очистить</button>
+    <textarea id="notes-area"></textarea>
+    <div class="btn-group">
+      <button type="button" class="btn-save" onclick="saveNotes()">Сохранить</button>
+      <button type="button" class="btn-clear" onclick="clearNotes()">Очистить</button>
     </div>
   </div>
 
@@ -288,7 +389,6 @@
 
     document.addEventListener('DOMContentLoaded', restoreState);
 
-    // Логика заметок
     const NOTES_KEY = 'support_notes_v1';
 
     function saveNotes() {
