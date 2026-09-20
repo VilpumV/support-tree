@@ -85,34 +85,24 @@
     .btn-faq { color: var(--primary); border: 1px solid var(--border); }
     .btn-faq:hover { background-color: #f0f7ff; border-color: var(--primary); }
 
-    .top-reference {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 10px 24px;
-      background: linear-gradient(135deg, #2c5aa0, #38b764);
-      color: #fff; border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(44, 90, 160, 0.25);
-    }
-    .top-reference .ref-title {
-      font-weight: 700; font-size: 1rem;
-      margin-bottom: 6px;
-    }
-    .top-reference .ref-subtitle {
-      font-size: 0.78rem; opacity: 0.9;
-    }
-
-    .left-col .partner-badge {
-      display: flex; align-items: center; gap: 8px;
-      padding: 12px 14px;
-      background: linear-gradient(135deg, #2c5aa0, #38b764);
-      color: #fff; border-radius: 8px;
-      font-weight: 600; font-size: 0.85rem;
+    .side-reference-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 20px;
       margin-bottom: 16px;
-      box-shadow: 0 3px 10px rgba(44, 90, 160, 0.25);
-      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      text-align: center;
     }
-    .left-col .partner-badge .partner-icon { font-size: 1.2rem; }
+    .side-reference-card .ref-title {
+      font-weight: 700; color: var(--primary);
+      font-size: 1.05rem;
+    }
+    .side-reference-card .ref-subtitle {
+      font-size: 0.85rem; color: #666;
+      margin-top: 4px;
+      line-height: 1.4;
+    }
 
     .offices-card {
       background: #fff; border: 1px solid var(--border);
@@ -294,13 +284,6 @@
       <input type="text" id="searchInput" class="search-input" placeholder="Поиск по скриптам...">
       <button type="button" id="searchBtn" class="search-btn">Найти</button>
     </div>
-    <button type="button" class="action-btn btn-reset" onclick="closeAllBranches()">
-      🔒 Закрыть все вкладки
-    </button>
-    <div class="top-reference">
-      <div class="ref-title">Справочная:</div>
-      <div class="ref-subtitle">Официальный партнёр «Калуга Астрал»</div>
-    </div>
   </div>
 
   <div class="layout">
@@ -431,6 +414,22 @@
     <div class="side-col">
       <div class="sticky-wrap">
 
+        <!-- Кнопка «Закрыть все вкладки» -->
+        <button type="button" class="action-btn btn-reset" onclick="closeAllBranches()" style="width: 100%; box-sizing: border-box; margin-bottom: 20px;">
+          🔒 Закрыть все вкладки
+        </button>
+
+        <!-- Окошко «Справочная:» -->
+        <div class="side-reference-card">
+          <div class="ref-title">Справочная:</div>
+        </div>
+
+        <!-- Окошко «Официальный партнёр» -->
+        <div class="side-reference-card">
+          <div class="ref-subtitle">Официальный партнёр<br>«Калуга Астрал»</div>
+        </div>
+
+        <!-- Блок новостей -->
         <div class="sidebar-card">
           <h3>📢 Последние новости</h3>
           <div class="news-item">
@@ -446,6 +445,7 @@
           </div>
         </div>
 
+        <!-- Блок с адресами офисов -->
         <div class="offices-card">
           <h3>🏢 Наши офисы</h3>
           <div class="office-item">
@@ -464,6 +464,7 @@
           </div>
         </div>
 
+        <!-- Блок телефонов -->
         <div class="sidebar-card">
           <h3>📞 Контактные телефоны</h3>
           <div id="phone-locked">
@@ -620,7 +621,7 @@
       clearHighlights();
       if (!query) return;
       const elements = document.querySelectorAll(
-        '.question-text, .operator-text, .image-caption, .answer-btn, h2, .office-city, .office-addr, .office-staff, .top-reference, .ref-title, .ref-subtitle'
+        '.question-text, .operator-text, .image-caption, .answer-btn, h2, .office-city, .office-addr, .office-staff, .side-reference-card, .ref-title, .ref-subtitle'
       );
       let firstHighlight = null;
       elements.forEach(el => {
