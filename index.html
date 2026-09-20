@@ -49,27 +49,6 @@
       font-weight: 600;
     }
 
-    .top-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 24px;
-      align-items: center;
-    }
-    .search-box { display: flex; gap: 8px; min-width: 200px; max-width: 420px; }
-    .search-input {
-      flex-grow: 1; padding: 10px 16px;
-      border: 1px solid var(--border); border-radius: 8px;
-      font-size: 1rem; outline: none; transition: border-color 0.2s;
-    }
-    .search-input:focus { border-color: var(--primary); }
-    .search-btn {
-      padding: 10px 20px; background: var(--primary); color: #fff;
-      border: none; border-radius: 8px; cursor: pointer;
-      font-weight: 600; transition: background 0.2s;
-    }
-    .search-btn:hover { background: #1f457a; }
-
     .action-btn {
       padding: 12px 24px; border-radius: 10px;
       font-size: 1rem; font-weight: 600; cursor: pointer;
@@ -84,6 +63,20 @@
     .btn-reset:hover { background-color: #ffebee; border-color: var(--danger); }
     .btn-faq { color: var(--primary); border: 1px solid var(--border); }
     .btn-faq:hover { background-color: #f0f7ff; border-color: var(--primary); }
+
+    .side-search-box { display: flex; gap: 8px; margin-bottom: 16px; }
+    .side-search-input {
+      flex-grow: 1; padding: 10px 12px;
+      border: 1px solid var(--border); border-radius: 8px;
+      font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+    }
+    .side-search-input:focus { border-color: var(--primary); }
+    .side-search-btn {
+      padding: 10px 16px; background: var(--primary); color: #fff;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-weight: 600; font-size: 0.9rem; transition: background 0.2s;
+    }
+    .side-search-btn:hover { background: #1f457a; }
 
     .side-reference-card {
       background: #fff;
@@ -158,25 +151,6 @@
       background-color: #ffeb3b; padding: 0 2px;
       border-radius: 3px; font-weight: 700;
     }
-
-    .notes-panel {
-      margin-top: 32px; padding: 20px; background: #fff;
-      border: 1px solid var(--border); border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-    .notes-panel h3 { color: var(--primary); margin-top: 0; font-size: 1.1rem; }
-    .notes-panel textarea {
-      width: 100%; padding: 10px; border: 1px solid var(--border);
-      border-radius: 6px; font-family: inherit;
-      box-sizing: border-box; resize: vertical; min-height: 100px;
-    }
-    .notes-panel .btn-group { margin-top: 12px; display: flex; gap: 10px; }
-    .notes-panel button {
-      padding: 8px 16px; border: none; border-radius: 6px;
-      cursor: pointer; font-weight: 600;
-    }
-    .btn-save { background: var(--accent); color: #fff; }
-    .btn-clear { background: #f0f0f0; color: #333; border: 1px solid #ccc; }
 
     .image-wrapper { margin-top: 14px; text-align: center; }
     .image-wrapper img {
@@ -279,13 +253,6 @@
 
   <h2>Скрипты техподдержки Санадор</h2>
 
-  <div class="top-actions">
-    <div class="search-box">
-      <input type="text" id="searchInput" class="search-input" placeholder="Поиск по скриптам...">
-      <button type="button" id="searchBtn" class="search-btn">Найти</button>
-    </div>
-  </div>
-
   <div class="layout">
 
     <!-- ЛЕВАЯ КОЛОНКА -->
@@ -367,7 +334,7 @@
             <div class="options">
               <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН найдена в системе</div>
               <div class="children">
-                <div class="operator-text">«Документ есть в нашей системе. Проверьте его наличие в приложении Санадор ЭПД или Санадор Z (если у клиента iPhone). В крайнем случае, документ можно найти в личном кабинете на сайте Санадор.»</div>
+                <div class="operator-text">«Документ есть в нашей системе. Проверьте его наличие в приложении Санадор ЭПД или Санадор Z (если у клиента iPhone). В крайном случае, документ можно найти в личном кабинете на сайте Санадор.»</div>
               </div>
               <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН не найдена в системе</div>
               <div class="children">
@@ -396,23 +363,17 @@
         </div>
       </div>
 
-      <div class="notes-panel">
-        <h3>📝 Мои заметки</h3>
-        <p style="font-size: 0.9rem; color: #666; margin-bottom: 12px;">
-          Здесь можно писать пометки по текущим обращениям — текст сохраняется в браузере.
-        </p>
-        <textarea id="notes-area"></textarea>
-        <div class="btn-group">
-          <button type="button" class="btn-save" onclick="saveNotes()">Сохранить</button>
-          <button type="button" class="btn-clear" onclick="clearNotes()">Очистить</button>
-        </div>
-      </div>
-
     </div>
 
     <!-- ПРАВАЯ КОЛОНКА -->
     <div class="side-col">
       <div class="sticky-wrap">
+
+        <!-- Поисковая строка -->
+        <div class="side-search-box">
+          <input type="text" id="searchInput" class="side-search-input" placeholder="Поиск по скриптам...">
+          <button type="button" id="searchBtn" class="side-search-btn">Найти</button>
+        </div>
 
         <!-- Кнопка «Закрыть все вкладки» -->
         <button type="button" class="action-btn btn-reset" onclick="closeAllBranches()" style="width: 100%; box-sizing: border-box; margin-bottom: 20px;">
@@ -562,19 +523,6 @@
       });
     }
     document.addEventListener('DOMContentLoaded', restoreState);
-    const NOTES_KEY = 'support_notes_v1';
-    function saveNotes() {
-      localStorage.setItem(NOTES_KEY, document.getElementById('notes-area').value);
-      alert('Заметки сохранены.');
-    }
-    function clearNotes() {
-      document.getElementById('notes-area').value = '';
-      localStorage.removeItem(NOTES_KEY);
-    }
-    window.addEventListener('DOMContentLoaded', () => {
-      const saved = localStorage.getItem(NOTES_KEY);
-      if (saved) document.getElementById('notes-area').value = saved;
-    });
     function clearHighlights() {
       document.querySelectorAll('.search-highlight').forEach(el => {
         const text = document.createTextNode(el.textContent);
