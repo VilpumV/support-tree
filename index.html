@@ -99,10 +99,11 @@
       line-height: 1.4;
     }
 
-    .instructions-dropdown {
+    /* === Многоуровневый выпадающий список === */
+    .dropdown {
       margin-bottom: 16px;
     }
-    .instructions-dropdown-btn {
+    .dropdown-btn {
       width: 100%; box-sizing: border-box;
       padding: 12px 16px;
       background: #fff; border: 1px solid var(--border);
@@ -112,37 +113,104 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.06);
       display: flex; align-items: center; gap: 8px;
     }
-    .instructions-dropdown-btn:hover { border-color: var(--primary); }
-    .instructions-dropdown-btn.active {
+    .dropdown-btn:hover { border-color: var(--primary); }
+    .dropdown-btn.active {
       background: var(--accent); border-color: var(--accent);
       color: #fff;
     }
-    .instructions-dropdown-btn .arrow {
+    .dropdown-btn .arrow {
       margin-left: auto; transition: transform 0.2s;
+      font-size: 0.9rem;
     }
-    .instructions-dropdown-btn.active .arrow {
+    .dropdown-btn.active .arrow {
       transform: rotate(90deg);
     }
-    .instructions-dropdown-content {
+    .dropdown-content {
       display: none; margin-top: 8px; margin-left: 12px;
       padding-left: 16px; border-left: 3px solid var(--border);
     }
-    .instructions-dropdown-content.show { display: block; }
-    .instructions-dropdown-content a {
-      display: flex; align-items: center; gap: 10px;
-      padding: 12px 16px; margin-bottom: 8px;
+    .dropdown-content.show { display: block; }
+
+    /* Пункты первого уровня (1, 2, 3 ...) */
+    .dropdown-item {
+      margin-bottom: 8px;
+    }
+    .dropdown-item-num {
+      display: inline-block; width: 22px; height: 22px;
+      line-height: 22px; text-align: center;
+      background: var(--primary); color: #fff;
+      border-radius: 50%; font-size: 0.78rem;
+      font-weight: 700; margin-right: 8px; flex-shrink: 0;
+    }
+
+    /* Ссылки-страницы */
+    .dropdown-link {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 14px;
       background: linear-gradient(135deg, #2c5aa0, #1f457a);
-      color: #fff; border-radius: 10px;
-      font-weight: 600; font-size: 0.95rem;
+      color: #fff; border-radius: 8px;
+      font-weight: 600; font-size: 0.92rem;
       text-decoration: none; cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 8px rgba(44, 90, 160, 0.3);
+      box-shadow: 0 3px 6px rgba(44, 90, 160, 0.25);
     }
-    .instructions-dropdown-content a:hover {
+    .dropdown-link:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(44, 90, 160, 0.4);
+      box-shadow: 0 5px 12px rgba(44, 90, 160, 0.35);
     }
-    .instructions-dropdown-content a .link-icon { font-size: 1.2rem; }
+    .dropdown-link .link-icon { font-size: 1.1rem; }
+
+    /* Кнопки с вложенным списком (внутри первого уровня) */
+    .sub-dropdown-btn {
+      width: 100%; box-sizing: border-box;
+      padding: 10px 14px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 8px; cursor: pointer; user-select: none;
+      color: var(--primary); font-size: 0.92rem; font-weight: 600;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sub-dropdown-btn:hover { border-color: var(--primary); }
+    .sub-dropdown-btn.active {
+      background: var(--accent); border-color: var(--accent);
+      color: #fff;
+    }
+    .sub-dropdown-btn .arrow {
+      margin-left: auto; transition: transform 0.2s;
+      font-size: 0.85rem;
+    }
+    .sub-dropdown-btn.active .arrow {
+      transform: rotate(90deg);
+    }
+
+    /* Пункты второго уровня (а, б, в ...) */
+    .sub-dropdown-content {
+      display: none; margin-top: 8px; margin-left: 12px;
+      padding-left: 16px; border-left: 3px solid var(--border);
+    }
+    .sub-dropdown-content.show { display: block; }
+    .sub-dropdown-item {
+      margin-bottom: 6px;
+    }
+    .sub-item-num {
+      display: inline-block; min-width: 18px;
+      font-weight: 700; color: var(--accent);
+      font-size: 0.85rem; margin-right: 6px;
+    }
+    .sub-dropdown-link {
+      display: flex; align-items: center; gap: 6px;
+      padding: 9px 12px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--primary); font-size: 0.88rem; font-weight: 600;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .sub-dropdown-link:hover {
+      background: #f0f7ff; border-color: var(--primary);
+      transform: translateY(-1px);
+    }
 
     .offices-card {
       background: #fff; border: 1px solid var(--border);
@@ -287,27 +355,143 @@
           📘 База вопросов
         </a>
 
-        <!-- Кнопка «Важные ссылки» -->
-        <a href="links.html" class="action-btn btn-links" style="width: 100%; box-sizing: border-box; margin-bottom: 16px;">
+        <a href="#" class="action-btn btn-links" style="width: 100%; box-sizing: border-box; margin-bottom: 16px;">
           🔗 Важные ссылки
         </a>
 
-        <!-- Окошко «Инструкции:» -->
         <div class="side-reference-card">
           <div class="ref-title">Инструкции:</div>
         </div>
 
-        <!-- Выпадающий список «Все о ЭТРН» -->
-        <div class="instructions-dropdown">
-          <div class="instructions-dropdown-btn" onclick="toggleInstructions(this)">
-            📋 Все о ЭТРН
+        <!-- Выпадающий список «Все об ЭТРН» -->
+        <div class="dropdown">
+          <div class="dropdown-btn" onclick="toggleDropdown(this)">
+            📋 Все об ЭТРН
             <span class="arrow">›</span>
           </div>
-          <div class="instructions-dropdown-content">
-            <a href="cryptopro.html">
-              <span class="link-icon">🔐</span>
-              Инструкция по установке КриптоПро
-            </a>
+          <div class="dropdown-content">
+            <!-- 1. Основы ЭПД -->
+            <div class="dropdown-item" style="margin-bottom: 10px;">
+              <a href="basics-epd.html" class="dropdown-link">
+                <span class="dropdown-item-num">1</span>
+                Основы ЭПД (титулы, роли)
+              </a>
+            </div>
+
+            <!-- 2. Инструкция по установке КриптоПро -->
+            <div class="dropdown-item" style="margin-bottom: 10px;">
+              <a href="cryptopro.html" class="dropdown-link">
+                <span class="dropdown-item-num">2</span>
+                Инструкция по установке КриптоПро
+              </a>
+            </div>
+
+            <!-- 3. Регистрация в ЭПД (с вложенным списком) -->
+            <div class="dropdown-item" style="margin-bottom: 10px;">
+              <div class="sub-dropdown-btn" onclick="toggleSubDropdown(this)">
+                <span class="dropdown-item-num">3</span>
+                Регистрация в ЭПД
+                <span class="arrow">›</span>
+              </div>
+              <div class="sub-dropdown-content">
+                <div class="sub-dropdown-item">
+                  <a href="reg-sender.html" class="sub-dropdown-link">
+                    <span class="sub-item-num">а)</span> Отправитель (ООО, ИП)
+                  </a>
+                </div>
+                <div class="sub-dropdown-item">
+                  <a href="reg-carrier.html" class="sub-dropdown-link">
+                    <span class="sub-item-num">б)</span> Перевоз (ООО, ИП)
+                  </a>
+                </div>
+                <div class="sub-dropdown-item">
+                  <a href="reg-receiver.html" class="sub-dropdown-link">
+                    <span class="sub-item-num">в)</span> Получатель (ИП, ООО)
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Админка -->
+            <div class="dropdown-item" style="margin-bottom: 10px;">
+              <a href="admin-panel.html" class="dropdown-link">
+                <span class="dropdown-item-num">4</span>
+                Админка
+              </a>
+            </div>
+
+            <!-- 5. Дружба (с вложенным списком) -->
+            <div class="dropdown-item" style="margin-bottom: 10px;">
+              <div class="sub-dropdown-btn" onclick="toggleSubDropdown(this)">
+                <span class="dropdown-item-num">5</span>
+                Дружба
+                <span class="arrow">›</span>
+              </div>
+              <div class="sub-dropdown-content">
+                <div class="sub-dropdown-item">
+                  <a href="friend-add.html" class="sub-dropdown-link">
+                    <span class="sub-item-num">а)</span> Добавление контрагента
+                  </a>
+                </div>
+                <div class="sub-dropdown-item">
+                  <a href="friend-admin.html" class="sub-dropdown-link">
+                    <span class="sub-item-num">б)</span> Дружба через админку
+                  </a>
+                </div>
+                <div class="sub-dropdown-item">
+                  <a href="friend-site.html" class="sub-dropdown-link">
+                    <span class="sub-item-num">в)</span> Дружба через сайт
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6. ЭЗЗ (с вложенным списком) -->
+            <div class="dropdown-item" style="margin-bottom: 10px;">
+              <div class="sub-dropdown-btn" onclick="toggleSubDropdown(this)">
+                <span class="dropdown-item-num">6</span>
+                ЭЗЗ
+                <span class="arrow">›</span>
+              </div>
+              <div class="sub-dropdown-content">
+                <div class="sub-dropdown-item">
+                  <a href="ezz-sender.html" class="sub-dropdown-link">
+                    <span class="sub-item-num">а)</span> Грузоотправитель (создание)
+                  </a>
+                </div>
+                <div class="sub-dropdown-item">
+                  <a href="ezz-carrier.html" class="sub-dropdown-link">
+                    <span class="sub-item-num">б)</span> Перевозчик (подписание)
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7. ЭТРН (с вложенным списком) -->
+            <div class="dropdown-item" style="margin-bottom: 10px;">
+              <div class="sub-dropdown-btn" onclick="toggleSubDropdown(this)">
+                <span class="dropdown-item-num">7</span>
+                ЭТРН
+                <span class="arrow">›</span>
+              </div>
+              <div class="sub-dropdown-content">
+                <div class="sub-dropdown-item">
+                  <a href="etrn-sender.html" class="sub-dropdown-link">
+                    <span class="sub-item-num">а)</span> Отправитель
+                  </a>
+                </div>
+                <div class="sub-dropdown-item">
+                  <a href="etrn-carrier.html" class="sub-dropdown-link">
+                    <span class="sub-item-num">б)</span> Перевозчик
+                  </a>
+                </div>
+                <div class="sub-dropdown-item">
+                  <a href="etrn-receiver.html" class="sub-dropdown-link">
+                    <span class="sub-item-num">в)</span> Получатель
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -412,28 +596,23 @@
     <div class="side-col">
       <div class="sticky-wrap">
 
-        <!-- Поисковая строка -->
         <div class="side-search-box">
           <input type="text" id="searchInput" class="side-search-input" placeholder="Поиск по скриптам...">
           <button type="button" id="searchBtn" class="side-search-btn">Найти</button>
         </div>
 
-        <!-- Кнопка «Закрыть все вкладки» -->
         <button type="button" class="action-btn btn-reset" onclick="closeAllBranches()" style="width: 100%; box-sizing: border-box; margin-bottom: 20px;">
           🔒 Закрыть все вкладки
         </button>
 
-        <!-- Окошко «Справочная:» -->
         <div class="side-reference-card">
           <div class="ref-title">Справочная:</div>
         </div>
 
-        <!-- Окошко «Официальный партнёр» -->
         <div class="side-reference-card">
           <div class="ref-subtitle">Официальный партнёр<br>«Калуга Астрал»</div>
         </div>
 
-        <!-- Блок новостей -->
         <div class="sidebar-card">
           <h3>📢 Последние новости</h3>
           <div class="news-item">
@@ -449,7 +628,6 @@
           </div>
         </div>
 
-        <!-- Блок с адресами офисов -->
         <div class="offices-card">
           <h3>🏢 Наши офисы</h3>
           <div class="office-item">
@@ -468,7 +646,6 @@
           </div>
         </div>
 
-        <!-- Блок телефонов -->
         <div class="sidebar-card">
           <h3>📞 Контактные телефоны</h3>
           <div id="phone-locked">
@@ -533,9 +710,16 @@
   </div>
 
   <script>
-    function toggleInstructions(btn) {
+    function toggleDropdown(btn) {
       const content = btn.nextElementSibling;
-      if (!content || !content.classList.contains('instructions-dropdown-content')) return;
+      if (!content || !content.classList.contains('dropdown-content')) return;
+      const isShown = content.classList.toggle('show');
+      btn.classList.toggle('active', isShown);
+    }
+
+    function toggleSubDropdown(btn) {
+      const content = btn.nextElementSibling;
+      if (!content || !content.classList.contains('sub-dropdown-content')) return;
       const isShown = content.classList.toggle('show');
       btn.classList.toggle('active', isShown);
     }
@@ -619,7 +803,7 @@
       clearHighlights();
       if (!query) return;
       const elements = document.querySelectorAll(
-        '.question-text, .operator-text, .image-caption, .answer-btn, h2, .office-city, .office-addr, .office-staff, .side-reference-card, .ref-title, .ref-subtitle, .instructions-dropdown-btn'
+        '.question-text, .operator-text, .image-caption, .answer-btn, h2, .office-city, .office-addr, .office-staff, .side-reference-card, .ref-title, .ref-subtitle, .dropdown-btn, .dropdown-link, .sub-dropdown-btn, .sub-dropdown-link'
       );
       let firstHighlight = null;
       elements.forEach(el => {
