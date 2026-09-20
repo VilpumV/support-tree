@@ -13,50 +13,23 @@
       --text: #333;
       --border: #e1e6ed;
     }
-
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text);
-      max-width: 1300px;
-      margin: 24px auto;
-      padding: 0 16px;
+      background-color: var(--bg-color); color: var(--text);
+      max-width: 1300px; margin: 24px auto; padding: 0 16px;
     }
-
-    .layout {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
+    .layout { display: flex; gap: 20px; align-items: flex-start; }
     .left-col { width: 240px; flex-shrink: 0; }
     .main-col { flex: 1; min-width: 0; }
     .side-col { width: 280px; flex-shrink: 0; }
-
-    @media (max-width: 1024px) {
-      .layout { flex-wrap: wrap; }
-      .left-col { width: 100%; }
-      .side-col { width: 100%; }
-    }
-    @media (max-width: 768px) {
-      .layout { flex-direction: column; }
-      .left-col, .side-col, .main-col { width: 100%; }
-    }
-
-    h2 {
-      text-align: center;
-      color: var(--primary);
-      margin-bottom: 28px;
-      font-weight: 600;
-    }
-
+    @media (max-width: 1024px) { .layout { flex-wrap: wrap; } .left-col { width: 100%; } .side-col { width: 100%; } }
+    @media (max-width: 768px) { .layout { flex-direction: column; } .left-col, .side-col, .main-col { width: 100%; } }
+    h2 { text-align: center; color: var(--primary); margin-bottom: 28px; font-weight: 600; }
     .action-btn {
-      padding: 12px 24px; border-radius: 10px;
-      font-size: 1rem; font-weight: 600; cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      border: none; display: inline-flex;
-      align-items: center; justify-content: center; gap: 8px;
-      text-decoration: none; color: inherit; background: #fff;
+      padding: 12px 24px; border-radius: 10px; font-size: 1rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      border: none; display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; text-decoration: none; color: inherit; background: #fff;
     }
     .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
     .btn-reset { color: var(--danger); border: 1px solid #ffcccc; }
@@ -65,288 +38,163 @@
     .btn-faq:hover { background-color: #f0f7ff; border-color: var(--primary); }
     .btn-links { color: var(--accent); border: 1px solid #c8f0d4; }
     .btn-links:hover { background-color: #f0fff5; border-color: var(--accent); }
-
     .side-search-box { display: flex; gap: 8px; margin-bottom: 16px; }
     .side-search-input {
-      flex-grow: 1; padding: 10px 12px;
-      border: 1px solid var(--border); border-radius: 8px;
-      font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+      flex-grow: 1; padding: 10px 12px; border: 1px solid var(--border);
+      border-radius: 8px; font-size: 0.9rem; outline: none; transition: border-color 0.2s;
     }
     .side-search-input:focus { border-color: var(--primary); }
     .side-search-btn {
-      padding: 10px 16px; background: var(--primary); color: #fff;
-      border: none; border-radius: 8px; cursor: pointer;
-      font-weight: 600; font-size: 0.9rem; transition: background 0.2s;
+      padding: 10px 16px; background: var(--primary); color: #fff; border: none;
+      border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: background 0.2s;
     }
     .side-search-btn:hover { background: #1f457a; }
-
     .side-reference-card {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px 20px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      text-align: center;
+      background: #fff; border: 1px solid var(--border); border-radius: 8px;
+      padding: 14px 20px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); text-align: center;
     }
-    .side-reference-card .ref-title {
-      font-weight: 700; color: var(--primary);
-      font-size: 1.05rem;
-    }
-    .side-reference-card .ref-subtitle {
-      font-size: 0.85rem; color: #666;
-      margin-top: 4px;
-      line-height: 1.4;
-    }
-
-    /* === Многоуровневый выпадающий список === */
-    .dropdown {
-      margin-bottom: 16px;
-    }
+    .side-reference-card .ref-title { font-weight: 700; color: var(--primary); font-size: 1.05rem; }
+    .side-reference-card .ref-subtitle { font-size: 0.85rem; color: #666; margin-top: 4px; line-height: 1.4; }
+    .dropdown { margin-bottom: 16px; }
     .dropdown-btn {
-      width: 100%; box-sizing: border-box;
-      padding: 12px 16px;
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 8px; cursor: pointer; user-select: none;
-      color: var(--primary); font-size: 1rem; font-weight: 600;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+      width: 100%; box-sizing: border-box; padding: 12px 16px;
+      background: #fff; border: 1px solid var(--border); border-radius: 8px;
+      cursor: pointer; user-select: none; color: var(--primary); font-size: 1rem; font-weight: 600;
+      transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.06);
       display: flex; align-items: center; gap: 8px;
     }
     .dropdown-btn:hover { border-color: var(--primary); }
-    .dropdown-btn.active {
-      background: var(--accent); border-color: var(--accent);
-      color: #fff;
-    }
-    .dropdown-btn .arrow {
-      margin-left: auto; transition: transform 0.2s;
-      font-size: 0.9rem;
-    }
-    .dropdown-btn.active .arrow {
-      transform: rotate(90deg);
-    }
+    .dropdown-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .dropdown-btn .arrow { margin-left: auto; transition: transform 0.2s; font-size: 0.9rem; }
+    .dropdown-btn.active .arrow { transform: rotate(90deg); }
     .dropdown-content {
       display: none; margin-top: 8px; margin-left: 12px;
       padding-left: 16px; border-left: 3px solid var(--border);
     }
     .dropdown-content.show { display: block; }
-
-    /* Пункты первого уровня (1, 2, 3 ...) */
-    .dropdown-item {
-      margin-bottom: 8px;
-    }
+    .dropdown-item { margin-bottom: 8px; }
     .dropdown-item-num {
-      display: inline-block; width: 22px; height: 22px;
-      line-height: 22px; text-align: center;
-      background: var(--primary); color: #fff;
-      border-radius: 50%; font-size: 0.78rem;
-      font-weight: 700; margin-right: 8px; flex-shrink: 0;
+      display: inline-block; width: 22px; height: 22px; line-height: 22px;
+      text-align: center; background: var(--primary); color: #fff;
+      border-radius: 50%; font-size: 0.78rem; font-weight: 700; margin-right: 8px; flex-shrink: 0;
     }
-
-    /* Ссылки-страницы */
     .dropdown-link {
-      display: flex; align-items: center; gap: 8px;
-      padding: 10px 14px;
-      background: linear-gradient(135deg, #2c5aa0, #1f457a);
-      color: #fff; border-radius: 8px;
-      font-weight: 600; font-size: 0.92rem;
-      text-decoration: none; cursor: pointer;
-      transition: all 0.2s ease;
+      display: flex; align-items: center; gap: 8px; padding: 10px 14px;
+      background: linear-gradient(135deg, #2c5aa0, #1f457a); color: #fff;
+      border-radius: 8px; font-weight: 600; font-size: 0.92rem;
+      text-decoration: none; cursor: pointer; transition: all 0.2s ease;
       box-shadow: 0 3px 6px rgba(44, 90, 160, 0.25);
     }
-    .dropdown-link:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 5px 12px rgba(44, 90, 160, 0.35);
-    }
+    .dropdown-link:hover { transform: translateY(-2px); box-shadow: 0 5px 12px rgba(44, 90, 160, 0.35); }
     .dropdown-link .link-icon { font-size: 1.1rem; }
-
-    /* Кнопки с вложенным списком (внутри первого уровня) */
     .sub-dropdown-btn {
-      width: 100%; box-sizing: border-box;
-      padding: 10px 14px;
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 8px; cursor: pointer; user-select: none;
-      color: var(--primary); font-size: 0.92rem; font-weight: 600;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
-      display: flex; align-items: center; gap: 8px;
+      width: 100%; box-sizing: border-box; padding: 10px 14px;
+      background: #fff; border: 1px solid var(--border); border-radius: 8px;
+      cursor: pointer; user-select: none; color: var(--primary);
+      font-size: 0.92rem; font-weight: 600; transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06); display: flex; align-items: center; gap: 8px;
     }
     .sub-dropdown-btn:hover { border-color: var(--primary); }
-    .sub-dropdown-btn.active {
-      background: var(--accent); border-color: var(--accent);
-      color: #fff;
-    }
-    .sub-dropdown-btn .arrow {
-      margin-left: auto; transition: transform 0.2s;
-      font-size: 0.85rem;
-    }
-    .sub-dropdown-btn.active .arrow {
-      transform: rotate(90deg);
-    }
-
-    /* Пункты второго уровня (а, б, в ...) */
+    .sub-dropdown-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .sub-dropdown-btn .arrow { margin-left: auto; transition: transform 0.2s; font-size: 0.85rem; }
+    .sub-dropdown-btn.active .arrow { transform: rotate(90deg); }
     .sub-dropdown-content {
       display: none; margin-top: 8px; margin-left: 12px;
       padding-left: 16px; border-left: 3px solid var(--border);
     }
     .sub-dropdown-content.show { display: block; }
-    .sub-dropdown-item {
-      margin-bottom: 6px;
-    }
+    .sub-dropdown-item { margin-bottom: 6px; }
     .sub-item-num {
-      display: inline-block; min-width: 18px;
-      font-weight: 700; color: var(--accent);
-      font-size: 0.85rem; margin-right: 6px;
+      display: inline-block; min-width: 18px; font-weight: 700;
+      color: var(--accent); font-size: 0.85rem; margin-right: 6px;
     }
     .sub-dropdown-link {
-      display: flex; align-items: center; gap: 6px;
-      padding: 9px 12px;
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 6px;
+      display: flex; align-items: center; gap: 6px; padding: 9px 12px;
+      background: #fff; border: 1px solid var(--border); border-radius: 6px;
       color: var(--primary); font-size: 0.88rem; font-weight: 600;
-      text-decoration: none; cursor: pointer;
-      transition: all 0.2s ease;
+      text-decoration: none; cursor: pointer; transition: all 0.2s ease;
     }
-    .sub-dropdown-link:hover {
-      background: #f0f7ff; border-color: var(--primary);
-      transform: translateY(-1px);
-    }
-
-    /* Заглушка для пустых списков */
-    .dropdown-placeholder {
-      padding: 10px 14px;
-      font-size: 0.85rem; color: #999;
-      font-style: italic;
-      text-align: center;
-    }
-
+    .sub-dropdown-link:hover { background: #f0f7ff; border-color: var(--primary); transform: translateY(-1px); }
+    .dropdown-placeholder { padding: 10px 14px; font-size: 0.85rem; color: #999; font-style: italic; text-align: center; }
     .offices-card {
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 8px; padding: 16px; margin-bottom: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      background: #fff; border: 1px solid var(--border); border-radius: 8px;
+      padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     .offices-card h3 {
-      color: var(--primary); margin: 0 0 12px 0;
-      font-size: 0.95rem; border-bottom: 2px solid var(--border); padding-bottom: 8px;
+      color: var(--primary); margin: 0 0 12px 0; font-size: 0.95rem;
+      border-bottom: 2px solid var(--border); padding-bottom: 8px;
     }
     .office-item { padding: 10px 0; border-bottom: 1px dashed var(--border); }
     .office-item:last-child { border-bottom: none; }
     .office-city {
-      font-weight: 700; color: var(--primary);
-      font-size: 0.88rem; margin-bottom: 4px;
-      display: flex; align-items: center; gap: 4px;
+      font-weight: 700; color: var(--primary); font-size: 0.88rem;
+      margin-bottom: 4px; display: flex; align-items: center; gap: 4px;
     }
     .office-addr { font-size: 0.82rem; color: #4a5568; line-height: 1.4; }
     .office-staff { font-size: 0.78rem; color: #999; margin-top: 4px; font-style: italic; }
-
     .sticky-wrap { position: sticky; top: 24px; }
-
     .node { margin-bottom: 18px; }
     .answer-btn {
       display: inline-block; margin: 4px 0; padding: 10px 16px;
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 8px; cursor: pointer; user-select: none;
-      color: var(--primary); font-size: 1rem;
+      background: #fff; border: 1px solid var(--border); border-radius: 8px;
+      cursor: pointer; user-select: none; color: var(--primary); font-size: 1rem;
       transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
     .answer-btn:hover { border-color: var(--primary); transform: translateY(-1px); }
     .answer-btn.active {
-      background: var(--accent); border-color: var(--accent);
-      color: #fff; box-shadow: 0 4px 8px rgba(56, 183, 100, 0.25);
+      background: var(--accent); border-color: var(--accent); color: #fff;
+      box-shadow: 0 4px 8px rgba(56, 183, 100, 0.25);
     }
-    .children {
-      display: none; margin-left: 20px; margin-top: 12px;
-      padding-left: 16px; border-left: 3px solid var(--border);
-    }
+    .children { display: none; margin-left: 20px; margin-top: 12px; padding-left: 16px; border-left: 3px solid var(--border); }
     .active-children { display: block; }
     .operator-text {
-      padding: 14px; background: #f5f8fc;
-      border: 1px solid var(--border); border-radius: 8px;
-      color: #4a5568; line-height: 1.5; margin-bottom: 12px;
+      padding: 14px; background: #f5f8fc; border: 1px solid var(--border);
+      border-radius: 8px; color: #4a5568; line-height: 1.5; margin-bottom: 12px;
       border-left-color: var(--primary);
     }
-    .question-text {
-      font-weight: 600; color: var(--primary);
-      margin-bottom: 10px; font-size: 1.05rem;
-    }
-
-    .search-highlight {
-      background-color: #ffeb3b; padding: 0 2px;
-      border-radius: 3px; font-weight: 700;
-    }
-
+    .question-text { font-weight: 600; color: var(--primary); margin-bottom: 10px; font-size: 1.05rem; }
+    .search-highlight { background-color: #ffeb3b; padding: 0 2px; border-radius: 3px; font-weight: 700; }
     .image-wrapper { margin-top: 14px; text-align: center; }
-    .image-wrapper img {
-      max-width: 100%; border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      display: block; margin: 0 auto;
-    }
+    .image-wrapper img { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
     .image-caption { margin-top: 8px; font-size: 0.85rem; color: #718096; }
-
     .sidebar-card {
-      background: #fff; border: 1px solid var(--border);
-      border-radius: 8px; padding: 20px; margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      background: #fff; border: 1px solid var(--border); border-radius: 8px;
+      padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     .sidebar-card h3 {
-      color: var(--primary); margin: 0 0 14px 0;
-      font-size: 1.05rem; border-bottom: 2px solid var(--border); padding-bottom: 10px;
+      color: var(--primary); margin: 0 0 14px 0; font-size: 1.05rem;
+      border-bottom: 2px solid var(--border); padding-bottom: 10px;
     }
-    .news-item {
-      padding: 10px 0; border-bottom: 1px dashed var(--border);
-      font-size: 0.9rem; color: #4a5568; line-height: 1.5;
-    }
+    .news-item { padding: 10px 0; border-bottom: 1px dashed var(--border); font-size: 0.9rem; color: #4a5568; line-height: 1.5; }
     .news-item:last-child { border-bottom: none; }
-    .news-date {
-      display: inline-block; font-size: 0.75rem;
-      color: #999; font-weight: 600; margin-bottom: 4px;
-    }
+    .news-date { display: inline-block; font-size: 0.75rem; color: #999; font-weight: 600; margin-bottom: 4px; }
     .news-item strong { color: var(--text); }
-
-    .phone-item {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 0; border-bottom: 1px dashed var(--border);
-    }
+    .phone-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px dashed var(--border); }
     .phone-item:last-child { border-bottom: none; }
     .phone-icon { font-size: 1.2rem; flex-shrink: 0; }
     .phone-info { flex-grow: 1; }
-    .phone-label {
-      font-size: 0.75rem; color: #999; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.5px;
-    }
-    .phone-number {
-      font-size: 0.95rem; font-weight: 700; color: var(--primary);
-      text-decoration: none;
-    }
+    .phone-label { font-size: 0.75rem; color: #999; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .phone-number { font-size: 0.95rem; font-weight: 700; color: var(--primary); text-decoration: none; }
     .phone-number:hover { text-decoration: underline; }
-
     .phone-unlock-btn {
       width: 100%; padding: 10px; background: var(--primary); color: #fff;
-      border: none; border-radius: 6px; cursor: pointer; font-weight: 600;
-      transition: background 0.2s;
+      border: none; border-radius: 6px; cursor: pointer; font-weight: 600; transition: background 0.2s;
     }
     .phone-unlock-btn:hover { background: #1f457a; }
     .phone-prompt { padding: 12px; text-align: center; }
     .phone-prompt input {
       width: 100%; padding: 8px 12px; border: 1px solid var(--border);
-      border-radius: 6px; font-size: 0.95rem;
-      box-sizing: border-box; margin-bottom: 8px;
-      text-align: center; letter-spacing: 2px;
+      border-radius: 6px; font-size: 0.95rem; box-sizing: border-box;
+      margin-bottom: 8px; text-align: center; letter-spacing: 2px;
     }
     .phone-prompt button {
       padding: 8px 16px; background: var(--accent); color: #fff;
       border: none; border-radius: 6px; cursor: pointer; font-weight: 600;
     }
-    .phone-prompt .wrong-pass {
-      color: var(--danger); font-size: 0.85rem; margin-top: 6px;
-    }
-
+    .phone-prompt .wrong-pass { color: var(--danger); font-size: 0.85rem; margin-top: 6px; }
     .connected-info {
-      margin-top: 16px; padding-top: 12px;
-      border-top: 1px solid var(--border);
-      font-size: 0.9rem; color: #666;
-      text-align: center;
-      font-weight: 600;
+      margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border);
+      font-size: 0.9rem; color: #666; text-align: center; font-weight: 600;
     }
   </style>
 </head>
@@ -371,30 +219,25 @@
           <div class="ref-title">Инструкции:</div>
         </div>
 
-        <!-- Выпадающий список «Все об ЭТРН» -->
+        <!-- Все об ЭТРН -->
         <div class="dropdown">
           <div class="dropdown-btn" onclick="toggleDropdown(this)">
             📋 Все об ЭТРН
             <span class="arrow">›</span>
           </div>
           <div class="dropdown-content">
-            <!-- 1. Основы ЭПД -->
             <div class="dropdown-item" style="margin-bottom: 10px;">
               <a href="basics-epd.html" class="dropdown-link">
                 <span class="dropdown-item-num">1</span>
                 Основы ЭПД (титулы, роли)
               </a>
             </div>
-
-            <!-- 2. Инструкция по установке КриптоПро -->
             <div class="dropdown-item" style="margin-bottom: 10px;">
               <a href="cryptopro.html" class="dropdown-link">
                 <span class="dropdown-item-num">2</span>
                 Инструкция по установке КриптоПро
               </a>
             </div>
-
-            <!-- 3. Регистрация в ЭПД (с вложенным списком) -->
             <div class="dropdown-item" style="margin-bottom: 10px;">
               <div class="sub-dropdown-btn" onclick="toggleSubDropdown(this)">
                 <span class="dropdown-item-num">3</span>
@@ -419,16 +262,12 @@
                 </div>
               </div>
             </div>
-
-            <!-- 4. Админка -->
             <div class="dropdown-item" style="margin-bottom: 10px;">
               <a href="admin-panel.html" class="dropdown-link">
                 <span class="dropdown-item-num">4</span>
                 Админка
               </a>
             </div>
-
-            <!-- 5. Дружба (с вложенным списком) -->
             <div class="dropdown-item" style="margin-bottom: 10px;">
               <div class="sub-dropdown-btn" onclick="toggleSubDropdown(this)">
                 <span class="dropdown-item-num">5</span>
@@ -453,8 +292,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- 6. ЭЗЗ (с вложенным списком) -->
             <div class="dropdown-item" style="margin-bottom: 10px;">
               <div class="sub-dropdown-btn" onclick="toggleSubDropdown(this)">
                 <span class="dropdown-item-num">6</span>
@@ -474,8 +311,6 @@
                 </div>
               </div>
             </div>
-
-            <!-- 7. ЭТРН (с вложенным списком) -->
             <div class="dropdown-item" style="margin-bottom: 10px;">
               <div class="sub-dropdown-btn" onclick="toggleSubDropdown(this)">
                 <span class="dropdown-item-num">7</span>
@@ -503,7 +338,7 @@
           </div>
         </div>
 
-        <!-- Выпадающий список «Санадор Z» -->
+        <!-- Санадор Z -->
         <div class="dropdown">
           <div class="dropdown-btn" onclick="toggleDropdown(this)">
             📱 Санадор Z
@@ -514,7 +349,7 @@
           </div>
         </div>
 
-        <!-- Выпадающий список «ТМС(1С)» -->
+        <!-- ТМС(1С) -->
         <div class="dropdown">
           <div class="dropdown-btn" onclick="toggleDropdown(this)">
             🚚 ТМС(1С)
@@ -525,7 +360,7 @@
           </div>
         </div>
 
-        <!-- Выпадающий список «Санадор Агро» -->
+        <!-- Санадор Агро -->
         <div class="dropdown">
           <div class="dropdown-btn" onclick="toggleDropdown(this)">
             🌾 Санадор Агро (в будущем...)
@@ -541,7 +376,6 @@
     <!-- ЦЕНТРАЛЬНАЯ КОЛОНКА -->
     <div class="main-col">
 
-      <!-- ВЕТКА 1 -->
       <div class="node">
         <div class="question-text">РЕГИСТРАЦИЯ</div>
         <div class="options">
@@ -564,7 +398,6 @@
         </div>
       </div>
 
-      <!-- ВЕТКА 2 -->
       <div class="node">
         <div class="question-text">Не пришла ЭТРН</div>
         <div class="options">
@@ -602,7 +435,7 @@
             <div class="options">
               <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН найдена в системе</div>
               <div class="children">
-                <div class="operator-text">«Документ есть в нашей системе. Проверьте его наличие в приложении Санадор ЭПД или Санадор Z (если у клиента iPhone). В крайном случае, документ можно найти в личном кабинете на сайте Санадор.»</div>
+                <div class="operator-text">«Документ есть в нашей системе. Проверьте его наличие в приложении Санадор ЭПД или Санадор Z (если у клиента iPhone). В крайнем случае, документ можно найти в личном кабинете на сайте Санадор.»</div>
               </div>
               <div class="answer-btn" onclick="toggleChildren(this)">ЭТРН не найдена в системе</div>
               <div class="children">
@@ -693,57 +526,7 @@
             <p style="font-size: 0.85rem; color: #999; margin-bottom: 12px;">Телефоны доступны только для сотрудников.</p>
             <button type="button" id="phone-unlock-btn" class="phone-unlock-btn">🔓 Показать номера</button>
           </div>
-          <div id="phone-list" style="display: none;">
-            <div class="phone-item">
-              <span class="phone-icon">☎️</span>
-              <div class="phone-info">
-                <div class="phone-label">Общая поддержка</div>
-                <a href="tel:+792803744545" class="phone-number">+7 928 037-44-545</a>
-              </div>
-            </div>
-            <div class="phone-item">
-              <span class="phone-icon">👩</span>
-              <div class="phone-info">
-                <div class="phone-label">Мария Кургаева</div>
-                <a href="tel:+79384248020" class="phone-number">+7 938 424-80-20</a>
-              </div>
-            </div>
-            <div class="phone-item">
-              <span class="phone-icon">👩</span>
-              <div class="phone-info">
-                <div class="phone-label">Анна Демидова</div>
-                <a href="tel:+79385068020" class="phone-number">+7 938 506-80-20</a>
-              </div>
-            </div>
-            <div class="phone-item">
-              <span class="phone-icon">👩</span>
-              <div class="phone-info">
-                <div class="phone-label">Анна Кан</div>
-                <a href="tel:+79385078020" class="phone-number">+7 938 507-80-20</a>
-              </div>
-            </div>
-            <div class="phone-item">
-              <span class="phone-icon">👩</span>
-              <div class="phone-info">
-                <div class="phone-label">Катерина Туркасова</div>
-                <a href="tel:+79384168020" class="phone-number">+7 938 416-80-20</a>
-              </div>
-            </div>
-            <div class="phone-item">
-              <span class="phone-icon">👩</span>
-              <div class="phone-info">
-                <div class="phone-label">Елена Руденко</div>
-                <a href="tel:+79298268020" class="phone-number">+7 929 826-80-20</a>
-              </div>
-            </div>
-            <div class="phone-item">
-              <span class="phone-icon">👩</span>
-              <div class="phone-info">
-                <div class="phone-label">Галина Топорчикова</div>
-                <a href="tel:+79086904339" class="phone-number">+7 908 690-43-39</a>
-              </div>
-            </div>
-          </div>
+          <div id="phone-list" style="display: none;"></div>
         </div>
       </div>
     </div>
@@ -751,6 +534,30 @@
   </div>
 
   <script>
+    // Зашифрованные данные телефонов (base64)
+    const ENCODED_PHONES = "W3sibGFiZWwiOiAi0J7QsdGJ0LXQs9Cw0Y8g0L/RgNC+0LTRltCz0LjRh9C10YAiLCAibnVtYmVyIjogIis3IDkyOCAwMzctNDQtNTQ1IiwgInRlbCI6ICIrNzkyODAzNzQ0NTQ1IiwgImljb24iOiAi8J+RhuKaqiJ9LCB7ImxhYmVsIjogItCc0LDRgdC40Y8g0JrRg9GA0LDPQdCy0LXQvCIsICJudW1iZXIiOiAiKzcgOTM4IDQyNC04MC0yMCIsICJ0ZWwiOiAiKzc5Mzg0MjQ4MDIwIiwgImljb24iOiAi8J+SpuKaqiJ9LCB7ImxhYmVsIjogItCQ0L3QutCwINCc0LXQu9C40LTQvtCy0LAiLCAibnVtYmVyIjogIis3IDkzOCA1MDYtODAtMjAiLCAidGVsIjogIis3OTM4NTA2ODAyMCIsICJpY29uIjogIvCfkqbimoKiIn0sIHsibGFiZWwiOiAi0JDQvdC60LAg0JrQsNC9IiwgIm51bWJlciI6ICIrNyA5MzggNTA3LTgwLTIwIiwgInRlbCI6ICIrNzkzODUwNzgwMjAiLCAiaWNvbiI6ICLwn5Km4pqioiJ9LCB7ImxhYmVsIjogItCa0LDRiNC10LrRgNCw0LvRjyDQotGD0YDQutC60L7QsdCwIiwgIm51bWJlciI6ICIrNyA5MzggNDE2LTgwLTIwIiwgInRlbCI6ICIrNzkzODQxNjgwMjAiLCAiaWNvbiI6ICLwn5Km4pqioiJ9LCB7ImxhYmVsIjogItCV0LvQuNC90LAg0KDRg9C00LDQutC90L4iLCAibnVtYmVyIjogIis3IDkyOSA4MjYtODAtMjAiLCAidGVsIjogIis3OTI5ODI2ODAyMCIsICJpY29uIjogIvCfkqbimoKiIn0sIHsibGFiZWwiOiAi0JPQsNC50LvQsCDQotC+0L/QvtGA0YfRgNC40YfQutCwIiwgIm51bWJlciI6ICIrNyA5MDggNjkwLTQzLTM5IiwgInRlbCI6ICIrNzkwODY5MDQzMzkiLCAiaWNvbiI6ICLwn5Km4pqioiJ9XQ==";
+
+    function decodePhones() {
+      try {
+        const json = atob(ENCODED_PHONES);
+        const phones = JSON.parse(json);
+        const list = document.getElementById('phone-list');
+        list.innerHTML = '';
+        phones.forEach(p => {
+          const item = document.createElement('div');
+          item.className = 'phone-item';
+          item.innerHTML = '<span class="phone-icon">' + p.icon + '</span>' +
+            '<div class="phone-info">' +
+            '<div class="phone-label">' + p.label + '</div>' +
+            '<a href="tel:' + p.tel + '" class="phone-number">' + p.number + '</a>' +
+            '</div>';
+          list.appendChild(item);
+        });
+      } catch(e) {
+        document.getElementById('phone-list').innerHTML = '<p style="color:#ff5252;">Ошибка загрузки номеров</p>';
+      }
+    }
+
     function toggleDropdown(btn) {
       const content = btn.nextElementSibling;
       if (!content || !content.classList.contains('dropdown-content')) return;
@@ -867,14 +674,12 @@
     const PHONE_PASS = 'sanador2026';
     document.getElementById('phone-unlock-btn').addEventListener('click', () => {
       const locked = document.getElementById('phone-locked');
-      locked.innerHTML = `
-        <div class="phone-prompt">
-          <p style="font-size: 0.85rem; color: #999; margin-bottom: 10px;">Введите пароль:</p>
-          <input type="password" id="phone-pass-input" placeholder="••••••••" autofocus>
-          <button type="button" id="phone-pass-submit">Войти</button>
-          <div id="phone-wrong" class="wrong-pass" style="display: none;">Неверный пароль</div>
-        </div>
-      `;
+      locked.innerHTML = '<div class="phone-prompt">' +
+        '<p style="font-size: 0.85rem; color: #999; margin-bottom: 10px;">Введите пароль:</p>' +
+        '<input type="password" id="phone-pass-input" placeholder="••••••••" autofocus>' +
+        '<button type="button" id="phone-pass-submit">Войти</button>' +
+        '<div id="phone-wrong" class="wrong-pass" style="display: none;">Неверный пароль</div>' +
+        '</div>';
       document.getElementById('phone-pass-submit').addEventListener('click', checkPhonePass);
       document.getElementById('phone-pass-input').addEventListener('keydown', (e) => {
         if (e.key === 'Enter') checkPhonePass();
@@ -884,6 +689,7 @@
       const input = document.getElementById('phone-pass-input').value;
       if (input === PHONE_PASS) {
         document.getElementById('phone-locked').style.display = 'none';
+        decodePhones();
         document.getElementById('phone-list').style.display = 'block';
       } else {
         document.getElementById('phone-wrong').style.display = 'block';
