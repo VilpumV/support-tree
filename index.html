@@ -56,7 +56,7 @@
       margin-bottom: 24px;
       align-items: center;
     }
-    .search-box { flex-grow: 1; display: flex; gap: 8px; min-width: 200px; }
+    .search-box { display: flex; gap: 8px; min-width: 200px; max-width: 420px; }
     .search-input {
       flex-grow: 1; padding: 10px 16px;
       border: 1px solid var(--border); border-radius: 8px;
@@ -89,17 +89,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 8px 20px;
+      padding: 10px 24px;
       background: linear-gradient(135deg, #2c5aa0, #38b764);
       color: #fff; border-radius: 10px;
       box-shadow: 0 3px 10px rgba(44, 90, 160, 0.25);
     }
     .top-reference .ref-title {
       font-weight: 700; font-size: 1rem;
+      margin-bottom: 6px;
     }
     .top-reference .ref-subtitle {
       font-size: 0.78rem; opacity: 0.9;
-      margin-top: 2px;
     }
 
     .left-col .partner-badge {
@@ -213,6 +213,11 @@
     }
     .instruction-link-btn .link-icon { font-size: 1.3rem; }
 
+    .instructions-label {
+      font-weight: 700; color: var(--primary);
+      font-size: 1rem; margin-bottom: 10px;
+    }
+
     .sidebar-card {
       background: #fff; border: 1px solid var(--border);
       border-radius: 8px; padding: 20px; margin-bottom: 20px;
@@ -286,15 +291,14 @@
 
   <div class="top-actions">
     <div class="search-box">
-      <input type="text" id="searchInput" class="search-input" placeholder="Поиск по скриптам (например: ЭТРН, регистрация)...">
+      <input type="text" id="searchInput" class="search-input" placeholder="Поиск по скриптам...">
       <button type="button" id="searchBtn" class="search-btn">Найти</button>
     </div>
     <button type="button" class="action-btn btn-reset" onclick="closeAllBranches()">
       🔒 Закрыть все вкладки
     </button>
-    <!-- Вместо кнопки «База вопросов» — блок «Справочная» с подзаголовком -->
     <div class="top-reference">
-      <div class="ref-title">Справочная</div>
+      <div class="ref-title">Справочная:</div>
       <div class="ref-subtitle">Официальный партнёр «Калуга Астрал»</div>
     </div>
   </div>
@@ -304,12 +308,11 @@
     <!-- ЛЕВАЯ КОЛОНКА -->
     <div class="left-col">
       <div class="sticky-wrap">
-        <!-- Кнопка «База вопросов» -->
         <a href="faq.html" class="action-btn btn-faq" style="width: 100%; box-sizing: border-box; margin-bottom: 16px;">
           📘 База вопросов
         </a>
 
-        <!-- Кнопка «Инструкция по установке КриптоПро» -->
+        <div class="instructions-label">Инструкции:</div>
         <a href="cryptopro.html" class="instruction-link-btn" style="width: 100%; box-sizing: border-box;">
           <span class="link-icon">🔐</span>
           Инструкция по установке КриптоПро
@@ -428,7 +431,6 @@
     <div class="side-col">
       <div class="sticky-wrap">
 
-        <!-- Блок новостей -->
         <div class="sidebar-card">
           <h3>📢 Последние новости</h3>
           <div class="news-item">
@@ -444,7 +446,6 @@
           </div>
         </div>
 
-        <!-- Блок с адресами офисов -->
         <div class="offices-card">
           <h3>🏢 Наши офисы</h3>
           <div class="office-item">
@@ -463,7 +464,6 @@
           </div>
         </div>
 
-        <!-- Блок телефонов -->
         <div class="sidebar-card">
           <h3>📞 Контактные телефоны</h3>
           <div id="phone-locked">
