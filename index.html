@@ -63,6 +63,8 @@
     .btn-reset:hover { background-color: #ffebee; border-color: var(--danger); }
     .btn-faq { color: var(--primary); border: 1px solid var(--border); }
     .btn-faq:hover { background-color: #f0f7ff; border-color: var(--primary); }
+    .btn-links { color: var(--accent); border: 1px solid #c8f0d4; }
+    .btn-links:hover { background-color: #f0fff5; border-color: var(--accent); }
 
     .side-search-box { display: flex; gap: 8px; margin-bottom: 16px; }
     .side-search-input {
@@ -97,7 +99,6 @@
       line-height: 1.4;
     }
 
-    /* Выпадающий список инструкций */
     .instructions-dropdown {
       margin-bottom: 16px;
     }
@@ -282,8 +283,13 @@
     <!-- ЛЕВАЯ КОЛОНКА -->
     <div class="left-col">
       <div class="sticky-wrap">
-        <a href="faq.html" class="action-btn btn-faq" style="width: 100%; box-sizing: border-box; margin-bottom: 16px;">
+        <a href="faq.html" class="action-btn btn-faq" style="width: 100%; box-sizing: border-box; margin-bottom: 12px;">
           📘 База вопросов
+        </a>
+
+        <!-- Кнопка «Важные ссылки» -->
+        <a href="#" class="action-btn btn-links" style="width: 100%; box-sizing: border-box; margin-bottom: 16px;">
+          🔗 Важные ссылки
         </a>
 
         <!-- Окошко «Инструкции:» -->
