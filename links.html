@@ -47,24 +47,43 @@
       margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
       padding-bottom: 12px; border-bottom: 2px solid var(--border);
     }
-    .links-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 12px;
+
+    .link-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px; border: 1px solid var(--border);
+      border-radius: 10px; margin-bottom: 10px;
+      background: #fff; transition: all 0.2s ease;
     }
-    .link-card {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 18px; background: #fff;
-      border: 1px solid var(--border); border-radius: 10px;
-      text-decoration: none; color: var(--primary);
-      font-weight: 600; font-size: 0.95rem;
-      transition: all 0.2s ease;
+    .link-row:hover {
+      border-color: var(--primary); box-shadow: 0 2px 8px rgba(44, 90, 160, 0.1);
     }
-    .link-card:hover {
-      background: #f0f7ff; border-color: var(--primary);
-      transform: translateY(-2px); box-shadow: 0 4px 12px rgba(44, 90, 160, 0.15);
+    .link-emoji {
+      font-size: 1.4rem; flex-shrink: 0; width: 32px; text-align: center;
     }
-    .link-card .link-emoji { font-size: 1.5rem; flex-shrink: 0; }
-    .link-card .link-source { font-size: 0.78rem; color: #999; font-weight: 500; }
+    .link-body { flex-grow: 1; min-width: 0; }
+    .link-label {
+      font-weight: 700; color: var(--primary);
+      font-size: 0.95rem; margin-bottom: 4px;
+    }
+    .link-url {
+      font-size: 0.8rem; color: #888;
+      word-break: break-all; line-height: 1.4;
+      font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
+    }
+    .copy-btn {
+      flex-shrink: 0; padding: 8px 14px;
+      background: var(--primary); color: #fff;
+      border: none; border-radius: 8px;
+      cursor: pointer; font-weight: 600; font-size: 0.82rem;
+      transition: all 0.2s ease; white-space: nowrap;
+    }
+    .copy-btn:hover { background: #1f457a; }
+    .copy-btn.copied {
+      background: var(--accent);
+    }
+    .copy-btn.copied::after {
+      content: " ✓";
+    }
 
     .links-note {
       font-size: 0.9rem; color: #7a6510; background: #fff8e1;
@@ -73,21 +92,10 @@
       border-left: 4px solid #ffc107;
     }
 
-    .link-card-wide {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 18px; background: linear-gradient(135deg, #2c5aa0, #1f457a);
-      color: #fff; border-radius: 10px;
-      text-decoration: none; font-weight: 600; font-size: 0.95rem;
-      transition: all 0.2s ease; box-shadow: 0 3px 8px rgba(44, 90, 160, 0.25);
-      margin-bottom: 8px;
-    }
-    .link-card-wide:hover {
-      transform: translateY(-2px); box-shadow: 0 5px 14px rgba(44, 90, 160, 0.35);
-    }
-    .link-card-wide .link-emoji { font-size: 1.3rem; flex-shrink: 0; }
-
     @media (max-width: 600px) {
-      .links-grid { grid-template-columns: 1fr; }
+      .link-row { flex-direction: column; align-items: stretch; }
+      .link-url { margin-bottom: 8px; }
+      .copy-btn { align-self: flex-end; }
     }
   </style>
 </head>
@@ -100,50 +108,57 @@
   <!-- Санадор Z -->
   <div class="links-section">
     <div class="links-section-title">📱 Санадор Z</div>
-    <div class="links-grid">
-      <a href="https://www.rustore.ru/catalog/app/com.ninedev.applicationz" target="_blank" class="link-card">
-        <span class="link-emoji">🏪</span>
-        <div>
-          <div>RuStore</div>
-          <div class="link-source">rustore.ru</div>
-        </div>
-      </a>
-      <a href="https://apps.apple.com/ru/app/%D1%81%D0%B0%D0%BD%D0%B0%D0%B4%D0%BE%D1%80-z/id1447874811" target="_blank" class="link-card">
-        <span class="link-emoji">🍎</span>
-        <div>
-          <div>App Store</div>
-          <div class="link-source">apps.apple.com</div>
-        </div>
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=com.ninedev.applicationz&hl=ru&pli=1" target="_blank" class="link-card">
-        <span class="link-emoji">▶️</span>
-        <div>
-          <div>Google Play</div>
-          <div class="link-source">play.google.com</div>
-        </div>
-      </a>
+
+    <div class="link-row">
+      <span class="link-emoji">🏪</span>
+      <div class="link-body">
+        <div class="link-label">RuStore</div>
+        <div class="link-url" id="url-sanadorz-rustore">https://www.rustore.ru/catalog/app/com.ninedev.applicationz</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-sanadorz-rustore', this)">Копировать</button>
+    </div>
+
+    <div class="link-row">
+      <span class="link-emoji">🍎</span>
+      <div class="link-body">
+        <div class="link-label">App Store</div>
+        <div class="link-url" id="url-sanadorz-appstore">https://apps.apple.com/ru/app/санадор-z/id1447874811</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-sanadorz-appstore', this)">Копировать</button>
+    </div>
+
+    <div class="link-row">
+      <span class="link-emoji">▶️</span>
+      <div class="link-body">
+        <div class="link-label">Google Play</div>
+        <div class="link-url" id="url-sanadorz-gplay">https://play.google.com/store/apps/details?id=com.ninedev.applicationz</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-sanadorz-gplay', this)">Копировать</button>
     </div>
   </div>
 
   <!-- Санадор ЭПД -->
   <div class="links-section">
     <div class="links-section-title">📦 Санадор ЭПД</div>
-    <div class="links-grid">
-      <a href="https://www.rustore.ru/catalog/app/ru.sanador.epd" target="_blank" class="link-card">
-        <span class="link-emoji">🏪</span>
-        <div>
-          <div>RuStore</div>
-          <div class="link-source">rustore.ru</div>
-        </div>
-      </a>
-      <a href="https://play.google.com/store/apps/details?id=ru.sanador.epd" target="_blank" class="link-card">
-        <span class="link-emoji">▶️</span>
-        <div>
-          <div>Google Play</div>
-          <div class="link-source">play.google.com</div>
-        </div>
-      </a>
+
+    <div class="link-row">
+      <span class="link-emoji">🏪</span>
+      <div class="link-body">
+        <div class="link-label">RuStore</div>
+        <div class="link-url" id="url-epd-rustore">https://www.rustore.ru/catalog/app/ru.sanador.epd</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-epd-rustore', this)">Копировать</button>
     </div>
+
+    <div class="link-row">
+      <span class="link-emoji">▶️</span>
+      <div class="link-body">
+        <div class="link-label">Google Play</div>
+        <div class="link-url" id="url-epd-gplay">https://play.google.com/store/apps/details?id=ru.sanador.epd</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-epd-gplay', this)">Копировать</button>
+    </div>
+
     <div class="links-note">
       ⚠️ Для iPhone нет отдельного приложения ЭПД — пользуемся приложением Санадор Z.
     </div>
@@ -152,41 +167,105 @@
   <!-- Рабочие сервисы -->
   <div class="links-section">
     <div class="links-section-title">🛠 Рабочие сервисы</div>
-    <a href="https://nova-test.sanador.ru/dashboards/main" target="_blank" class="link-card-wide">
+
+    <div class="link-row">
       <span class="link-emoji">🖥</span>
-      Админка
-    </a>
-    <a href="https://sndamo.amocrm.ru/dashboard/?sel=all&period=day&pipeline_id=11234002" target="_blank" class="link-card-wide">
+      <div class="link-body">
+        <div class="link-label">Админка</div>
+        <div class="link-url" id="url-admin">https://nova-test.sanador.ru/dashboards/main</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-admin', this)">Копировать</button>
+    </div>
+
+    <div class="link-row">
       <span class="link-emoji">📊</span>
-      CRM
-    </a>
-    <a href="https://sanador.ru/it" target="_blank" class="link-card-wide">
+      <div class="link-body">
+        <div class="link-label">CRM</div>
+        <div class="link-url" id="url-crm">https://sndamo.amocrm.ru/dashboard/?sel=all&period=day&pipeline_id=11234002</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-crm', this)">Копировать</button>
+    </div>
+
+    <div class="link-row">
       <span class="link-emoji">🌐</span>
-      Сайт Санадор
-    </a>
+      <div class="link-body">
+        <div class="link-label">Сайт Санадор</div>
+        <div class="link-url" id="url-site">https://sanador.ru/it</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-site', this)">Копировать</button>
+    </div>
   </div>
 
   <!-- Для ЭТРН -->
   <div class="links-section">
     <div class="links-section-title">🔐 Для ЭТРН</div>
-    <a href="https://anydesk.com/ru" target="_blank" class="link-card-wide">
+
+    <div class="link-row">
       <span class="link-emoji">🖱</span>
-      AnyDesk
-    </a>
-    <a href="https://cryptopro.ru/fns?clckid=44d98b25#download" target="_blank" class="link-card-wide">
+      <div class="link-body">
+        <div class="link-label">AnyDesk</div>
+        <div class="link-url" id="url-anydesk">https://anydesk.com/ru</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-anydesk', this)">Копировать</button>
+    </div>
+
+    <div class="link-row">
       <span class="link-emoji">📋</span>
-      КриптоПро (с сайта налоговой + плагин)
-    </a>
-    <a href="https://cryptopro.ru/products/cades/plugin" target="_blank" class="link-card-wide">
+      <div class="link-body">
+        <div class="link-label">КриптоПро (с сайта налоговой + плагин)</div>
+        <div class="link-url" id="url-crypto-fns">https://cryptopro.ru/fns?clckid=44d98b25#download</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-crypto-fns', this)">Копировать</button>
+    </div>
+
+    <div class="link-row">
       <span class="link-emoji">🔌</span>
-      Плагин КриптоПро (отдельно)
-    </a>
-    <a href="https://addons.opera.com/ru/extensions/details/cryptopro-extension-for-cades-browser-plug-in/" target="_blank" class="link-card-wide">
+      <div class="link-body">
+        <div class="link-label">Плагин КриптоПро (отдельно)</div>
+        <div class="link-url" id="url-crypto-plugin">https://cryptopro.ru/products/cades/plugin</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-crypto-plugin', this)">Копировать</button>
+    </div>
+
+    <div class="link-row">
       <span class="link-emoji">🧩</span>
-      Расширение для Opera
-    </a>
+      <div class="link-body">
+        <div class="link-label">Расширение для Opera</div>
+        <div class="link-url" id="url-crypto-opera">https://addons.opera.com/ru/extensions/details/cryptopro-extension-for-cades-browser-plug-in/</div>
+      </div>
+      <button class="copy-btn" onclick="copyLink('url-crypto-opera', this)">Копировать</button>
+    </div>
   </div>
 
+  <script>
+    function copyLink(id, btn) {
+      const el = document.getElementById(id);
+      const url = el.textContent.trim();
+      navigator.clipboard.writeText(url).then(() => {
+        btn.classList.add('copied');
+        btn.textContent = 'Скопировано ✓';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.textContent = 'Копировать';
+        }, 2000);
+      }).catch(() => {
+        // Фолбэк для старых браузеров
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch(e) {}
+        document.body.removeChild(ta);
+        btn.classList.add('copied');
+        btn.textContent = 'Скопировано ✓';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.textContent = 'Копировать';
+        }, 2000);
+      });
+    }
+  </script>
 </body>
 </html>
-
