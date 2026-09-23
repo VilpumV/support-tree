@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация в ЭПД И МЧД грузоперевозчика</title>
+  <style>
+    :root {
+      --primary: #2c5aa0;
+      --accent: #38b764;
+      --danger: #ff5252;
+      --text: #333;
+      --border: #e1e6ed;
+      --bg: #f7f9fc;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg); color: var(--text);
+      max-width: 900px; margin: 0 auto; padding: 24px 16px;
+    }
+    h1 {
+      color: var(--primary); text-align: center;
+      margin-bottom: 8px; font-size: 1.6rem;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; background: var(--primary); color: #fff;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-weight: 600; text-decoration: none; margin-bottom: 24px;
+      transition: background 0.2s;
+    }
+    .back-btn:hover { background: #1f457a; }
+    .step {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 10px; padding: 24px; margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .step h2 {
+      color: var(--primary); font-size: 1.15rem;
+      margin: 0 0 14px 0; padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+    .step p { line-height: 1.6; margin: 8px 0; }
+    .step strong { color: var(--primary); }
+    .step ul { margin: 8px 0 8px 20px; padding: 0; }
+    .step ul li { margin-bottom: 6px; line-height: 1.5; }
+    .warning {
+      display: block; margin: 12px 0; padding: 12px 16px;
+      background: #fff3cd; border: 1px solid #ffc107;
+      border-radius: 8px; color: #856404; font-size: 0.92rem;
+    }
+    .tip {
+      display: block; margin: 12px 0; padding: 12px 16px;
+      background: #d4edda; border: 1px solid #28a745;
+      border-radius: 8px; color: #155724; font-size: 0.92rem;
+    }
+    .step-number {
+      display: inline-block; width: 32px; height: 32px;
+      line-height: 32px; text-align: center;
+      background: var(--primary); color: #fff;
+      border-radius: 50%; font-size: 0.95rem;
+      font-weight: 700; margin-right: 10px;
+    }
+    .step-img {
+      max-width: 100%; border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: block; margin: 14px auto;
+    }
+    .img-caption {
+      text-align: center; font-size: 0.82rem;
+      color: #999; margin-top: 6px;
+    }
+    .section-divider {
+      height: 2px; background: var(--border);
+      margin: 32px 0; border: none;
+    }
+    .problems-title {
+      color: var(--danger); font-size: 1.3rem;
+      text-align: center; margin: 32px 0 20px;
+    }
+    code {
+      background: #f0f0f0; padding: 2px 6px;
+      border-radius: 4px; font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">← Назад к скриптам</a>
+
+  <h1>Инструкция по регистрации в ЭПД И МЧД для перевозов</h1>
+  <p style="text-align:center; color:#666; margin-bottom: 30px;">
+    Пошаговое руководство для операторов техподдержки Санадор
+  </p>
+
+  <!-- Шаг 1 -->
+  <div class="step">
+    <h2><span class="step-number">1</span>Авторизация на сайте или переход к прегистрации </h2>
+    <p>Заходим на сайт Санадор и авторизуемся (или регистрируемся).</p>
+    <div class="warning">⚠️ <strong>ОБЯЗАТЕЛЬНО</strong> работаем через Яндекс Браузер, иначе подпись будет не видна!</div>
+    <p>После авторизации нажимаем на вкладку <strong>«ЭПД»</strong> → <strong>«Регистрация»</strong>.</p>
+    <img class="step-img" src="img/page_01.png" alt="Сайт Санадор - главная страница">
+    <div class="img-caption">Сайт Санадор — переход к разделу ЭПД → Регистрация</div>
+    <img class="step-img" src="img/page_02.png" alt="">
+    <div class="img-caption"></div>
+    <p>мяу<strong>мяу</strong>мяу</p>
+    <img class="step-img" src="img/page_03.png" alt="Красное окошко — скачать по ссылке">
+    <div class="img-caption">Нажимаем на «ссылке» для скачивания</div>
+  </div>
+
+  <!-- Шаг 2 -->
+  <div class="step">
+    <h2><span class="step-number">2</span>Скачивание КриптоПро CSP</h2>
+    <p>В полученном окне заполняем форму:</p>
+    <ul>
+      <li><strong>Ф.И.О.</strong> — обязательно</li>
+      <li><strong>Email</strong> — обязательно</li>
+      <li><strong>Организация</strong> — не обязательно</li>
+    </ul>
+    <p>Выбираем операционную систему: <strong>Windows</strong>, macOS или Linux (DEB / RPM).</p>
+    <p>Обязательно ставим <strong>галочки</strong> на согласие обработки персональных данных и с условиями лицензионного соглашения.</p>
+    <p>Нажимаем <strong>«Скачать»</strong>.</p>
+    <img class="step-img" src="img/page_04.png" alt="Форма для скачивания КриптоПро">
+    <div class="img-caption">Форма скачивания — заполняем, выбираем ОС, ставим галочки</div>
+    <p>В разделе «Загрузки» (правый верхний угол) появится файл, например <code>CryptoPro-5.0.13003.exe</code> — открываем его.</p>
+    <img class="step-img" src="img/page_05.png" alt="Загрузки — файл КриптоПро">
+    <div class="img-caption">Файл в загрузках браузера</div>
+  </div>
+
+  <!-- Шаг 3 -->
+  <div class="step">
+    <h2><span class="step-number">3</span>Установка КриптоПро CSP и плагина</h2>
+    <p>Начинаем установку. В момент установки может потребоваться <strong>перемещать указатель мыши</strong> для генерации случайной последовательности.</p>
+    <div class="warning">Если ранее КриптоПро на компьютере уже стоял — это окно не появится.</div>
+    <img class="step-img" src="img/page_06.png" alt="Генерация случайной последовательности">
+    <div class="img-caption">Перемещайте мышь для генерации</div>
+    <p>Когда полоска генерации заполнится, ждём завершения настройки КриптоПро CSP.</p>
+    <img class="step-img" src="img/page_07.png" alt="Настройка КриптоПро CSP">
+    <div class="img-caption">Идёт настройка КриптоПро CSP</div>
+    <p>Затем автоматически начнётся установка <strong>КриптоПро ЭЦП Browser plug-in</strong>.</p>
+    <img class="step-img" src="img/page_08.png" alt="Установка плагина КриптоПро">
+    <div class="img-caption">Установка плагина</div>
+    <p>После установки плагина появится окно завершения.</p>
+    <div class="tip">💡 Если нет Яндекс Браузера — ставим галочку «Установить Яндекс Браузер». Компьютер <strong>НЕ перезагружаем</strong>. Нажимаем «ОК».</div>
+    <img class="step-img" src="img/page_09.png" alt="Окно завершения установки">
+    <div class="img-caption">Окно завершения — нажимаем ОК</div>
+  </div>
+
+  <!-- Шаг 4 -->
+  <div class="step">
+    <h2><span class="step-number">4</span>Установка расширения в браузер</h2>
+    <p>В Яндекс Браузере открываем меню (три полосы, правый верхний угол) → <strong>«Расширения»</strong>.</p>
+    <img class="step-img" src="img/page_10.png" alt="Меню браузера — Расширения">
+    <div class="img-caption">Открываем раздел «Расширения»</div>
+    <p>Находим <strong>«КриптоПро ЭЦП»</strong> в списке. Возможны 3 состояния:</p>
+    <ul>
+      <li><strong>Включено</strong> — всё ок, ничего делать не нужно</li>
+      <li><strong>Выключено</strong> — включаем переключатель</li>
+      <li><strong>«Установить»</strong> — не установлено, нажимаем</li>
+    </ul>
+    <img class="step-img" src="img/page_11.png" alt="Три состояния расширения">
+    <div class="img-caption">Три состояния: включено, выключено, установить</div>
+    <p>Если нужно установить — нажимаем «Установить», попадаем в магазин расширений, жмём <strong>«Добавить в Яндекс.Браузер»</strong>, затем <strong>«Установить расширение»</strong>.</p>
+    <img class="step-img" src="img/page_12.png" alt="Магазин расширений — КриптоПро">
+    <div class="img-caption">Магазин расширений — добавляем в Яндекс.Браузер</div>
+    <img class="step-img" src="img/page_13.png" alt="Подтверждение установки расширения">
+    <div class="img-caption">Подтверждаем установку расширения</div>
+    <p>Возвращаемся на сайт Санадор и <strong>обновляем страницу</strong>. Появится окно «Подтверждение доступа» — нажимаем <strong>«Да»</strong>.</p>
+    <div class="tip">✅ Если всё сделано правильно — сертификат будет виден при попытке его выбрать в разделе «Регистрация ЭПД».</div>
+  </div>
+
+  <hr class="section-divider">
+
+  <h2 class="problems-title">🔧 Проблемы и их решения</h2>
+
+  <!-- Проблема 1 -->
+  <div class="step">
+    <h2>Диагностика КриптоПро</h2>
+    <p>В первую очередь всегда просим запустить <strong>диагностику КриптоПро</strong>. Есть 3 способа:</p>
+    <ul>
+      <li>Нажать «Страница диагностики КриптоПро» в красном окошке на сайте</li>
+      <li>Нажать «Страница диагностики» в окне выбора сертификата</li>
+      <li>Открыть расширение CAdES Browser plugin в браузере → «Проверить работу плагина»</li>
+    </ul>
+    <p>На странице диагностики смотрим, какие пункты горят <strong>зелёным</strong>, а какие <strong>красным</strong>:</p>
+    <ul>
+      <li><strong>Расширение</strong> красным → нажимаем «Загрузить», устанавливаем расширение</li>
+      <li><strong>Плагин</strong> красным → нажимаем «Скачать плагин», устанавливаем</li>
+      <li><strong>КриптоПро CSP</strong> красным → проверяем установку (см. ниже)</li>
+      <li><strong>Объекты плагина</strong> красным → проверяем, вставлена ли флешка с подписью</li>
+    </ul>
+    <div class="tip">✅ Если все 4 пункта горят зелёным, но подпись не видна — обновляем страницу на сайте Санадор. Если не помогло — выбираем нужный сертификат и нажимаем «Подписать» (галочки не ставим). Если ничего не помогает — перезагружаем компьютер.</div>
+  </div>
+
+  <!-- Проблема 2 -->
+  <div class="step">
+    <h2>Настройка КриптоПро CSP (считыватели)</h2>
+    <p>Если КриптоПро CSP горит красным, проверяем, установлен ли он. В меню «Пуск» или через поиск находим <strong>«КриптоПро CSP»</strong> и запускаем.</p>
+    <div class="warning">⚠️ <strong>ВАЖНО!</strong> Нажать «Запустить с правами администратора» (кнопка в окне программы).</div>
+    <p>Чтобы носитель подписи (флешка) был виден, настраиваем считыватели:</p>
+    <p><strong>«Оборудование»</strong> → <strong>«Настроить считыватели»</strong> → выбираем <strong>«Все съёмные диски»</strong> → <strong>«ОК»</strong>.</p>
+  </div>
+
+  <!-- Проблема 3 -->
+  <div class="step">
+    <h2>Система запрашивает пароль (PIN-код)</h2>
+    <p>Вставьте токен (Рутокен) в USB-порт. Попробуйте ввести <strong>11111111</strong> в поле ввода пароля.</p>
+    <div class="warning">⚠️ У токена есть лимит попыток ввода PIN. Если исчерпать все попытки, устройство блокируется — разблокировать сможет только производитель или удостоверяющий центр.</div>
+    <p><strong>Стандартные PIN-коды:</strong></p>
+    <ul>
+      <li><strong>Rutoken:</strong> 12345678 (пользователь), 87654321 (администратор)</li>
+      <li><strong>eToken:</strong> 1234567890 (пользователь)</li>
+      <li><strong>JaCarta (PKI):</strong> 11111111 (пользователь)</li>
+    </ul>
+    <p>Если стандартные пароли не подошли — PIN был изменён. Нужно обратиться в удостоверяющий центр, выдавший сертификат, для изменения или выпуска нового ключа.</p>
+    <div class="tip">💡 Совет: после получения подписи сразу смените стандартный PIN на уникальный.</div>
+  </div>
+
+  <p style="text-align:center; margin-top: 30px;">
+    <a href="index.html" class="back-btn">← Назад к скриптам</a>
+  </p>
+
+</body>
+</html>
