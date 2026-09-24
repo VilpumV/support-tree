@@ -2,234 +2,595 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Инструкция по установке КриптоПро — Санадор</title>
+  <title>Установка КриптоПро — Скрипты техподдержки Санадор</title>
   <style>
     :root {
+      --bg-color: #f7f9fc;
       --primary: #2c5aa0;
       --accent: #38b764;
       --danger: #ff5252;
+      --warn: #ff9800;
       --text: #333;
       --border: #e1e6ed;
-      --bg: #f7f9fc;
     }
+    * { box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg); color: var(--text);
-      max-width: 900px; margin: 0 auto; padding: 24px 16px;
+      background-color: var(--bg-color);
+      color: var(--text);
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
     }
-    h1 {
-      color: var(--primary); text-align: center;
-      margin-bottom: 8px; font-size: 1.6rem;
+    .header {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 20px;
     }
     .back-btn {
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px; background: var(--primary); color: #fff;
-      border: none; border-radius: 8px; cursor: pointer;
-      font-weight: 600; text-decoration: none; margin-bottom: 24px;
-      transition: background 0.2s;
+      padding: 9px 18px; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border); text-decoration: none;
+      color: var(--primary); background: #fff;
     }
-    .back-btn:hover { background: #1f457a; }
+    .back-btn:hover { border-color: var(--primary); background: #f0f7ff; }
+    h1 {
+      color: var(--primary); font-weight: 700;
+      margin: 0; font-size: 1.4rem;
+    }
+
+    .warn-banner {
+      background: #fff3e0; border: 1px solid #ffe0b2;
+      border-radius: 12px; padding: 16px 20px;
+      margin-bottom: 24px; display: flex; align-items: flex-start; gap: 12px;
+      font-size: 0.92rem; color: #8a5b00; line-height: 1.5;
+    }
+    .warn-banner .warn-icon { font-size: 1.3rem; flex-shrink: 0; }
+
+    .section-title {
+      font-size: 1.15rem; font-weight: 700; color: var(--primary);
+      margin: 32px 0 16px; padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-title:first-of-type { margin-top: 0; }
+
     .step {
       background: #fff; border: 1px solid var(--border);
-      border-radius: 10px; padding: 24px; margin-bottom: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-radius: 12px; padding: 20px; margin-bottom: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s ease;
     }
-    .step h2 {
-      color: var(--primary); font-size: 1.15rem;
-      margin: 0 0 14px 0; padding-bottom: 10px;
-      border-bottom: 2px solid var(--border);
+    .step:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+
+    .step-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 12px;
     }
-    .step p { line-height: 1.6; margin: 8px 0; }
-    .step strong { color: var(--primary); }
-    .step ul { margin: 8px 0 8px 20px; padding: 0; }
-    .step ul li { margin-bottom: 6px; line-height: 1.5; }
-    .warning {
-      display: block; margin: 12px 0; padding: 12px 16px;
-      background: #fff3cd; border: 1px solid #ffc107;
-      border-radius: 8px; color: #856404; font-size: 0.92rem;
-    }
-    .tip {
-      display: block; margin: 12px 0; padding: 12px 16px;
-      background: #d4edda; border: 1px solid #28a745;
-      border-radius: 8px; color: #155724; font-size: 0.92rem;
-    }
-    .step-number {
-      display: inline-block; width: 32px; height: 32px;
-      line-height: 32px; text-align: center;
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%;
       background: var(--primary); color: #fff;
-      border-radius: 50%; font-size: 0.95rem;
-      font-weight: 700; margin-right: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
     }
+    .step-num.danger { background: var(--danger); }
+    .step-num.warn { background: var(--warn); }
+    .step-title {
+      font-weight: 700; color: var(--text); font-size: 0.98rem;
+    }
+
+    .step-text {
+      font-size: 0.9rem; color: #4a5568;
+      line-height: 1.6; margin-bottom: 14px;
+    }
+    .step-text ul { margin: 8px 0; padding-left: 20px; }
+    .step-text li { margin-bottom: 4px; }
+
+    .step-text strong { color: var(--text); }
+    .step-text .hl-red { color: var(--danger); font-weight: 700; }
+    .step-text .hl-green { color: var(--accent); font-weight: 700; }
+    .step-text .hl-blue { color: var(--primary); font-weight: 700; }
+
     .step-img {
-      max-width: 100%; border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      display: block; margin: 14px auto;
+      width: 100%; border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      margin-bottom: 8px;
     }
-    .img-caption {
-      text-align: center; font-size: 0.82rem;
-      color: #999; margin-top: 6px;
+    .step-img-label {
+      font-size: 0.78rem; color: #999;
+      text-align: center; font-style: italic;
     }
-    .section-divider {
-      height: 2px; background: var(--border);
-      margin: 32px 0; border: none;
+
+    .alert-box {
+      border-radius: 10px; padding: 12px 16px;
+      margin-top: 12px; font-size: 0.85rem;
+      line-height: 1.5; display: flex; align-items: flex-start; gap: 8px;
     }
-    .problems-title {
-      color: var(--danger); font-size: 1.3rem;
-      text-align: center; margin: 32px 0 20px;
+    .alert-danger {
+      background: #ffebee; color: #c62828;
+      border-left: 4px solid var(--danger);
     }
-    code {
-      background: #f0f0f0; padding: 2px 6px;
-      border-radius: 4px; font-size: 0.9rem;
+    .alert-warn {
+      background: #fff8e1; color: #8a6d00;
+      border-left: 4px solid var(--warn);
+    }
+    .alert-info {
+      background: #e3f2fd; color: #1565c0;
+      border-left: 4px solid var(--primary);
+    }
+    .alert-success {
+      background: #e8f8ee; color: #2e7d32;
+      border-left: 4px solid var(--accent);
+    }
+
+    .substep {
+      margin-left: 16px; padding-left: 16px;
+      border-left: 2px solid var(--border);
+      margin-bottom: 12px;
+    }
+    .substep:last-child { margin-bottom: 0; }
+    .substep-title {
+      font-weight: 600; font-size: 0.88rem;
+      color: var(--primary); margin-bottom: 6px;
+    }
+    .substep-text {
+      font-size: 0.87rem; color: #555; line-height: 1.5;
+    }
+
+    .three-states {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px; margin: 12px 0;
+    }
+    @media (max-width: 600px) { .three-states { grid-template-columns: 1fr; } }
+    .state-card {
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 10px; text-align: center;
+    }
+    .state-card img { width: 100%; border-radius: 6px; margin-bottom: 6px; }
+    .state-label { font-size: 0.8rem; font-weight: 600; color: #666; }
+    .state-label.on { color: var(--accent); }
+    .state-label.off { color: #999; }
+    .state-label.na { color: var(--danger); }
+
+    .divider {
+      height: 1px; background: var(--border);
+      margin: 24px 0;
     }
   </style>
 </head>
 <body>
 
-  <a href="index.html" class="back-btn">← Назад к скриптам</a>
+  <div class="header">
+    <a href="index.html" class="back-btn">&larr; Назад</a>
+    <h1>🔐 Установка КриптоПро</h1>
+  </div>
 
-  <h1>🔐 Инструкция по установке КриптоПро</h1>
-  <p style="text-align:center; color:#666; margin-bottom: 30px;">
-    Пошаговое руководство для операторов техподдержки Санадор
-  </p>
+  <div class="warn-banner">
+    <span class="warn-icon">⚠️</span>
+    <div><strong>ОБЯЗАТЕЛЬНО работаем через Яндекс Браузер!</strong> В любом другом браузере подпись будет не видна.</div>
+  </div>
+
+  <!-- ============ УСТАНОВКА ============ -->
+  <div class="section-title">📋 Установка</div>
 
   <!-- Шаг 1 -->
   <div class="step">
-    <h2><span class="step-number">1</span>первый ПуНкТ</h2>
-    <p>Заходим на сайт Санадор и авторизуемся (или регистрируемся)
-      <p>Если регистрация ООО (их регистрируем только руячками) :<p>
-<p>1.Банковские реквизиты (расчетного счета)<p>
-<p>2.Паспорт директора (первую страницу, страницу с пропиской)<p>
-<p>3.Приказ о назначении директора<p>
-<p>4.Устав<p>
-<p>5.Свидетельство о регистрации ТС, с двух сторон на машины и на прицепы. Если транспорт в аренде/лизинге - договор аренды/лизинга.<p>
-<p>6.Паспорт с пропиской каждого водителя<p>
-<p>7.Водительские удостоверения с двух сторон каждого водителя<p>
-<p>8.Номера телефонов(Водителей и ООО)<p>
-<p>9.Ставка НДС <p>
-
-      .</p>
-    <div class="warning">⚠️ <strong>ОБЯЗАТЕЛЬНО</strong> работаем через Яндекс Браузер, иначе подпись будет не видна!</div>
-    <p>После авторизации нажимаем на вкладку <strong>«ЭПД»</strong> → <strong>«Регистрация»</strong>.</p>
-    <img class="step-img" src="img/page_01.png" alt="Сайт Санадор - главная страница">
-    <div class="img-caption">Сайт Санадор — переход к разделу ЭПД → Регистрация</div>
-    <img class="step-img" src="img/page_02.png" alt="Красное окошко — КриптоПро не установлен">
-    <div class="img-caption">Если КриптоПро нет — появляется красное окошко</div>
-    <p>Если КриптоПро нет на компьютере, появится <strong>красное окошко</strong>: «Не удалось подключить CAdES Browser Plugin». Чтобы скачать КриптоПро и плагин, нажимаем на слово <strong>«ссылке»</strong> в этом окошке (это гиперссылка).</p>
-    <img class="step-img" src="img/page_03.png" alt="Красное окошко — скачать по ссылке">
-    <div class="img-caption">Нажимаем на «ссылке» для скачивания</div>
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div class="step-title">Заходим на сайт и авторизуемся</div>
+    </div>
+    <div class="step-text">
+      Заходим на наш сайт и авторизуемся (или регистрируемся, если ещё нет аккаунта).
+    </div>
+    <img class="step-img" src="page_1.png" alt="Авторизация на сайте">
+    <div class="step-img-label">Шаг 1 — Вход на сайт</div>
   </div>
 
   <!-- Шаг 2 -->
   <div class="step">
-    <h2><span class="step-number">2</span>Скачивание КриптоПро CSP</h2>
-    <p>В полученном окне заполняем форму:</p>
-    <ul>
-      <li><strong>Ф.И.О.</strong> — обязательно</li>
-      <li><strong>Email</strong> — обязательно</li>
-      <li><strong>Организация</strong> — не обязательно</li>
-    </ul>
-    <p>Выбираем операционную систему: <strong>Windows</strong>, macOS или Linux (DEB / RPM).</p>
-    <p>Обязательно ставим <strong>галочки</strong> на согласие обработки персональных данных и с условиями лицензионного соглашения.</p>
-    <p>Нажимаем <strong>«Скачать»</strong>.</p>
-    <img class="step-img" src="img/page_04.png" alt="Форма для скачивания КриптоПро">
-    <div class="img-caption">Форма скачивания — заполняем, выбираем ОС, ставим галочки</div>
-    <p>В разделе «Загрузки» (правый верхний угол) появится файл, например <code>CryptoPro-5.0.13003.exe</code> — открываем его.</p>
-    <img class="step-img" src="img/page_05.png" alt="Загрузки — файл КриптоПро">
-    <div class="img-caption">Файл в загрузках браузера</div>
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div class="step-title">Переходим в раздел «ЭПД» → «Регистрация»</div>
+    </div>
+    <div class="step-text">
+      После авторизации нажимаем на вкладку <strong>«ЭПД»</strong> → <strong>«Регистрация»</strong>.
+    </div>
+    <img class="step-img" src="page_2.png" alt="Раздел ЭПД, Регистрация">
+    <div class="step-img-label">Шаг 2 — Переход к регистрации</div>
   </div>
 
   <!-- Шаг 3 -->
   <div class="step">
-    <h2><span class="step-number">3</span>Установка КриптоПро CSP и плагина</h2>
-    <p>Начинаем установку. В момент установки может потребоваться <strong>перемещать указатель мыши</strong> для генерации случайной последовательности.</p>
-    <div class="warning">Если ранее КриптоПро на компьютере уже стоял — это окно не появится.</div>
-    <img class="step-img" src="img/page_06.png" alt="Генерация случайной последовательности">
-    <div class="img-caption">Перемещайте мышь для генерации</div>
-    <p>Когда полоска генерации заполнится, ждём завершения настройки КриптоПро CSP.</p>
-    <img class="step-img" src="img/page_07.png" alt="Настройка КриптоПро CSP">
-    <div class="img-caption">Идёт настройка КриптоПро CSP</div>
-    <p>Затем автоматически начнётся установка <strong>КриптоПро ЭЦП Browser plug-in</strong>.</p>
-    <img class="step-img" src="img/page_08.png" alt="Установка плагина КриптоПро">
-    <div class="img-caption">Установка плагина</div>
-    <p>После установки плагина появится окно завершения.</p>
-    <div class="tip">💡 Если нет Яндекс Браузера — ставим галочку «Установить Яндекс Браузер». Компьютер <strong>НЕ перезагружаем</strong>. Нажимаем «ОК».</div>
-    <img class="step-img" src="img/page_09.png" alt="Окно завершения установки">
-    <div class="img-caption">Окно завершения — нажимаем ОК</div>
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div class="step-title">Появилось красное окошко</div>
+    </div>
+    <div class="step-text">
+      Если КриптоПро на компьютере нет — появится <span class="hl-red">красное окошко</span>. Это нормально, переходим к скачиванию.
+    </div>
+    <img class="step-img" src="page_3.png" alt="Красное окно — КриптоПро не установлен">
+    <div class="step-img-label">Шаг 3 — КриптоПро не найден</div>
   </div>
 
   <!-- Шаг 4 -->
   <div class="step">
-    <h2><span class="step-number">4</span>Установка расширения в браузер</h2>
-    <p>В Яндекс Браузере открываем меню (три полосы, правый верхний угол) → <strong>«Расширения»</strong>.</p>
-    <img class="step-img" src="img/page_10.png" alt="Меню браузера — Расширения">
-    <div class="img-caption">Открываем раздел «Расширения»</div>
-    <p>Находим <strong>«КриптоПро ЭЦП»</strong> в списке. Возможны 3 состояния:</p>
-    <ul>
-      <li><strong>Включено</strong> — всё ок, ничего делать не нужно</li>
-      <li><strong>Выключено</strong> — включаем переключатель</li>
-      <li><strong>«Установить»</strong> — не установлено, нажимаем</li>
-    </ul>
-    <img class="step-img" src="img/page_11.png" alt="Три состояния расширения">
-    <div class="img-caption">Три состояния: включено, выключено, установить</div>
-    <p>Если нужно установить — нажимаем «Установить», попадаем в магазин расширений, жмём <strong>«Добавить в Яндекс.Браузер»</strong>, затем <strong>«Установить расширение»</strong>.</p>
-    <img class="step-img" src="img/page_12.png" alt="Магазин расширений — КриптоПро">
-    <div class="img-caption">Магазин расширений — добавляем в Яндекс.Браузер</div>
-    <img class="step-img" src="img/page_13.png" alt="Подтверждение установки расширения">
-    <div class="img-caption">Подтверждаем установку расширения</div>
-    <p>Возвращаемся на сайт Санадор и <strong>обновляем страницу</strong>. Появится окно «Подтверждение доступа» — нажимаем <strong>«Да»</strong>.</p>
-    <div class="tip">✅ Если всё сделано правильно — сертификат будет виден при попытке его выбрать в разделе «Регистрация ЭПД».</div>
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <div class="step-title">Нажимаем на ссылку в окошке</div>
+    </div>
+    <div class="step-text">
+      Чтобы скачать приложение КриптоПро и плагин для браузера, нажимаем на <strong>«ссылке»</strong> в этом окошке (это гиперссылка).
+    </div>
+    <img class="step-img" src="page_4.png" alt="Ссылка для скачивания">
+    <div class="step-img-label">Шаг 4 — Переход к скачиванию</div>
   </div>
 
-  <hr class="section-divider">
-
-  <h2 class="problems-title">🔧 Проблемы и их решения</h2>
-
-  <!-- Проблема 1 -->
+  <!-- Шаг 5 -->
   <div class="step">
-    <h2>Диагностика КриптоПро</h2>
-    <p>В первую очередь всегда просим запустить <strong>диагностику КриптоПро</strong>. Есть 3 способа:</p>
-    <ul>
-      <li>Нажать «Страница диагностики КриптоПро» в красном окошке на сайте</li>
-      <li>Нажать «Страница диагностики» в окне выбора сертификата</li>
-      <li>Открыть расширение CAdES Browser plugin в браузере → «Проверить работу плагина»</li>
-    </ul>
-    <p>На странице диагностики смотрим, какие пункты горят <strong>зелёным</strong>, а какие <strong>красным</strong>:</p>
-    <ul>
-      <li><strong>Расширение</strong> красным → нажимаем «Загрузить», устанавливаем расширение</li>
-      <li><strong>Плагин</strong> красным → нажимаем «Скачать плагин», устанавливаем</li>
-      <li><strong>КриптоПро CSP</strong> красным → проверяем установку (см. ниже)</li>
-      <li><strong>Объекты плагина</strong> красным → проверяем, вставлена ли флешка с подписью</li>
-    </ul>
-    <div class="tip">✅ Если все 4 пункта горят зелёным, но подпись не видна — обновляем страницу на сайте Санадор. Если не помогло — выбираем нужный сертификат и нажимаем «Подписать» (галочки не ставим). Если ничего не помогает — перезагружаем компьютер.</div>
+    <div class="step-header">
+      <div class="step-num">5</div>
+      <div class="step-title">Заполняем форму</div>
+    </div>
+    <div class="step-text">
+      В полученном окне заполняем форму:
+      <ul>
+        <li><strong>Ф.И.О</strong></li>
+        <li><strong>Email</strong></li>
+        <li><strong>Организация</strong> (не обязательно)</li>
+      </ul>
+    </div>
+    <img class="step-img" src="page_5.png" alt="Форма регистрации">
+    <div class="step-img-label">Шаг 5 — Заполнение формы</div>
   </div>
 
-  <!-- Проблема 2 -->
+  <!-- Шаг 6 -->
   <div class="step">
-    <h2>Настройка КриптоПро CSP (считыватели)</h2>
-    <p>Если КриптоПро CSP горит красным, проверяем, установлен ли он. В меню «Пуск» или через поиск находим <strong>«КриптоПро CSP»</strong> и запускаем.</p>
-    <div class="warning">⚠️ <strong>ВАЖНО!</strong> Нажать «Запустить с правами администратора» (кнопка в окне программы).</div>
-    <p>Чтобы носитель подписи (флешка) был виден, настраиваем считыватели:</p>
-    <p><strong>«Оборудование»</strong> → <strong>«Настроить считыватели»</strong> → выбираем <strong>«Все съёмные диски»</strong> → <strong>«ОК»</strong>.</p>
+    <div class="step-header">
+      <div class="step-num">6</div>
+      <div class="step-title">Выбираем ОС и скачиваем</div>
+    </div>
+    <div class="step-text">
+      Выбираем операционную систему (Windows, macOS, Linux DEB / RPM).
+      Обязательно ставим галочки на пункты с согласием об обработке перс. данных и условиями лицензионного соглашения.
+      Нажимаем <strong>«Скачать»</strong>.
+    </div>
+    <img class="step-img" src="page_6.png" alt="Выбор ОС и скачивание">
+    <div class="step-img-label">Шаг 6 — Выбор ОС и загрузка</div>
   </div>
 
-  <!-- Проблема 3 -->
+  <!-- Шаг 7 -->
   <div class="step">
-    <h2>Система запрашивает пароль (PIN-код)</h2>
-    <p>Вставьте токен (Рутокен) в USB-порт. Попробуйте ввести <strong>11111111</strong> в поле ввода пароля.</p>
-    <div class="warning">⚠️ У токена есть лимит попыток ввода PIN. Если исчерпать все попытки, устройство блокируется — разблокировать сможет только производитель или удостоверяющий центр.</div>
-    <p><strong>Стандартные PIN-коды:</strong></p>
-    <ul>
-      <li><strong>Rutoken:</strong> 12345678 (пользователь), 87654321 (администратор)</li>
-      <li><strong>eToken:</strong> 1234567890 (пользователь)</li>
-      <li><strong>JaCarta (PKI):</strong> 11111111 (пользователь)</li>
-    </ul>
-    <p>Если стандартные пароли не подошли — PIN был изменён. Нужно обратиться в удостоверяющий центр, выдавший сертификат, для изменения или выпуска нового ключа.</p>
-    <div class="tip">💡 Совет: после получения подписи сразу смените стандартный PIN на уникальный.</div>
+    <div class="step-header">
+      <div class="step-num">7</div>
+      <div class="step-title">Открываем скачанный файл</div>
+    </div>
+    <div class="step-text">
+      В разделе <strong>«Загрузки»</strong> (правый верхний угол) появится нужный файл — открываем его.
+    </div>
+    <img class="step-img" src="page_7.png" alt="Открытие файла из Загрузок">
+    <div class="step-img-label">Шаг 7 — Запуск установщика</div>
   </div>
 
-  <p style="text-align:center; margin-top: 30px;">
-    <a href="index.html" class="back-btn">← Назад к скриптам</a>
-  </p>
+  <!-- Шаг 8 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">8</div>
+      <div class="step-title">Начинаем установку — двигаем мышку</div>
+    </div>
+    <div class="step-text">
+      В момент установки потребуется перемещать указатель мышки для генерации случайной последовательности.
+      <div class="alert-box alert-info">Если ранее КриптоПро на компьютере уже стоял — это окно не появится.</div>
+    </div>
+    <img class="step-img" src="page_8.png" alt="Генерация случайной последовательности">
+    <div class="step-img-label">Шаг 8 — Двигаем мышку</div>
+  </div>
+
+  <!-- Шаг 9 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">9</div>
+      <div class="step-title">Ждём завершения установки</div>
+    </div>
+    <div class="step-text">
+      Когда полоска генерации полностью заполнится, нужно подождать, пока установка завершится.
+    </div>
+    <img class="step-img" src="page_9.png" alt="Полоска заполнена, ожидание">
+    <div class="step-img-label">Шаг 9 — Ожидание установки</div>
+  </div>
+
+  <!-- Шаг 10 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">10</div>
+      <div class="step-title">Установка плагина</div>
+    </div>
+    <div class="step-text">
+      Дальше начнётся установка плагина.
+    </div>
+    <img class="step-img" src="page_10.png" alt="Установка плагина">
+    <div class="step-img-label">Шаг 10 — Установка плагина</div>
+  </div>
+
+  <!-- Шаг 11 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">11</div>
+      <div class="step-title">Завершение установки плагина</div>
+    </div>
+    <div class="step-text">
+      После установки плагина высветится окно завершения.
+    </div>
+    <img class="step-img" src="page_11.png" alt="Окно завершения установки">
+    <div class="step-img-label">Шаг 11 — Плагин установлен</div>
+  </div>
+
+  <!-- Шаг 12 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">12</div>
+      <div class="step-title">Если нет Яндекс Браузера</div>
+    </div>
+    <div class="step-text">
+      Если у вас нет Яндекс Браузера — нажмите на галочку для его установки и нажмите <strong>«ОК»</strong>.
+      <div class="alert-box alert-warn"><strong>Компьютер НЕ перезагружаем!</strong></div>
+    </div>
+    <img class="step-img" src="page_12.png" alt="Установка Яндекс Браузера">
+    <div class="step-img-label">Шаг 12 — Установка Яндекс Браузера</div>
+  </div>
+
+  <!-- Шаг 13 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">13</div>
+      <div class="step-title">Установка расширения — заходим в «Расширения»</div>
+    </div>
+    <div class="step-text">
+      Заходим в раздел <strong>«Расширения»</strong>.
+    </div>
+    <img class="step-img" src="page_13.png" alt="Раздел Расширения">
+    <div class="step-img-label">Шаг 13 — Раздел «Расширения»</div>
+  </div>
+
+  <!-- Шаг 14 — Три состояния -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">14</div>
+      <div class="step-title">Три состояния расширения</div>
+    </div>
+    <div class="step-text">
+      У расширения может быть 3 состояния:
+    </div>
+    <div class="three-states">
+      <div class="state-card">
+        <img src="page_14.png" alt="Включено">
+        <div class="state-label on">✓ Включено</div>
+      </div>
+      <div class="state-card">
+        <img src="page_15.png" alt="Выключено">
+        <div class="state-label off">✕ Выключено</div>
+      </div>
+      <div class="state-card">
+        <img src="page_16.png" alt="Не установлено">
+        <div class="state-label na">! Не установлено</div>
+      </div>
+    </div>
+    <div class="step-img-label">Шаг 14 — Состояния расширения</div>
+  </div>
+
+  <!-- Шаг 15 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">15</div>
+      <div class="step-title">Устанавливаем расширение</div>
+    </div>
+    <div class="step-text">
+      Нажимая <strong>«Установить»</strong>, попадаем на сайт-магазин, жмём <strong>«Добавить в Яндекс Браузер»</strong>.
+    </div>
+    <img class="step-img" src="page_17.png" alt="Добавить в Яндекс Браузер">
+    <div class="step-img-label">Шаг 15 — Установка расширения</div>
+  </div>
+
+  <!-- Шаг 16 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">16</div>
+      <div class="step-title">Разрешаем</div>
+    </div>
+    <div class="step-text">
+      Разрешаем установку расширения.
+    </div>
+    <img class="step-img" src="page_18.png" alt="Разрешение установки">
+    <div class="step-img-label">Шаг 16 — Разрешение</div>
+  </div>
+
+  <!-- Шаг 17 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">17</div>
+      <div class="step-title">Возвращаемся на сайт и обновляем</div>
+    </div>
+    <div class="step-text">
+      Возвращаемся на сайт Санадор и обновляем страницу.
+    </div>
+    <img class="step-img" src="page_19.png" alt="Обновление страницы">
+    <div class="step-img-label">Шаг 17 — Обновление страницы</div>
+  </div>
+
+  <!-- Шаг 18 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">18</div>
+      <div class="step-title">Разрешаем доступ</div>
+    </div>
+    <div class="step-text">
+      Разрешаем доступ плагина к сертификатам.
+    </div>
+    <img class="step-img" src="page_20.png" alt="Разрешение доступа">
+    <div class="step-img-label">Шаг 18 — Разрешение</div>
+  </div>
+
+  <!-- Шаг 19 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">19</div>
+      <div class="step-title">Сертификат виден!</div>
+    </div>
+    <div class="step-text">
+      Если всё сделано правильно — на этом этапе сертификат будет виден при попытке выбрать его в разделе <strong>«Регистрация ЭПД»</strong>.
+    </div>
+    <img class="step-img" src="page_21.png" alt="Сертификат виден">
+    <div class="step-img-label">Шаг 19 — Сертификат доступен</div>
+    <div class="alert-box alert-success">🎉 Установка завершена! Сертификат виден и готов к работе.</div>
+  </div>
+
+  <!-- ============ ПРОБЛЕМЫ ============ -->
+  <div class="section-title">🔧 Проблемы и их решения</div>
+
+  <!-- Шаг 20 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num warn">1</div>
+      <div class="step-title">Запускаем диагностику КриптоПро</div>
+    </div>
+    <div class="step-text">
+      В первую очередь всегда просим запустить диагностику КриптоПро. Есть 3 способа:
+    </div>
+    <div class="substep">
+      <div class="substep-title">Способ 1 — из красного окошка</div>
+      <div class="substep-text">Если красное окошко ещё активно, нажимаем «Страница диагностики КриптоПро».</div>
+      <img class="step-img" src="page_22.png" alt="Диагностика способ 1" style="margin-top:10px;">
+    </div>
+    <div class="substep">
+      <div class="substep-title">Способ 2 — при выборе сертификата</div>
+      <div class="substep-text">На моменте выбора сертификата нажимаем «Страница диагностики КриптоПро».</div>
+      <img class="step-img" src="page_23.png" alt="Диагностика способ 2" style="margin-top:10px;">
+    </div>
+    <div class="substep">
+      <div class="substep-title">Способ 3 — вручную</div>
+      <div class="substep-text">Самый трудный, может быть не универсальный.</div>
+      <img class="step-img" src="page_24.png" alt="Диагностика способ 3" style="margin-top:10px;">
+    </div>
+  </div>
+
+  <!-- Шаг 21 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num warn">2</div>
+      <div class="step-title">Смотрим, какие пункты горят красным</div>
+    </div>
+    <div class="step-text">
+      Попав на страницу диагностики, смотрим, какие пункты загорятся <span class="hl-green">зелёным</span>, а какие <span class="hl-red">красным</span>.
+    </div>
+    <img class="step-img" src="page_25.png" alt="Страница диагностики">
+    <div class="step-img-label">Диагностика — проверка статуса</div>
+  </div>
+
+  <!-- Шаг 22 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num danger">3</div>
+      <div class="step-title">Красным: расширение не установлено</div>
+    </div>
+    <div class="step-text">
+      Если расширение не установлено — нажимаем <strong>«Загрузить»</strong>. Попадаем на страницу установки, нажимаем <strong>«Добавить в Яндекс Браузер»</strong>.
+    </div>
+    <img class="step-img" src="page_26.png" alt="Расширение не установлено — загрузить">
+    <div class="step-img-label">Решение: установка расширения</div>
+  </div>
+
+  <!-- Шаг 23 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num danger">4</div>
+      <div class="step-title">Красным: пункт плагина</div>
+    </div>
+    <div class="step-text">
+      Если красным загорелся пункт с плагином — появится кнопка <strong>«Скачать»</strong>. После нажатия начнётся скачивание, приложение нужно запустить и дождаться конца установки.
+    </div>
+    <img class="step-img" src="page_27.png" alt="Плагин — скачать">
+    <div class="step-img-label">Решение: переустановка плагина</div>
+  </div>
+
+  <!-- Шаг 24 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num danger">5</div>
+      <div class="step-title">Красным: пункт КриптоПро</div>
+    </div>
+    <div class="step-text">
+      Если красным загорелся пункт с КриптоПро — проверяем, реально ли он установлен, и открываем для настройки.
+      В разделе <strong>«Пуск»</strong> или <strong>«Поиск»</strong> находим приложение <strong>«КриптоПро CSP»</strong>.
+    </div>
+    <img class="step-img" src="page_28.png" alt="Поиск КриптоПро CSP">
+    <div class="step-img-label">Решение: поиск КриптоПро CSP</div>
+  </div>
+
+  <!-- Шаг 25 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num danger">6</div>
+      <div class="step-title">Запускаем от имени администратора</div>
+    </div>
+    <div class="step-text">
+      Запускаем приложение КриптоПро CSP.
+    </div>
+    <div class="alert-box alert-danger">
+      <strong>ВАЖНО!</strong> Запустить нужно ОТ ИМЕНИ АДМИНИСТРАТОРА (нажимаем правой кнопкой → «Запуск от имени администратора»).
+    </div>
+  </div>
+
+  <!-- Шаг 26 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num danger">7</div>
+      <div class="step-title">Настраиваем считыватели</div>
+    </div>
+    <div class="step-text">
+      Чтобы носитель подписи был виден, нужно настроить считыватели.
+      Действуем по схеме: <strong>«Оборудование»</strong> → <strong>«Настроить считыватели»</strong> → <strong>«Все съёмные диски»</strong> → <strong>«ОК»</strong>.
+    </div>
+  </div>
+
+  <!-- Шаг 27 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num danger">8</div>
+      <div class="step-title">Красным: объект плагина</div>
+    </div>
+    <div class="step-text">
+      Если красным загорелся пункт «объект плагина» — проверяем, воткнута ли флешка с подписью.
+    </div>
+  </div>
+
+  <!-- Шаг 28 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num warn">9</div>
+      <div class="step-title">Все пункты зелёные, но подпись не видна</div>
+    </div>
+    <div class="step-text">
+      Если все 4 пункта горят <span class="hl-green">зелёным</span>, но подпись так и не видна:
+      <ul>
+        <li>Обновляем страницу на сайте Санадор</li>
+        <li>Если не помогло — в списке <strong>«Выберите сертификат»</strong> выбираем нужный и нажимаем <strong>«Подписать»</strong> (галочки не ставим)</li>
+        <li>Возвращаемся на сайт Санадор и пробуем выбрать сертификат</li>
+      </ul>
+    </div>
+    <div class="alert-box alert-info">Если ничего не помогает — перезагружаем компьютер.</div>
+  </div>
+
+  <!-- Шаг 29 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num warn">10</div>
+      <div class="step-title">Запрашивает пароль</div>
+    </div>
+    <div class="step-text">
+      Если при выборе сертификата запрашивается пароль — введите пароль от контейнера электронной подписи (обычно задаётся при получении подписи в налоговой).
+    </div>
+  </div>
 
 </body>
 </html>
