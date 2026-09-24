@@ -2,14 +2,13 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Инструкция по установке КриптоПро — Скрипты техподдержки Санадор</title>
+  <title>Инструкция по установке КриптоПро — Санадор</title>
   <style>
     :root {
       --bg-color: #f7f9fc;
       --primary: #2c5aa0;
       --accent: #38b764;
       --danger: #ff5252;
-      --warn: #ff9800;
       --text: #333;
       --border: #e1e6ed;
     }
@@ -18,13 +17,13 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: var(--bg-color);
       color: var(--text);
-      max-width: 900px;
+      max-width: 920px;
       margin: 0 auto;
       padding: 24px 16px 48px;
     }
     .header {
       display: flex; align-items: center; gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .back-btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -35,151 +34,129 @@
       color: var(--primary); background: #fff;
     }
     .back-btn:hover { border-color: var(--primary); background: #f0f7ff; }
-    h1 {
-      color: var(--primary); font-weight: 700;
-      margin: 0; font-size: 1.4rem; flex-grow: 1;
-    }
-
-    .warn-banner {
-      background: #fff3cd; border: 1px solid #ffc107;
-      border-radius: 10px; padding: 14px 18px;
-      margin-bottom: 24px; font-size: 0.92rem;
-      color: #856404; font-weight: 600;
-      display: flex; align-items: center; gap: 10px;
-    }
+    h2 { color: var(--primary); font-weight: 700; margin: 0; font-size: 1.4rem; }
 
     /* Документы для регистрации */
     .docs-section {
       background: #fff; border: 1px solid var(--border);
-      border-radius: 14px; padding: 22px; margin-bottom: 24px;
+      border-radius: 14px; padding: 24px; margin-bottom: 20px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     }
     .docs-title {
       font-size: 1.1rem; font-weight: 700; color: var(--primary);
       margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
-      padding-bottom: 12px; border-bottom: 2px solid var(--border);
     }
-    .docs-tabs {
-      display: flex; gap: 10px; margin-bottom: 18px;
+    .tabs {
+      display: flex; gap: 8px; margin-bottom: 16px;
     }
-    .docs-tab {
+    .tab-btn {
       padding: 10px 24px; border-radius: 8px;
-      font-weight: 700; font-size: 0.92rem; cursor: pointer;
-      border: 1px solid var(--border); background: #f5f7fa;
-      color: #666; transition: all 0.2s ease;
+      font-size: 0.9rem; font-weight: 700; cursor: pointer;
+      border: 2px solid var(--border); background: #fff;
+      color: #999; transition: all 0.2s ease;
     }
-    .docs-tab.active {
-      background: var(--primary); color: #fff;
-      border-color: var(--primary);
+    .tab-btn.active {
+      border-color: var(--primary); background: var(--primary); color: #fff;
     }
-    .docs-tab:hover:not(.active) {
-      border-color: var(--primary); color: var(--primary);
+    .tab-content { display: none; }
+    .tab-content.show { display: block; }
+    .doc-list {
+      list-style: none; padding: 0; margin: 0 0 14px 0;
     }
-    .docs-content { display: none; }
-    .docs-content.active { display: block; }
-    .docs-list {
-      list-style: none; padding: 0; margin: 0 0 16px 0;
+    .doc-list li {
+      padding: 8px 0; border-bottom: 1px dashed var(--border);
+      font-size: 0.92rem; line-height: 1.5;
+      display: flex; gap: 8px;
     }
-    .docs-list li {
-      padding: 10px 14px; border-radius: 8px;
-      margin-bottom: 6px; font-size: 0.9rem;
-      line-height: 1.5; background: #f8fafc;
-      border: 1px solid #eef2f6;
-      display: flex; align-items: flex-start; gap: 10px;
+    .doc-list li:last-child { border-bottom: none; }
+    .doc-list li::before {
+      content: "●"; color: var(--accent); flex-shrink: 0;
     }
-    .docs-list li::before {
-      content: "📄"; flex-shrink: 0; font-size: 1rem;
-    }
-    .docs-subgroup {
-      margin-bottom: 16px;
-    }
-    .docs-subgroup-title {
-      font-size: 0.85rem; font-weight: 700; color: var(--primary);
+    .doc-group-title {
+      font-weight: 700; color: var(--primary);
+      font-size: 0.88rem; margin: 14px 0 6px 0;
       text-transform: uppercase; letter-spacing: 0.5px;
-      margin-bottom: 8px; padding-left: 4px;
     }
+    .doc-group-title:first-child { margin-top: 0; }
     .copy-docs-btn {
+      padding: 10px 20px; background: var(--primary); color: #fff;
+      border: none; border-radius: 8px; cursor: pointer;
+      font-weight: 600; font-size: 0.88rem; transition: all 0.2s ease;
       display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px; border-radius: 8px;
-      font-weight: 600; font-size: 0.88rem; cursor: pointer;
-      border: 1px solid var(--primary); background: #f0f7ff;
-      color: var(--primary); transition: all 0.2s ease;
     }
-    .copy-docs-btn:hover {
-      background: var(--primary); color: #fff;
-    }
-    .copy-docs-btn.copied {
-      background: var(--accent); color: #fff; border-color: var(--accent);
+    .copy-docs-btn:hover { background: #1f457a; }
+    .copy-docs-btn.copied { background: var(--accent); }
+
+    /* Баннер */
+    .warning-banner {
+      background: #fff8e1; border: 1px solid #ffe8a3;
+      border-radius: 12px; padding: 14px 20px;
+      margin-bottom: 20px; font-size: 0.95rem; color: #7a6510;
+      display: flex; align-items: center; gap: 10px; line-height: 1.5;
     }
 
-    /* Основные секции */
+    /* Секции */
     .section {
       background: #fff; border: 1px solid var(--border);
-      border-radius: 14px; padding: 22px; margin-bottom: 16px;
+      border-radius: 14px; padding: 28px; margin-bottom: 20px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     }
     .section-title {
-      font-size: 1.1rem; font-weight: 700; color: var(--primary);
-      margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
-      padding-bottom: 12px; border-bottom: 2px solid var(--border);
+      font-size: 1.3rem; font-weight: 700; color: var(--primary);
+      margin-bottom: 24px; padding-bottom: 12px;
+      border-bottom: 2px solid var(--border);
     }
+
+    /* Шаги */
     .step {
-      display: flex; gap: 14px; margin-bottom: 18px;
-      padding: 14px; border-radius: 10px;
-      background: #fafbfc; border: 1px solid transparent;
-      transition: all 0.2s ease;
+      display: flex; gap: 16px; margin-bottom: 24px;
+      align-items: flex-start;
     }
-    .step:hover { border-color: var(--border); background: #fff; }
     .step-num {
-      flex-shrink: 0; width: 30px; height: 30px;
-      border-radius: 50%; display: flex;
-      align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.85rem; color: #fff;
-      background: var(--primary);
+      flex-shrink: 0; width: 36px; height: 36px;
+      border-radius: 50%; background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.95rem;
     }
-    .step-num.warn { background: var(--warn); }
     .step-num.danger { background: var(--danger); }
-    .step-body { flex-grow: 1; min-width: 0; }
+    .step-num.accent { background: var(--accent); }
+    .step-body { flex: 1; min-width: 0; }
     .step-text {
-      font-size: 0.92rem; line-height: 1.55; color: var(--text);
+      font-size: 0.95rem; line-height: 1.6; color: var(--text);
       margin-bottom: 10px;
     }
     .step-text strong { color: var(--primary); }
     .step-img {
       max-width: 100%; border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-      display: block; margin-top: 8px;
+      border: 1px solid var(--border); display: block;
+      margin-top: 8px;
     }
-    .step-img-row {
+    .step-img-group {
       display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;
     }
-    .step-img-row .step-img {
-      flex: 1; min-width: 200px;
-    }
+    .step-img-group .step-img { max-width: calc(33.33% - 7px); }
+
+    /* Плашки */
     .note {
       padding: 12px 16px; border-radius: 8px;
       font-size: 0.88rem; line-height: 1.5;
-      margin: 10px 0;
+      margin: 8px 0;
     }
-    .note-blue {
-      background: #e8f0fe; border-left: 4px solid var(--primary);
-      color: #1a3a6a;
-    }
-    .note-yellow {
-      background: #fff8e1; border-left: 4px solid #ffc107;
-      color: #7a6510;
-    }
-    .note-green {
-      background: #e8f8ee; border-left: 4px solid var(--accent);
-      color: #1a5a30;
-    }
-    .note-red {
-      background: #ffebee; border-left: 4px solid var(--danger);
-      color: #a02020; font-weight: 600;
-    }
-    .substeps {
-      margin-left: 16px; padding-left: 14px;
+    .note-blue { background: #e8f0fe; border-left: 4px solid var(--primary); color: #1a4480; }
+    .note-yellow { background: #fff8e1; border-left: 4px solid #ffc107; color: #7a6510; }
+    .note-green { background: #e8f8ee; border-left: 4px solid var(--accent); color: #1a6b3a; }
+    .note-red { background: #ffebee; border-left: 4px solid var(--danger); color: #b71c1c; }
+
+    .substep {
+      margin-left: 20px; padding-left: 16px;
       border-left: 3px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 600px) {
+      .step { flex-direction: column; }
+      .step-img-group .step-img { max-width: 100%; }
+      .tabs { flex-direction: column; }
     }
   </style>
 </head>
@@ -187,77 +164,70 @@
 
   <div class="header">
     <a href="index.html" class="back-btn">← Назад</a>
-    <h1>🔑 Инструкция по установке КриптоПро</h1>
-  </div>
-
-  <div class="warn-banner">
-    ⚠️ <span>ОБЯЗАТЕЛЬНО работаем через Яндекс Браузер, иначе подпись будет не видна!</span>
+    <h2>Инструкция по установке КриптоПро</h2>
   </div>
 
   <!-- Документы для регистрации -->
   <div class="docs-section">
     <div class="docs-title">📋 Документы для регистрации</div>
-    <div class="docs-tabs">
-      <div class="docs-tab active" onclick="switchTab('ip', this)">ДЛЯ ИП</div>
-      <div class="docs-tab" onclick="switchTab('ooo', this)">ДЛЯ ООО</div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('ip', this)">ДЛЯ ИП</button>
+      <button class="tab-btn" onclick="switchTab('ooo', this)">ДЛЯ ООО</button>
     </div>
 
-    <!-- ИП -->
-    <div class="docs-content active" id="docs-ip">
-      <ul class="docs-list" id="list-ip">
-        <li>Паспорта ИП и всех водителей — первая страница и страница с пропиской</li>
-        <li>ВУ (водительское удостоверение) всех водителей — фото с двух сторон</li>
-        <li>СТС (свидетельство транспортного средства) на прицепы и тягачи — фото с двух сторон</li>
+    <div id="tab-ip" class="tab-content show">
+      <ul class="doc-list">
+        <li>Паспорт ИП и всех водителей, первая страница паспорта и страница с пропиской</li>
+        <li>ВУ (водительское удостоверение) всех водителей, фото с двух сторон</li>
+        <li>СТС (свидетельство транспортного средства) на прицепы и тягачи, фото с двух сторон</li>
         <li>ИНН ИП</li>
-        <li>Укажите, работаете с НДС или без. Если с НДС — узнать, сколько процентов</li>
+        <li>Укажите, работаете с НДС или без. Если с НДС — узнать сколько процентов</li>
         <li>Если ваши ТС в аренде или лизинге — нужен договор аренды или лизинга</li>
         <li>Контактный номер телефона ИП и всех водителей</li>
         <li>Банковские реквизиты ИП</li>
       </ul>
-      <button class="copy-docs-btn" onclick="copyDocs('list-ip', this)">📋 Копировать список</button>
+      <button class="copy-docs-btn" onclick="copyDocs('ip', this)">📋 Копировать список</button>
     </div>
 
-    <!-- ООО -->
-    <div class="docs-content" id="docs-ooo">
-      <div class="docs-subgroup">
-        <div class="docs-subgroup-title">Документы организации</div>
-        <ul class="docs-list" id="list-ooo-org">
-          <li>ИНН / ОГРН</li>
-          <li>Банковские реквизиты (расчётного счёта)</li>
-          <li>Паспорт директора — первая страница и страница с пропиской</li>
-          <li>Приказ о назначении директора</li>
-          <li>Устав</li>
-          <li>Ставка НДС</li>
-        </ul>
-      </div>
-      <div class="docs-subgroup">
-        <div class="docs-subgroup-title">Транспортные средства</div>
-        <ul class="docs-list" id="list-ooo-ts">
-          <li>Свидетельство о регистрации ТС — с двух сторон на машины и на прицепы</li>
-          <li>Если транспорт в аренде/лизинге — договор аренды/лизинга</li>
-        </ul>
-      </div>
-      <div class="docs-subgroup">
-        <div class="docs-subgroup-title">Водители</div>
-        <ul class="docs-list" id="list-ooo-drivers">
-          <li>Паспорт с пропиской каждого водителя</li>
-          <li>Водительские удостоверения с двух сторон каждого водителя</li>
-          <li>Номера телефонов</li>
-        </ul>
-      </div>
-      <button class="copy-docs-btn" onclick="copyDocs('docs-ooo', this)">📋 Копировать весь список</button>
+    <div id="tab-ooo" class="tab-content">
+      <div class="doc-group-title">Документы организации</div>
+      <ul class="doc-list">
+        <li>ИНН / ОГРН</li>
+        <li>Банковские реквизиты (расчётного счёта)</li>
+        <li>Паспорт директора (первая страница, страница с пропиской)</li>
+        <li>Приказ о назначении директора</li>
+        <li>Устав</li>
+        <li>Ставка НДС</li>
+      </ul>
+      <div class="doc-group-title">Транспортные средства</div>
+      <ul class="doc-list">
+        <li>Свидетельство о регистрации ТС, с двух сторон на машины и на прицепы</li>
+        <li>Если транспорт в аренде / лизинге — договор аренды / лизинга</li>
+      </ul>
+      <div class="doc-group-title">Водители</div>
+      <ul class="doc-list">
+        <li>Паспорт с пропиской каждого водителя</li>
+        <li>Водительские удостоверения с двух сторон каждого водителя</li>
+        <li>Номера телефонов</li>
+      </ul>
+      <button class="copy-docs-btn" onclick="copyDocs('ooo', this)">📋 Копировать список</button>
     </div>
+  </div>
+
+  <!-- Баннер -->
+  <div class="warning-banner">
+    ⚠️ <strong>ОБЯЗАТЕЛЬНО работаем через Яндекс Браузер!</strong> Иначе подпись будет не видна!
   </div>
 
   <!-- Установка -->
   <div class="section">
-    <div class="section-title">⬇️ Установка</div>
+    <div class="section-title">🛠 Установка</div>
 
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-body">
-        <div class="step-text">Заходим на сайт Санадор и авторизуемся (или регистрируемся).</div>
-        <img src="page_1.png" class="step-img" alt="Шаг 1">
+        <div class="step-text">Заходим на наш сайт и авторизуемся (или регистрируемся).</div>
+        <img src="page_01.png" class="step-img" alt="Шаг 1">
       </div>
     </div>
 
@@ -265,47 +235,47 @@
       <div class="step-num">2</div>
       <div class="step-body">
         <div class="step-text">После авторизации нажимаем на вкладку <strong>«ЭПД» → «Регистрация»</strong>.</div>
-        <img src="page_2.png" class="step-img" alt="Шаг 2">
+        <img src="page_02.png" class="step-img" alt="Шаг 2">
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">3</div>
       <div class="step-body">
-        <div class="step-text">Если КриптоПро нет на компьютере — появится красное окошко.</div>
-        <img src="page_3.png" class="step-img" alt="Шаг 3">
+        <div class="step-text">Если КриптоПро нет на компьютере — появится <strong>красное окошко</strong>.</div>
+        <img src="page_03.png" class="step-img" alt="Шаг 3">
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">4</div>
       <div class="step-body">
-        <div class="step-text">Чтобы скачать приложение КриптоПро и плагин для браузера, нажимаем на <strong>«ссылке»</strong> в этом окошке (гиперссылка).</div>
-        <img src="page_4.png" class="step-img" alt="Шаг 4">
+        <div class="step-text">Чтобы скачать приложение КриптоПро и плагин для браузера, нужно нажать на <strong>«ссылке»</strong> на этом окошке (это гиперссылка).</div>
+        <img src="page_04.png" class="step-img" alt="Шаг 4">
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">5</div>
       <div class="step-body">
-        <div class="step-text">В полученном окне заполняем форму: Ф.И.О, Email, Организация (не обязательно).</div>
-        <img src="page_5.png" class="step-img" alt="Шаг 5">
+        <div class="step-text">В полученном окне необходимо заполнить форму: Ф.И.О, Email, Организация (не обязательно).</div>
+        <img src="page_05.png" class="step-img" alt="Шаг 5">
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">6</div>
       <div class="step-body">
-        <div class="step-text">Выбираем операционную систему (Windows, macOS, Linux DEB/RPM). Обязательно ставим галочки на согласие обработки перс. данных и условия лицензионного соглашения. Нажимаем «Скачать».</div>
-        <img src="page_6.png" class="step-img" alt="Шаг 6">
+        <div class="step-text">После заполнения формы выбираем операционную систему (Windows, macOS, Linux DEB/RPM). Обязательно ставим галочки на согласие об обработке перс. данных и условия лицензионного соглашения. Нажимаем «Скачать».</div>
+        <img src="page_06.png" class="step-img" alt="Шаг 6">
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">7</div>
       <div class="step-body">
-        <div class="step-text">В разделе «Загрузки» (правый угол) появится файл — открываем его.</div>
-        <img src="page_7.png" class="step-img" alt="Шаг 7">
+        <div class="step-text">В разделе «Загрузки» (правый угол) появится нужный файл — открываем его.</div>
+        <img src="page_07.png" class="step-img" alt="Шаг 7">
       </div>
     </div>
 
@@ -313,16 +283,16 @@
       <div class="step-num">8</div>
       <div class="step-body">
         <div class="step-text">Начинаем установку. В момент установки потребуется перемещать указатель мыши для генерации случайной последовательности.</div>
-        <div class="note note-blue">Если ранее КриптоПро на компьютере уже стоял — это окно не появится.</div>
-        <img src="page_8.png" class="step-img" alt="Шаг 8">
+        <div class="note note-blue">Если КриптоПро уже стоял на компьютере, это окно не появится.</div>
+        <img src="page_08.png" class="step-img" alt="Шаг 8">
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">9</div>
       <div class="step-body">
-        <div class="step-text">Когда полоска генерации полностью заполнится — ждём завершения установки.</div>
-        <img src="page_9.png" class="step-img" alt="Шаг 9">
+        <div class="step-text">Когда полоска генерации полностью заполнится — ждём, пока установка завершится.</div>
+        <img src="page_09.png" class="step-img" alt="Шаг 9">
       </div>
     </div>
 
@@ -337,7 +307,7 @@
     <div class="step">
       <div class="step-num">11</div>
       <div class="step-body">
-        <div class="step-text">После установки плагина высветится окно завершения.</div>
+        <div class="step-text">После установки плагина высветится окно завершения установки.</div>
         <img src="page_11.png" class="step-img" alt="Шаг 11">
       </div>
     </div>
@@ -345,8 +315,8 @@
     <div class="step">
       <div class="step-num">12</div>
       <div class="step-body">
-        <div class="step-text">Если нет Яндекс Браузера — нажимаем на галочку для его установки и нажимаем «ОК».</div>
-        <div class="note note-yellow">⚠️ Компьютер НЕ перезагружаем!</div>
+        <div class="step-text">Если у вас нет Яндекс Браузера — нажмите на галочку для его установки и нажмите «ОК».</div>
+        <div class="note note-yellow">Компьютер НЕ перезагружаем!</div>
         <img src="page_12.png" class="step-img" alt="Шаг 12">
       </div>
     </div>
@@ -354,27 +324,30 @@
     <div class="step">
       <div class="step-num">13</div>
       <div class="step-body">
-        <div class="step-text"><strong>Установка расширения.</strong> Заходим в раздел «Расширения». Есть 3 состояния у расширения:</div>
-        <div class="step-img-row">
-          <img src="page_13.png" class="step-img" alt="Включено">
-          <img src="page_14.png" class="step-img" alt="Выключено">
-          <img src="page_15.png" class="step-img" alt="Не установлено">
-        </div>
+        <div class="step-text"><strong>Установка расширения.</strong> Заходим в раздел «Расширения».</div>
+        <img src="page_13.png" class="step-img" alt="Шаг 13">
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">14</div>
       <div class="step-body">
-        <div class="step-text">Нажимая «Установить», попадаем на сайт магазина — жмём «Добавить в Яндекс Браузер».</div>
-        <img src="page_16.png" class="step-img" alt="Шаг 14">
+        <div class="step-text">Есть 3 состояния у расширения:</div>
+        <img src="page_14.png" class="step-img" alt="Включено" style="max-width:30%; display:inline-block; margin-right:8px; border-radius:8px; border:1px solid var(--border);">
+        <img src="page_15.png" class="step-img" alt="Выключено" style="max-width:30%; display:inline-block; margin-right:8px; border-radius:8px; border:1px solid var(--border);">
+        <img src="page_16.png" class="step-img" alt="Не установлено" style="max-width:30%; display:inline-block; border-radius:8px; border:1px solid var(--border);">
+        <div style="display:flex; gap:8px; margin-top:6px; font-size:0.78rem; color:#888;">
+          <span style="width:30%;">✅ Включено</span>
+          <span style="width:30%;">⛔ Выключено</span>
+          <span style="width:30%;">❌ Не установлено</span>
+        </div>
       </div>
     </div>
 
     <div class="step">
       <div class="step-num">15</div>
       <div class="step-body">
-        <div class="step-text">Разрешаем.</div>
+        <div class="step-text">Нажимая «Установить», попадаем на сайт-магазин, жмём <strong>«Добавить в Яндекс Браузер»</strong>.</div>
         <img src="page_17.png" class="step-img" alt="Шаг 15">
       </div>
     </div>
@@ -382,7 +355,7 @@
     <div class="step">
       <div class="step-num">16</div>
       <div class="step-body">
-        <div class="step-text">Возвращаемся на сайт Санадор и обновляем страницу.</div>
+        <div class="step-text">Разрешаем.</div>
         <img src="page_18.png" class="step-img" alt="Шаг 16">
       </div>
     </div>
@@ -390,7 +363,7 @@
     <div class="step">
       <div class="step-num">17</div>
       <div class="step-body">
-        <div class="step-text">Разрешаем.</div>
+        <div class="step-text">Возвращаемся на сайт Санадор и обновляем страницу.</div>
         <img src="page_19.png" class="step-img" alt="Шаг 17">
       </div>
     </div>
@@ -398,15 +371,17 @@
     <div class="step">
       <div class="step-num">18</div>
       <div class="step-body">
-        <div class="step-text">Если всё сделано правильно — сертификат будет виден при выборе в разделе «Регистрация ЭПД».</div>
+        <div class="step-text">Разрешаем.</div>
         <img src="page_20.png" class="step-img" alt="Шаг 18">
       </div>
     </div>
 
     <div class="step">
-      <div class="step-num">19</div>
+      <div class="step-num accent">19</div>
       <div class="step-body">
+        <div class="step-text">Если всё сделано правильно, сертификат будет виден при выборе в разделе «Регистрация ЭПД».</div>
         <div class="note note-green">✅ Установка завершена!</div>
+        <img src="page_21.png" class="step-img" alt="Шаг 19">
       </div>
     </div>
   </div>
@@ -416,140 +391,145 @@
     <div class="section-title">🔧 Проблемы и их решения</div>
 
     <div class="step">
-      <div class="step-num warn">1</div>
+      <div class="step-num accent">1</div>
       <div class="step-body">
-        <div class="step-text">В первую очередь запускаем диагностику КриптоПро. Есть 3 способа:</div>
-        <div class="substeps">
-          <div class="step" style="margin-bottom: 12px;">
-            <div class="step-num warn">а</div>
-            <div class="step-body">
-              <div class="step-text">Если красное окошко ещё активно — нажимаем «Страница диагностики КриптоПро».</div>
-              <img src="page_21.png" class="step-img" alt="Диагностика 1">
-            </div>
-          </div>
-          <div class="step" style="margin-bottom: 12px;">
-            <div class="step-num warn">б</div>
-            <div class="step-body">
-              <div class="step-text">На моменте выбора сертификата — нажимаем «Страница диагностики КриптоПро».</div>
-              <img src="page_22.png" class="step-img" alt="Диагностика 2">
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num warn">в</div>
-            <div class="step-body">
-              <div class="step-text">Самый трудный, может быть не универсальный.</div>
-              <img src="page_23.png" class="step-img" alt="Диагностика 3">
-            </div>
-          </div>
+        <div class="step-text">В первую очередь всегда просим запустить <strong>диагностику КриптоПро</strong>. Есть 3 способа:</div>
+        <div class="substep">
+          <div class="step-text"><strong>Способ 1:</strong> Если красное окошко ещё активно — нажимаем «Страница диагностики КриптоПро».</div>
+          <img src="page_22.png" class="step-img" alt="Способ 1">
+        </div>
+        <div class="substep">
+          <div class="step-text"><strong>Способ 2:</strong> На моменте выбора сертификата — нажимаем «Страница диагностики КриптоПро».</div>
+          <img src="page_23.png" class="step-img" alt="Способ 2">
+        </div>
+        <div class="substep">
+          <div class="step-text"><strong>Способ 3:</strong> Самый трудный, может быть не универсальный.</div>
+          <img src="page_24.png" class="step-img" alt="Способ 3">
         </div>
       </div>
     </div>
 
     <div class="step">
-      <div class="step-num warn">2</div>
+      <div class="step-num accent">2</div>
       <div class="step-body">
-        <div class="step-text">Попав на страницу диагностики, смотрим, какие пункты загорятся зелёным, а какие красным.</div>
-        <img src="page_24.png" class="step-img" alt="Диагностика результат">
+        <div class="step-text">Попав на страницу диагностики, смотрим, какие пункты загорятся <strong style="color:var(--accent)">зелёным</strong>, а какие <strong style="color:var(--danger)">красным</strong>.</div>
+        <img src="page_25.png" class="step-img" alt="Диагностика">
       </div>
     </div>
 
     <div class="step">
-      <div class="step-num warn">3</div>
+      <div class="step-num danger">3</div>
       <div class="step-body">
-        <div class="step-text">Если красным горит <strong>расширение</strong> — нажимаем «Загрузить», попадаем на страницу установки, нажимаем «Добавить в Яндекс Браузер».</div>
-        <img src="page_25.png" class="step-img" alt="Расширение">
+        <div class="step-text">Если <strong style="color:var(--danger)">красным</strong> загорелось расширение — нажимаем «Загрузить», попадаем на страницу установки, нажимаем «Добавить в Яндекс Браузер».</div>
+        <img src="page_26.png" class="step-img" alt="Расширение не установлено">
       </div>
     </div>
 
     <div class="step">
-      <div class="step-num warn">4</div>
+      <div class="step-num danger">4</div>
       <div class="step-body">
-        <div class="step-text">Если красным горит <strong>плагин</strong> — нажимаем «Скачать», запускаем приложение и ждём конца установки.</div>
+        <div class="step-text">Если <strong style="color:var(--danger)">красным</strong> загорелся пункт с плагином — появится кнопка «Скачать». После нажатия пойдёт скачивание, приложение нужно запустить и дождаться конца установки.</div>
       </div>
     </div>
 
     <div class="step">
-      <div class="step-num warn">5</div>
+      <div class="step-num danger">5</div>
       <div class="step-body">
-        <div class="step-text">Если красным горит <strong>КриптоПро</strong> — проверяем, реально ли он установлен, и открываем для настройки. В разделе «Пуск» или «Поиск» находим «КриптоПро CSP».</div>
-        <img src="page_26.png" class="step-img" alt="КриптоПро CSP">
+        <div class="step-text">Если <strong style="color:var(--danger)">красным</strong> загорелся пункт с КриптоПро — проверяем, реально ли он установлен, и открываем для настройки. В разделе «Пуск» или «Поиск» находим приложение <strong>«КриптоПро CSP»</strong>.</div>
+        <img src="page_27.png" class="step-img" alt="Поиск КриптоПро CSP">
       </div>
     </div>
 
     <div class="step">
       <div class="step-num danger">6</div>
       <div class="step-body">
-        <div class="note note-red">⚠️ ВАЖНО! Запустить нужно ОТ ИМЕНИ АДМИНИСТРАТОРА!</div>
-        <img src="page_27.png" class="step-img" alt="Запуск от администратора">
+        <div class="step-text">Запускаем приложение!</div>
+        <div class="note note-red">⚠️ ВАЖНО! Запустить нужно ОТ ИМЕНИ АДМИНИСТРАТОРА (нажимаем на кнопочку)!</div>
+        <img src="page_28.png" class="step-img" alt="Запуск от администратора">
       </div>
     </div>
 
     <div class="step">
-      <div class="step-num warn">7</div>
+      <div class="step-num accent">7</div>
       <div class="step-body">
-        <div class="step-text">Чтобы носитель подписи был виден, настраиваем считыватели: <strong>«Оборудование» → «Настроить считыватели» → «Все съёмные диски» → «ОК»</strong>.</div>
-        <img src="page_28.png" class="step-img" alt="Настройка считывателей">
+        <div class="step-text">Чтобы носитель подписи был виден, нужно <strong>настроить считыватели</strong>. Действуем по схеме:</div>
+        <div class="note note-blue">«Оборудование» → «Настроить считыватели» → «Все съёмные диски» → «ОК»</div>
       </div>
     </div>
 
     <div class="step">
-      <div class="step-num warn">8</div>
+      <div class="step-num danger">8</div>
       <div class="step-body">
-        <div class="step-text">Если красным горит <strong>объект плагина</strong> — проверяем, воткнута ли флешка.</div>
+        <div class="step-text">Если <strong style="color:var(--danger)">красным</strong> загорелся пункт «Объект плагина» — проверяем, воткнута ли флешка.</div>
       </div>
     </div>
 
     <div class="step">
-      <div class="step-num warn">9</div>
+      <div class="step-num accent">9</div>
       <div class="step-body">
-        <div class="step-text">Если все 4 пункта горят зелёным, но подпись не видна — обновляем страницу на сайте Санадор. Если не помогло, в списке «Выберите сертификат» выбираем нужный и нажимаем «Подписать» (галочки не ставим).</div>
+        <div class="step-text">Если все 4 пункта горят <strong style="color:var(--accent)">зелёным</strong>, но подпись не видна — обновляем страницу на сайте Санадор. Если не помогло, в списке «Выберите сертификат» выбираем нужный сертификат и нажимаем «Подписать» (галочки не ставим).</div>
       </div>
     </div>
 
     <div class="step">
-      <div class="step-num warn">10</div>
+      <div class="step-num accent">10</div>
       <div class="step-body">
         <div class="step-text">Возвращаемся на сайт Санадор и пробуем выбрать сертификат. Если ничего не помогает — перезагружаем компьютер.</div>
-        <div class="note note-blue"><strong>Запрашивает пароль</strong> — это нормально, вводим пароль от сертификата.</div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num danger">11</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Запрашивает пароль</strong> — это нормально при использовании сертификата. Нужно ввести пароль, который был задан при получении подписи в налоговой.</div>
       </div>
     </div>
   </div>
 
   <script>
     function switchTab(tab, btn) {
-      document.querySelectorAll('.docs-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.docs-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('show'));
       btn.classList.add('active');
-      document.getElementById('docs-' + tab).classList.add('active');
+      document.getElementById('tab-' + tab).classList.add('show');
     }
 
-    function copyDocs(id, btn) {
+    function copyDocs(type, btn) {
       let text = '';
-      if (id === 'list-ip') {
-        const items = document.querySelectorAll('#list-ip li');
-        text = 'Документы для регистрации (ИП):\n\n' +
-          Array.from(items).map((li, i) => (i + 1) + '. ' + li.textContent.trim()).join('\n');
+      if (type === 'ip') {
+        text = 'Документы для регистрации (ИП):\n\n';
+        text += '1. Паспорт ИП и всех водителей, первая страница паспорта и страница с пропиской\n';
+        text += '2. ВУ (водительское удостоверение) всех водителей, фото с двух сторон\n';
+        text += '3. СТС (свидетельство транспортного средства) на прицепы и тягачи, фото с двух сторон\n';
+        text += '4. ИНН ИП\n';
+        text += '5. Укажите, работаете с НДС или без. Если с НДС — узнать сколько процентов\n';
+        text += '6. Если ваши ТС в аренде или лизинге — нужен договор аренды или лизинга\n';
+        text += '7. Контактный номер телефона ИП и всех водителей\n';
+        text += '8. Банковские реквизиты ИП';
       } else {
-        // ООО — собираем все три группы
-        const groups = [
-          { title: 'Документы организации', id: 'list-ooo-org' },
-          { title: 'Транспортные средства', id: 'list-ooo-ts' },
-          { title: 'Водители', id: 'list-ooo-drivers' }
-        ];
-        text = 'Документы для регистрации (ООО):\n';
-        groups.forEach(g => {
-          const items = document.querySelectorAll('#' + g.id + ' li');
-          text += '\n' + g.title + ':\n' +
-            Array.from(items).map((li, i) => '  ' + (i + 1) + '. ' + li.textContent.trim()).join('\n');
-        });
+        text = 'Документы для регистрации (ООО):\n\n';
+        text += 'Документы организации:\n';
+        text += '1. ИНН / ОГРН\n';
+        text += '2. Банковские реквизиты (расчётного счёта)\n';
+        text += '3. Паспорт директора (первая страница, страница с пропиской)\n';
+        text += '4. Приказ о назначении директора\n';
+        text += '5. Устав\n';
+        text += '6. Ставка НДС\n\n';
+        text += 'Транспортные средства:\n';
+        text += '7. Свидетельство о регистрации ТС, с двух сторон на машины и на прицепы\n';
+        text += '8. Если транспорт в аренде / лизинге — договор аренды / лизинга\n\n';
+        text += 'Водители:\n';
+        text += '9. Паспорт с пропиской каждого водителя\n';
+        text += '10. Водительские удостоверения с двух сторон каждого водителя\n';
+        text += '11. Номера телефонов';
       }
 
       navigator.clipboard.writeText(text).then(() => {
         btn.classList.add('copied');
-        btn.textContent = '✓ Скопировано!';
+        btn.innerHTML = '✓ Скопировано!';
         setTimeout(() => {
           btn.classList.remove('copied');
-          btn.textContent = '📋 Копировать список';
+          btn.innerHTML = '📋 Копировать список';
         }, 2000);
       }).catch(() => {
         const ta = document.createElement('textarea');
@@ -561,10 +541,10 @@
         try { document.execCommand('copy'); } catch(e) {}
         document.body.removeChild(ta);
         btn.classList.add('copied');
-        btn.textContent = '✓ Скопировано!';
+        btn.innerHTML = '✓ Скопировано!';
         setTimeout(() => {
           btn.classList.remove('copied');
-          btn.textContent = '📋 Копировать список';
+          btn.innerHTML = '📋 Копировать список';
         }, 2000);
       });
     }
