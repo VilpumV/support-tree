@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Основы ЭПД — Скрипты техподдержки Санадор</title>
+  <style>
+    :root {
+      --bg-color: #f7f9fc;
+      --primary: #2c5aa0;
+      --accent: #38b764;
+      --text: #333;
+      --border: #e1e6ed;
+      --danger: #ff5252;
+      --warning: #ff9800;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text);
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+      line-height: 1.6;
+    }
+    .header {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 28px;
+    }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 18px; border-radius: 8px;
+      font-size: 0.9rem; font-weight: 600;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border); text-decoration: none;
+      color: var(--primary); background: #fff;
+    }
+    .back-btn:hover { border-color: var(--primary); background: #f0f7ff; }
+    h2 {
+      color: var(--primary); font-weight: 700;
+      margin: 0; font-size: 1.4rem;
+    }
+
+    .content-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px 32px;
+      margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    h3 {
+      color: var(--primary); font-weight: 700;
+      font-size: 1.15rem; margin: 28px 0 14px;
+      padding-bottom: 10px; border-bottom: 2px solid var(--border);
+    }
+    h3:first-child { margin-top: 0; }
+    h4 {
+      color: var(--text); font-weight: 700;
+      font-size: 1rem; margin: 18px 0 10px;
+    }
+    p { margin: 0 0 12px; }
+    ul, ol { margin: 0 0 14px; padding-left: 24px; }
+    li { margin-bottom: 6px; }
+
+    .info-box {
+      background: #e8f0fe; border-radius: 10px;
+      padding: 16px 20px; margin: 16px 0;
+      border-left: 4px solid var(--primary);
+    }
+    .warning-box {
+      background: #fff3e0; border-radius: 10px;
+      padding: 16px 20px; margin: 16px 0;
+      border-left: 4px solid var(--warning);
+    }
+    .danger-box {
+      background: #ffebee; border-radius: 10px;
+      padding: 16px 20px; margin: 16px 0;
+      border-left: 4px solid var(--danger);
+    }
+
+    .titles-table {
+      width: 100%; border-collapse: collapse;
+      margin: 16px 0; font-size: 0.85rem;
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+    .titles-table th {
+      background: var(--primary); color: #fff;
+      padding: 10px 12px; text-align: left;
+      font-weight: 700; font-size: 0.82rem;
+    }
+    .titles-table td {
+      padding: 10px 12px; border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .titles-table tr:last-child td { border-bottom: none; }
+    .titles-table tr:nth-child(even) td { background: #fafbfc; }
+    .titles-table .col-title {
+      font-weight: 700; color: var(--primary);
+    }
+
+    .participant-card {
+      background: #fafbfc; border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 18px;
+      margin-bottom: 10px;
+    }
+    .participant-card .p-name {
+      font-weight: 700; color: var(--primary);
+      font-size: 0.95rem; margin-bottom: 4px;
+    }
+    .participant-card .p-desc {
+      font-size: 0.88rem; color: #4a5568;
+    }
+
+    .doc-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 18px;
+      margin-bottom: 8px; transition: all 0.15s ease;
+    }
+    .doc-card:hover { border-color: var(--primary); box-shadow: 0 2px 8px rgba(44,90,160,0.08); }
+    .doc-card .d-name {
+      font-weight: 700; color: var(--primary);
+      font-size: 0.92rem; margin-bottom: 4px;
+    }
+    .doc-card .d-desc {
+      font-size: 0.85rem; color: #4a5568;
+    }
+
+    .fine-card {
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px 20px;
+      margin-bottom: 12px; border-left: 4px solid var(--danger);
+    }
+    .fine-card h4 { margin: 0 0 8px; color: var(--danger); }
+    .fine-card ul { margin-bottom: 0; }
+    .fine-card li { font-size: 0.88rem; }
+
+    .step-list { counter-reset: step; list-style: none; padding: 0; }
+    .step-list li {
+      counter-increment: step; position: relative;
+      padding-left: 44px; margin-bottom: 14px;
+      min-height: 32px;
+    }
+    .step-list li::before {
+      content: counter(step); position: absolute;
+      left: 0; top: 0; width: 32px; height: 32px;
+      background: var(--primary); color: #fff;
+      border-radius: 50%; display: flex;
+      align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="index.html" class="back-btn">&larr; Назад</a>
+    <h2>Основы ЭПД</h2>
+  </div>
+
+  <div class="content-card">
+
+    <h3>Что такое ЭПД</h3>
+    <p>Электронные перевозочные документы (ЭПД) — это цифровые аналоги транспортных документов.</p>
+    <p>Государство переводит логистику на электронный документооборот и создаёт единую платформу, чтобы участники перевозок могли обмениваться данными.</p>
+
+    <h4>Для чего это делается:</h4>
+    <ol>
+      <li>Так все участники перевозки видят все документы в системе и могут подписать их каждый в свою очередь.</li>
+      <li>Данные моментально передаются контрагентам и в госорганы.</li>
+      <li>ЭПД нельзя потерять или подделать.</li>
+      <li>Закрывающие документы приходят сразу.</li>
+      <li>Сервисы ЭПД проверяют заполнение на ошибки.</li>
+      <li>Перевозку можно отследить на каждом этапе.</li>
+      <li>ЭПД систематизировано и хранится в архиве.</li>
+    </ol>
+
+  </div>
+
+  <div class="content-card">
+    <h3>Виды документов</h3>
+
+    <div class="doc-card">
+      <div class="d-name">Электронная транспортная накладная (ЭТрН)</div>
+      <div class="d-desc">Основной документ, который подтверждает, что был заключён договор перевозки груза на автомобиле. Содержит данные о грузоотправителе, перевозчике, получателе, маршруте и о самом грузе.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="d-name">Электронные заказы и заявки</div>
+      <div class="d-desc">Документы для заказчика перевозки и самого перевозчика, которые нужны для согласования рейса.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="d-name">Путевой лист</div>
+      <div class="d-desc">Оформляется на каждый автомобиль перед выездом. Содержит дату начала и окончания рейса, маршрут, данные о водителе, машине и грузе. Пока его электронная форма не разработана, можно оформлять на бумаге.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="d-name">Поручение экспедитору</div>
+      <div class="d-desc">Документ, который клиент выдаёт экспедитору, содержащий список и условия экспедиторских услуг, которые экспедитор обязуется выполнить.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="d-name">Экспедиторская расписка</div>
+      <div class="d-desc">Документ, подтверждающий, что экспедитор получил груз от клиента и несёт за него ответственность.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="d-name">Складская расписка</div>
+      <div class="d-desc">Документ, подтверждающий, что экспедитор принял груз для временного хранения на складе.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="d-name">Грузовая расписка для авиаперевозок</div>
+      <div class="d-desc">То же самое, что транспортная накладная, но для воздушного транспорта.</div>
+    </div>
+
+    <div class="doc-card">
+      <div class="d-name">Транспортная железнодорожная накладная</div>
+      <div class="d-desc">Основной перевозочный документ для ж/д.</div>
+    </div>
+  </div>
+
+  <div class="content-card">
+    <h3>Участники ЭПД с 2026 года</h3>
+
+    <div class="participant-card">
+      <div class="p-name">Грузоотправитель</div>
+      <div class="p-desc">Компания или ИП, которое отправляет груз через перевозчика от своего имени или от имени владельца этого груза.</div>
+    </div>
+
+    <div class="participant-card">
+      <div class="p-name">Перевозчик</div>
+      <div class="p-desc">Компания или ИП, которое принимает груз у отправителя и везёт его получателю.</div>
+    </div>
+
+    <div class="participant-card">
+      <div class="p-name">Грузополучатель</div>
+      <div class="p-desc">Компания или ИП, которое принимает груз от перевозчика. При приёмке получатель подписывает электронную накладную, без подписи перевозка не будет считаться завершённой и статус груза в системе останется «в пути».</div>
+    </div>
+
+    <div class="participant-card">
+      <div class="p-name">Экспедитор</div>
+      <div class="p-desc">Компания или ИП, которое организует перевозку: разрабатывает маршрут, страхует груз, готовит документы и контролирует весь процесс.</div>
+    </div>
+
+    <div class="info-box">
+      <strong>Экспедитор может быть:</strong>
+      <ol style="margin: 8px 0 0;">
+        <li>Грузоотправителем, если принял груз по экспедиторской расписке.</li>
+        <li>Перевозчиком, если везёт груз на своём транспорте.</li>
+      </ol>
+    </div>
+
+    <div class="warning-box">
+      <p style="margin: 0 0 8px;"><strong>Регистрация в реестре экспедиторов</strong></p>
+      <p style="margin: 0; font-size: 0.9rem;">До 1 мая 2026 года все экспедиторы обязаны зарегистрироваться в реестре экспедиторов на платформе «ГосЛог» и с 1 сентября работать только с ЭПД.</p>
+    </div>
+
+    <h4>Приказ от 03.04.2026 № 115 — когда можно на бумаге</h4>
+    <p>Приказ закрепил перечень исключений, когда перевозочные документы необходимо оформить в бумажном виде:</p>
+    <ol>
+      <li>Транспортно-экспедиционные услуги (ТЭУ) связаны с перевозками грузов для нужд органов власти, обороны и безопасности страны, обеспечения правопорядка, специальных и воинских грузов.</li>
+      <li>ТЭУ оказывают на территориях, где введены режимы повышенной готовности, ЧС, ЧП, военного положения, правовой режим контртеррористической операции.</li>
+      <li>У экспедитора или его клиента нет возможности сформировать электронный документ в связи с обстоятельствами непреодолимой силы.</li>
+      <li>ТЭУ оказывают физическому лицу для личных, семейных, домашних и иных нужд, не связанных с предпринимательской деятельностью.</li>
+      <li>ТЭУ оказывают иностранному юрлицу или физлицу.</li>
+    </ol>
+  </div>
+
+  <div class="content-card">
+    <h3>Как устроен процесс</h3>
+    <p>Все электронные накладные оформляются через оператора ИС ЭПД, который, в свою очередь, передаёт их в ГИС ЭПД.</p>
+    <div class="info-box">
+      <p style="margin: 0;"><strong>ГИС ЭПД</strong> — это платформа, которая объединяет данные о грузовых перевозках в единой цифровой среде. На ней хранятся все ЭПД, и доступ к ним есть у всех участников перевозки и госорганов. Порядок работы установлен постановлением Правительства от 21.05.2022 № 931.</p>
+    </div>
+    <p>Между ГИС ЭПД и участниками перевозок есть посредники — аккредитованные операторы. Всего их 12, реестр операторов есть на сайте Минтранса. Для работы нужно выбрать оператора и заключить с ним договор.</p>
+
+    <h3>Из чего состоит ЭТрН</h3>
+    <p>Электронная транспортная накладная состоит из <strong>титулов</strong> — частей, которые каждый участник перевозки заполняет и подписывает. Всего ЭТрН состоит из четырёх обязательных файлов — по одному на каждый этап перевозки.</p>
+
+    <table class="titles-table">
+      <thead>
+        <tr>
+          <th>Титул</th>
+          <th>Титул 1</th>
+          <th>Титул 2</th>
+          <th>Титул 3</th>
+          <th>Титул 4</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-title">Кто подписывает</td>
+          <td>Грузоотправитель</td>
+          <td>Перевозчик</td>
+          <td>Грузополучатель</td>
+          <td>Перевозчик</td>
+        </tr>
+        <tr>
+          <td class="col-title">Сведения об участниках перевозки</td>
+          <td>✓</td><td>✓</td><td>✓</td><td>✓</td>
+        </tr>
+        <tr>
+          <td class="col-title">Условия договора</td>
+          <td>✓</td><td>✓</td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="col-title">Сведения о ТС</td>
+          <td></td><td>✓</td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="col-title">Сведения о водителе</td>
+          <td></td><td>✓</td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="col-title">Сведения о грузе</td>
+          <td>✓</td><td>✓</td><td>✓</td><td></td>
+        </tr>
+        <tr>
+          <td class="col-title">Сопроводительные документы и обстоятельства погрузки</td>
+          <td>✓</td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+          <td class="col-title">Сведения о принятии груза и его состоянии</td>
+          <td></td><td></td><td>✓</td><td></td>
+        </tr>
+        <tr>
+          <td class="col-title">Характеристики груза</td>
+          <td></td><td></td><td>✓</td><td></td>
+        </tr>
+        <tr>
+          <td class="col-title">Замечания при наличии</td>
+          <td></td><td></td><td>✓</td><td></td>
+        </tr>
+        <tr>
+          <td class="col-title">Груз выдан грузополучателю</td>
+          <td></td><td></td><td></td><td>✓</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Дополнительные титулы (при изменениях)</h4>
+    <ul>
+      <li><strong>Титулы 5 и 6</strong> — итоговая стоимость перевозки.</li>
+      <li><strong>Титул 7</strong> — если меняется грузополучатель или адрес доставки.</li>
+      <li><strong>Титул 8</strong> — если меняется транспортное средство или водитель.</li>
+    </ul>
+
+    <div class="info-box">
+      <p style="margin: 0;"><strong>Машиночитаемая доверённость (МЧД)</strong> — если документ отправляет или принимает доверенное лицо, можно воспользоваться МЧД. Это электронный аналог бумажной доверённости в формате XML, подписанный усиленной квалифицированной электронной подписью (УКЭП) руководителя.</p>
+    </div>
+  </div>
+
+  <div class="content-card">
+    <h3>Как передаются ЭПД</h3>
+    <ol class="step-list">
+      <li><strong>Грузоотправитель</strong> создаёт ЭТрН в системе, личном кабинете или на странице оператора ИС ЭПД. Вносит сведения о грузе, сторонах перевозки, транспортном средстве, водителе, маршруте и условиях доставки. Подписывает свой титул электронной подписью.</li>
+      <li>Документ через оператора ИС ЭПД становится доступен <strong>перевозчику</strong>. Он принимает груз и подписывает свой титул.</li>
+      <li><strong>Грузополучатель</strong> принимает груз и подписывает свой титул, подтверждая приёмку. Если есть замечания к грузу, их нужно зафиксировать.</li>
+      <li><strong>Перевозчик</strong> завершает оформление электронной транспортной накладной и после выдачи груза подписывает заключительный титул.</li>
+      <li>Документооборот по перевозке считается завершённым, когда все обязательные титулы оформлены и подписаны.</li>
+    </ol>
+  </div>
+
+  <div class="content-card">
+    <h3>QR-код ЭПД</h3>
+    <p>С 1 сентября 2026 года обязательна электронная заявка-заказ (ЭЗЗ) — она оформляется на каждую перевозку с каждым перевозчиком. Электронный путевой лист (ЭПЛ) обязателен только при перевозке алкогольной и спиртосодержащей продукции. Для каждого из этих документов формируется отдельный QR-код.</p>
+
+    <div class="info-box">
+      <p style="margin: 0 0 8px;"><strong>Как работает QR-код:</strong></p>
+      <ul style="margin: 0;">
+        <li>Генерируется ГИС ЭПД автоматически после подписания титула 1 и 2.</li>
+        <li>Содержит идентификатор документа и подписан электронной подписью ГИС ЭПД.</li>
+        <li>После подписания всех обязательных титулов QR-код больше не изменяется.</li>
+        <li>На формирование закладывается 15 минут.</li>
+        <li>Задержка более 4 часов считается технической неполадкой — проверьте, подписаны ли все необходимые титулы. Если да, свяжитесь с техподдержкой оператора ИС ЭПД.</li>
+      </ul>
+    </div>
+
+    <div class="warning-box">
+      <p style="margin: 0;"><strong>QR-код необходимо предъявить инспектору ГИБДД.</strong> Он не может потребовать бумажную копию документа.</p>
+    </div>
+  </div>
+
+  <div class="content-card">
+    <h3>Штрафы и ответственность</h3>
+    <p>С сентября 2026 года появятся санкции за работу без ЭПД. Пока применяются нормы КоАП РФ об отсутствии перевозочных документов.</p>
+
+    <div class="fine-card">
+      <h4>Для экспедиторов — работа без реестра ГИС ЭПД (ст. 11.14.3 КоАП)</h4>
+      <ul>
+        <li><strong>Гражданам и ИП:</strong> 3 000–5 000 ₽ (первое нарушение), 5 000–10 000 ₽ (повторно)</li>
+        <li><strong>Юрлицам:</strong> 100 000–300 000 ₽ (первое нарушение), 500 000–1 000 000 ₽ (повторно)</li>
+      </ul>
+    </div>
+
+    <div class="fine-card">
+      <h4>Непредставление сведений о свойствах груза</h4>
+      <ul>
+        <li><strong>Гражданам:</strong> 3 000–5 000 ₽</li>
+        <li><strong>Должностным лицам:</strong> 20 000–30 000 ₽</li>
+        <li><strong>ИП:</strong> 30 000–50 000 ₽</li>
+        <li><strong>Юрлицам:</strong> 50 000–100 000 ₽</li>
+      </ul>
+    </div>
+
+    <div class="fine-card">
+      <h4>Для перевозчиков — перевозка без накладной (ст. 12.3 КоАП)</h4>
+      <ul>
+        <li><strong>Гражданам:</strong> 500 ₽</li>
+        <li><strong>Должностным лицам:</strong> 1 500 ₽</li>
+      </ul>
+    </div>
+
+    <div class="fine-card">
+      <h4>Недостоверные данные о свойствах груза (ст. 12.21.1 КоАП)</h4>
+      <ul>
+        <li><strong>Физлицам:</strong> 2 250–3 000 ₽</li>
+        <li><strong>Должностным лицам:</strong> 22 500–30 000 ₽</li>
+      </ul>
+    </div>
+
+    <div class="danger-box">
+      <p style="margin: 0;"><strong>Важно:</strong> До 1 марта штрафует только ДПС.</p>
+    </div>
+  </div>
+
+</body>
+</html>
