@@ -43,10 +43,7 @@
       margin-bottom: 16px;
     }
     .sidebar-logo span { font-size: 0.72rem; color: #8a94a6; display: block; font-weight: 400; margin-top: 2px; }
-    .sidebar-section {
-      padding: 0 12px;
-      margin-bottom: 20px;
-    }
+    .sidebar-section { padding: 0 12px; margin-bottom: 20px; }
     .sidebar-section-title {
       font-size: 0.72rem; font-weight: 700; color: #8a94a6;
       text-transform: uppercase; letter-spacing: 1px;
@@ -60,15 +57,9 @@
       transition: all 0.15s ease;
       margin-bottom: 2px;
     }
-    .sidebar-link:hover {
-      background: #f0f7ff; color: var(--primary);
-    }
-    .sidebar-link.active {
-      background: var(--primary); color: #fff; font-weight: 600;
-    }
-    .sidebar-link .link-icon {
-      font-size: 1.1rem; flex-shrink: 0; width: 24px; text-align: center;
-    }
+    .sidebar-link:hover { background: #f0f7ff; color: var(--primary); }
+    .sidebar-link.active { background: var(--primary); color: #fff; font-weight: 600; }
+    .sidebar-link .link-icon { font-size: 1.1rem; flex-shrink: 0; width: 24px; text-align: center; }
     .sidebar-link .link-badge {
       font-size: 0.68rem; font-weight: 700;
       background: var(--accent); color: #fff;
@@ -77,7 +68,6 @@
     }
     .sidebar-link.active .link-badge { background: rgba(255,255,255,0.25); }
 
-    /* Кнопка-гамбургер (мобильные) */
     .sidebar-toggle {
       display: none;
       position: fixed;
@@ -99,10 +89,7 @@
     .sidebar-overlay.show { display: block; }
 
     @media (max-width: 900px) {
-      .sidebar {
-        transform: translateX(-100%);
-        box-shadow: 2px 0 20px rgba(0,0,0,0.15);
-      }
+      .sidebar { transform: translateX(-100%); box-shadow: 2px 0 20px rgba(0,0,0,0.15); }
       .sidebar.open { transform: translateX(0); }
       .sidebar-toggle { display: flex; }
       body { padding-left: 16px; }
@@ -111,11 +98,8 @@
       body { padding-left: calc(var(--sidebar-w) + 16px); }
     }
 
-    /* === ОСТАЛЬНЫЕ СТИЛИ === */
-    .header {
-      display: flex; align-items: center; gap: 16px;
-      margin-bottom: 24px;
-    }
+    /* === КОНТЕНТ === */
+    .header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
     .back-btn {
       display: inline-flex; align-items: center; gap: 8px;
       padding: 9px 18px; border-radius: 8px;
@@ -127,7 +111,6 @@
     .back-btn:hover { border-color: var(--primary); background: #f0f7ff; }
     h2 { color: var(--primary); font-weight: 700; margin: 0; font-size: 1.4rem; }
 
-    /* Сворачиваемый раздел документов */
     .docs-section {
       background: #fff; border: 1px solid var(--border);
       border-radius: 14px; margin-bottom: 20px;
@@ -168,9 +151,7 @@
       border: 2px solid var(--border); background: #fff;
       color: #999; transition: all 0.2s ease;
     }
-    .tab-btn.active {
-      border-color: var(--primary); background: var(--primary); color: #fff;
-    }
+    .tab-btn.active { border-color: var(--primary); background: var(--primary); color: #fff; }
     .tab-content { display: none; }
     .tab-content.show { display: block; }
     .doc-list { list-style: none; padding: 0; margin: 0 0 14px 0; }
@@ -214,10 +195,7 @@
       border-bottom: 2px solid var(--border);
     }
 
-    .step {
-      display: flex; gap: 16px; margin-bottom: 24px;
-      align-items: flex-start;
-    }
+    .step { display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-start; }
     .step-num {
       flex-shrink: 0; width: 36px; height: 36px;
       border-radius: 50%; background: var(--primary); color: #fff;
@@ -227,10 +205,7 @@
     .step-num.danger { background: var(--danger); }
     .step-num.accent { background: var(--accent); }
     .step-body { flex: 1; min-width: 0; }
-    .step-text {
-      font-size: 0.95rem; line-height: 1.6; color: var(--text);
-      margin-bottom: 10px;
-    }
+    .step-text { font-size: 0.95rem; line-height: 1.6; color: var(--text); margin-bottom: 10px; }
     .step-text strong { color: var(--primary); }
     .step-img {
       width: 100%; max-width: 100%; height: auto;
@@ -242,12 +217,8 @@
       display: flex; flex-wrap: wrap; gap: 10px;
       margin-top: 8px; width: 100%;
     }
-    .step-img-group .step-img {
-      flex: 1 1 calc(50% - 5px); max-width: calc(50% - 5px);
-    }
-    .step-img-group .step-img:only-child {
-      flex: 1 1 100%; max-width: 100%;
-    }
+    .step-img-group .step-img { flex: 1 1 calc(50% - 5px); max-width: calc(50% - 5px); }
+    .step-img-group .step-img:only-child { flex: 1 1 100%; max-width: 100%; }
 
     .note {
       padding: 12px 16px; border-radius: 8px;
@@ -271,11 +242,19 @@
       font-weight: 700; font-size: 0.82rem;
       margin-right: 8px; flex-shrink: 0;
     }
-    .substep-row {
-      display: flex; align-items: flex-start; gap: 4px;
-      margin-bottom: 12px;
-    }
+    .substep-row { display: flex; align-items: flex-start; gap: 4px; margin-bottom: 12px; }
     .substep-body { flex: 1; min-width: 0; }
+
+    .img-placeholder {
+      width: 100%;
+      min-height: 200px;
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: #aab4c4; font-size: 0.9rem; font-style: italic;
+      background: #fafbfc;
+      margin-top: 8px;
+    }
 
     @media (max-width: 600px) {
       .step { flex-direction: column; }
@@ -286,7 +265,7 @@
 </head>
 <body>
 
-  <!-- Кнопка-гамбургер для мобильных -->
+  <!-- Кнопка-гамбургер -->
   <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
@@ -332,7 +311,7 @@
     <h2>Регистрация в ЭПД: Грузоотправитель (ООО, ИП)</h2>
   </div>
 
-  <!-- Сворачиваемый раздел документов -->
+  <!-- Документы -->
   <div class="docs-section" id="docsSection">
     <div class="docs-header" onclick="toggleDocs()">
       <div class="docs-title">📋 Документы для регистрации</div>
@@ -397,8 +376,13 @@
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-body">
-        <div class="step-text"><strong>Регистрируем в личном кабинете на сайте или авторизация</strong> Если ранее уже регистрировались вводим логин и пароль из смс,если нет ,то нажимаем зпоегистрироваться и выбираем роль роль перевозчика и заполняем данные.</div>
-        </div Если регистрация ООО,то запрашиваем документы из списка выше и регистрирует специалсит тех поддержки ,регистрация ооо самостоятельно невозмаожна !!!!!</div>
+        <div class="step-text">
+          <strong>Регистрация в личном кабинете или авторизация.</strong>
+          Если ранее уже регистрировались — вводим логин и пароль из SMS. Если нет — нажимаем «Зарегистрироваться», выбираем роль грузоотправителя и заполняем данные.
+        </div>
+        <div class="note note-red">
+          ❗ Если регистрация ООО — запрашиваем документы из списка выше. Регистрацию ООО выполняет специалист техподдержки, самостоятельная регистрация ООО невозможна!
+        </div>
         <img src="img/image2.jpeg" class="step-img" alt="Вход в ЛК">
       </div>
     </div>
@@ -407,10 +391,11 @@
     <div class="step">
       <div class="step-num">2</div>
       <div class="step-body">
-        <div class="step-text"><strong>Регистрируем в ЭПД.</strong> В левом боковом меню личного кабинета разверните вкладку ЭПД и выберите пункт Регистрация. Нажмите на поле <strong>«Выбрать сертификат»</strong>.</div>
-        <br><br>
-      Если сертификат не найден, <a href="cryptopro.html" style="color: var(--primary); text-decoration: underline; font-weight: 600;">ознакомьтесь с инструкцией по настройке КриптоПро </a> 
-    </div>
+        <div class="step-text">
+          <strong>Регистрируем в ЭПД.</strong> В левом боковом меню личного кабинета разверните вкладку ЭПД и выберите пункт Регистрация. Нажмите на поле <strong>«Выбрать сертификат»</strong>.
+          <br><br>
+          Если сертификат не найден — <a href="crypto-pro.html" style="color: var(--primary); text-decoration: underline; font-weight: 600;">ознакомьтесь с инструкцией по настройке КриптоПро</a>.
+        </div>
         <img src="img/image3.jpeg" class="step-img" alt="Регистрация ЭПД">
 
         <div class="substep">
@@ -436,7 +421,12 @@
     <div class="step">
       <div class="step-num accent">3</div>
       <div class="step-body">
-        <div class="step-text"><strong>При необходимости выпускаем МЧД (УТОЧНЯЕМ ПЕРЕВОЗУ,ЧТО ЕСЛИ МЫ ЕЕ ВЫПУСТИМ ,ОН СМОЖЕТ ПОДПИСЫВАТЬ БЕЗ ФЛЕШКИ ,ВЫПУСКАЕМ ПО НЕОБХОДИМОСТИ).</strong> В левом боковом меню личного кабинета разверните вкладку ЭПД и выберите пункт МЧД.</div>
+        <div class="step-text">
+          <strong>При необходимости выпускаем МЧД.</strong> В левом боковом меню личного кабинета разверните вкладку ЭПД и выберите пункт МЧД.
+        </div>
+        <div class="note note-yellow">
+          ℹ️ Уточняем грузоотправителю: если выпустим МЧД, он сможет подписывать документы без флешки. Выпускаем по необходимости.
+        </div>
         <img src="img/image6.jpeg" class="step-img" alt="Раздел МЧД">
 
         <div class="substep">
@@ -555,7 +545,9 @@
     <div class="step">
       <div class="step-num danger">4</div>
       <div class="step-body">
-        <div class="step-text"><strong>Сообщаем Маше об этом грузоперевозе </strong>это  для настройки дополнительных прав пользователю грузоотправителя сообщаем название ооо или ИП.</div>
+        <div class="step-text">
+          <strong>Сообщаем техспециалисту Санадор</strong> о новом грузоотправителе для настройки дополнительных прав. Указываем название ООО или ИП.
+        </div>
       </div>
     </div>
 
@@ -572,26 +564,59 @@
     <div class="step">
       <div class="step-num accent">6</div>
       <div class="step-body">
-        <div class="step-text"><strong>Добавление контрагентов.</strong> Когда права настроены, в ЛК грузоотправителя на сайте sanador.ru необходимо добавить контрагентов, с которыми будет работать данный грузоотправитель.</div>
-        <div class="note note-green">✅ После добавления контрагентов регистрация грузоотправителя полностью завершена!</div>
+        <div class="step-text">
+          <strong>Добавление контрагентов.</strong> Когда права настроены, в ЛК грузоотправителя на сайте sanador.ru необходимо добавить контрагентов, с которыми будет работать данный грузоотправитель.
+        </div>
+        <img src="img/contragents1.jpeg" class="step-img" alt="Раздел контрагентов"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="img-placeholder" style="display: none;">Скриншот: раздел «Контрагенты» в левом меню</div>
+
+        <div class="substep">
+          <div class="substep-row">
+            <span class="substep-num">6.1</span>
+            <div class="substep-body">
+              <div class="step-text">В левом боковом меню откройте раздел <strong>«Контрагенты»</strong>. Нажмите кнопку <strong>«Добавить контрагента»</strong>.</div>
+              <img src="img/contragents2.jpeg" class="step-img" alt="Кнопка добавить контрагента"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="img-placeholder" style="display: none;">Скриншот: кнопка «Добавить контрагента»</div>
+            </div>
+          </div>
+          <div class="substep-row">
+            <span class="substep-num">6.2</span>
+            <div class="substep-body">
+              <div class="step-text">Заполните данные контрагента: наименование, ИНН, КПП (для ООО), банковские реквизиты. Нажмите <strong>«Сохранить»</strong>.</div>
+              <img src="img/contragents3.jpeg" class="step-img" alt="Заполнение данных контрагента"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="img-placeholder" style="display: none;">Скриншот: форма заполнения данных контрагента</div>
+            </div>
+          </div>
+          <div class="substep-row">
+            <span class="substep-num">6.3</span>
+            <div class="substep-body">
+              <div class="step-text">Повторите для каждого контрагента, с которым будет работать грузоотправитель. Проверьте, что все контрагенты отображаются в списке.</div>
+              <img src="img/contragents4.jpeg" class="step-img" alt="Список добавленных контрагентов"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="img-placeholder" style="display: none;">Скриншот: список добавленных контрагентов</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="note note-green">✅ После добавления всех контрагентов регистрация грузоотправителя полностью завершена!</div>
       </div>
     </div>
 
   </div>
 
   <script>
-    // Боковое меню (мобильные)
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('open');
       document.getElementById('sidebarOverlay').classList.toggle('show');
     }
 
-    // Сворачивание документов
     function toggleDocs() {
       document.getElementById('docsSection').classList.toggle('collapsed');
     }
 
-    // Вкладки
     function switchTab(tab, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('show'));
@@ -599,7 +624,6 @@
       document.getElementById('tab-' + tab).classList.add('show');
     }
 
-    // Копирование
     function copyDocs(type, btn) {
       let text = '';
       if (type === 'ip') {
