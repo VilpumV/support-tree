@@ -36,6 +36,42 @@
     .back-btn:hover { border-color: var(--primary); background: #f0f7ff; }
     h2 { color: var(--primary); font-weight: 700; margin: 0; font-size: 1.4rem; }
 
+    /* Сводный блок отличий */
+    .summary-block {
+      background: linear-gradient(135deg, #e8f0fe 0%, #f0f7ff 100%);
+      border: 1px solid #c8dcf5;
+      border-radius: 14px; padding: 24px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .summary-title {
+      font-size: 1.1rem; font-weight: 700; color: var(--primary);
+      margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .summary-list {
+      list-style: none; padding: 0; margin: 0;
+      counter-reset: summary-counter;
+    }
+    .summary-list li {
+      counter-increment: summary-counter;
+      padding: 10px 0 10px 48px;
+      position: relative;
+      font-size: 0.95rem; line-height: 1.5;
+      border-bottom: 1px dashed #c8dcf5;
+    }
+    .summary-list li:last-child { border-bottom: none; }
+    .summary-list li::before {
+      content: counter(summary-counter);
+      position: absolute; left: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem;
+    }
+    .summary-list li strong { color: var(--primary); }
+
     /* Документы для регистрации */
     .docs-section {
       background: #fff; border: 1px solid var(--border);
@@ -101,7 +137,7 @@
       border-bottom: 2px solid var(--border);
     }
 
-    /* Главные шаги */
+    /* Шаги */
     .step {
       display: flex; gap: 16px; margin-bottom: 24px;
       align-items: flex-start;
@@ -120,55 +156,22 @@
       margin-bottom: 10px;
     }
     .step-text strong { color: var(--primary); }
-
     .step-img {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
+      width: 100%; max-width: 100%; height: auto;
       object-fit: contain;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      display: block;
-      margin-top: 8px;
+      border-radius: 10px; border: 1px solid var(--border);
+      display: block; margin-top: 8px;
     }
     .step-img-group {
-      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; width: 100%;
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-top: 8px; width: 100%;
     }
     .step-img-group .step-img {
-      flex: 1 1 calc(50% - 5px);
-      max-width: calc(50% - 5px);
+      flex: 1 1 calc(50% - 5px); max-width: calc(50% - 5px);
     }
     .step-img-group .step-img:only-child {
-      flex: 1 1 100%;
-      max-width: 100%;
+      flex: 1 1 100%; max-width: 100%;
     }
-
-    /* Подшаги внутри главного шага */
-    .substep {
-      margin-left: 20px; padding-left: 16px;
-      border-left: 3px solid var(--border);
-      margin-bottom: 20px;
-    }
-    .substep-header {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 8px;
-    }
-    .substep-num {
-      flex-shrink: 0; width: 28px; height: 28px;
-      border-radius: 50%; background: var(--border); color: var(--primary);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.8rem;
-    }
-    .substep-title {
-      font-weight: 700; color: var(--text);
-      font-size: 0.95rem;
-    }
-    .substep-body { margin-left: 38px; }
-    .substep-text {
-      font-size: 0.92rem; line-height: 1.6; color: var(--text);
-      margin-bottom: 8px;
-    }
-    .substep-text strong { color: var(--primary); }
 
     /* Плашки */
     .note {
@@ -181,18 +184,28 @@
     .note-green { background: #e8f8ee; border-left: 4px solid var(--accent); color: #1a6b3a; }
     .note-red { background: #ffebee; border-left: 4px solid var(--danger); color: #b71c1c; }
 
-    /* Ссылка-помощник */
-    .help-link {
-      color: var(--primary); text-decoration: underline; font-weight: 600;
+    .substep {
+      margin-left: 20px; padding-left: 16px;
+      border-left: 3px solid var(--border);
+      margin-bottom: 16px;
     }
-    .help-link:hover { text-decoration: none; opacity: 0.8; }
+    .substep-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #e8f0fe; color: var(--primary);
+      font-weight: 700; font-size: 0.82rem;
+      margin-right: 8px; flex-shrink: 0;
+    }
+    .substep-row {
+      display: flex; align-items: flex-start; gap: 4px;
+      margin-bottom: 12px;
+    }
+    .substep-body { flex: 1; min-width: 0; }
 
     @media (max-width: 600px) {
       .step { flex-direction: column; }
       .step-img-group .step-img { flex: 1 1 100%; max-width: 100%; }
       .tabs { flex-direction: column; }
-      .substep { margin-left: 0; padding-left: 12px; }
-      .substep-body { margin-left: 0; }
     }
   </style>
 </head>
@@ -201,6 +214,19 @@
   <div class="header">
     <a href="index.html" class="back-btn">← Назад</a>
     <h2>Регистрация в ЭПД: Грузоотправитель (ООО, ИП)</h2>
+  </div>
+
+  <!-- СВОДНЫЙ БЛОК: Чем отличается от регистрации перевозчика -->
+  <div class="summary-block">
+    <div class="summary-title">📌 Порядок регистрации грузоотправителя</div>
+    <ol class="summary-list">
+      <li><strong>Регистрируем в ЛК</strong> на сайте sanador.ru (как для перевозчика)</li>
+      <li><strong>Регистрируем в ЭПД</strong> (так же, как и перевозчика)</li>
+      <li>При необходимости <strong>выпускаем МЧД</strong></li>
+      <li><strong>Говорим техспециалисту</strong> Санадор для настройки доп. прав</li>
+      <li><strong>Перезайдите в ЛК</strong> (для того, чтобы обновить права пользователя)</li>
+      <li>Когда права настроены, в ЛК грузоотправителя на сайте sanador.ru необходимо <strong>добавить контрагентов</strong>, с которыми будет работать данный грузоотправитель</li>
+    </ol>
   </div>
 
   <!-- Документы для регистрации -->
@@ -257,13 +283,13 @@
 
   <!-- Инструкция -->
   <div class="section">
-    <div class="section-title">📖 Регистрация грузоотправителя в ЭПД</div>
+    <div class="section-title">📖 Пошаговая инструкция</div>
 
     <!-- Шаг 1 -->
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-body">
-        <div class="step-text"><strong>Регистрация в ЛК на сайте sanador.ru.</strong> Выполните вход в свой Личный кабинет на сайте sanador.ru для дальнейшей работы.</div>
+        <div class="step-text"><strong>Регистрируем в ЛК на сайте sanador.ru.</strong> Выполните вход в свой Личный кабинет на сайте sanador.ru для дальнейшей работы.</div>
         <img src="img/image2.jpeg" class="step-img" alt="Вход в ЛК">
       </div>
     </div>
@@ -272,30 +298,23 @@
     <div class="step">
       <div class="step-num">2</div>
       <div class="step-body">
-        <div class="step-text"><strong>Регистрация в ЭПД.</strong> В левом боковом меню личного кабинета разверните вкладку ЭПД и выберите пункт Регистрация. Нажмите на поле <strong>«Выбрать сертификат»</strong>.
-        <br><br>
-        Если сертификат не найден, <a href="crypto-pro.html" class="help-link">ознакомьтесь с инструкцией по настройке КриптоПро и плагинов</a> — там пошагово разобраны частые проблемы и способы их устранения.</div>
+        <div class="step-text"><strong>Регистрируем в ЭПД.</strong> В левом боковом меню личного кабинета разверните вкладку ЭПД и выберите пункт Регистрация. Нажмите на поле <strong>«Выбрать сертификат»</strong>.</div>
         <img src="img/image3.jpeg" class="step-img" alt="Регистрация ЭПД">
 
-        <div class="substep" style="margin-top: 16px;">
-          <div class="substep-header">
-            <div class="substep-num">2.1</div>
-            <div class="substep-title">Выбор сертификата</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">На выбор вам предложат все электронные сертификаты, которые записаны на ваш USB-токен. Выберите необходимый.</div>
-            <img src="img/image4.jpeg" class="step-img" alt="Выбор сертификата">
-          </div>
-        </div>
-
         <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">2.2</div>
-            <div class="substep-title">Регистрация в ЭДО</div>
+          <div class="substep-row">
+            <span class="substep-num">2.1</span>
+            <div class="substep-body">
+              <div class="step-text"><strong>Выбор сертификата.</strong> На выбор вам предложат все электронные сертификаты, которые записаны на ваш USB-токен. Выберите необходимый.</div>
+              <img src="img/image4.jpeg" class="step-img" alt="Выбор сертификата">
+            </div>
           </div>
-          <div class="substep-body">
-            <div class="substep-text">Дождитесь загрузки сертификата, при успехе данные подтянутся автоматически. Нажмите кнопку <strong>«Зарегистрироваться в ЭДО»</strong>.</div>
-            <img src="img/image5.jpeg" class="step-img" alt="Регистрация в ЭДО">
+          <div class="substep-row">
+            <span class="substep-num">2.2</span>
+            <div class="substep-body">
+              <div class="step-text">Дождитесь загрузки сертификата, при успехе данные подтянутся автоматически. Нажмите кнопку <strong>«Зарегистрироваться в ЭДО»</strong>.</div>
+              <img src="img/image5.jpeg" class="step-img" alt="Регистрация в ЭДО">
+            </div>
           </div>
         </div>
       </div>
@@ -305,179 +324,116 @@
     <div class="step">
       <div class="step-num accent">3</div>
       <div class="step-body">
-        <div class="step-text"><strong>При необходимости выпускаем МЧД.</strong> Если у грузоотправителя есть сотрудники, которые будут работать с ЭПД от лица организации, необходимо выпустить машиночитаемую доверенность.</div>
+        <div class="step-text"><strong>При необходимости выпускаем МЧД.</strong> В левом боковом меню личного кабинета разверните вкладку ЭПД и выберите пункт МЧД.</div>
+        <img src="img/image6.jpeg" class="step-img" alt="Раздел МЧД">
 
         <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.1</div>
-            <div class="substep-title">Раздел МЧД</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">В левом боковом меню личного кабинета разверните вкладку ЭПД и выберите пункт МЧД.</div>
-            <img src="img/image6.jpeg" class="step-img" alt="Раздел МЧД">
-          </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.2</div>
-            <div class="substep-title">Создание новой доверенности</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">На открывшейся странице со списком доверенностей нажмите кнопку <strong>«Создать МЧД для сотрудников»</strong> (расположена в правом верхнем углу).</div>
-            <img src="img/image6.jpeg" class="step-img" alt="Создать МЧД для сотрудников">
-          </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.3</div>
-            <div class="substep-title">Заполнение параметров</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">В открывшемся окне на шаге «Параметры» будут указаны сроки доверенности, по умолчанию доверенность действует год. Нажмите <strong>«Далее»</strong>.</div>
-            <img src="img/image7.jpeg" class="step-img" alt="Параметры МЧД">
-          </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.4</div>
-            <div class="substep-title">Подтверждение доступа через КриптоПро</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">Вам может потребоваться подтверждение доступа для сайта. Необходимо дать согласие на действие программы. Нажмите <strong>«Да»</strong>.</div>
-            <img src="img/image8.jpeg" class="step-img" alt="Подтверждение КриптоПро">
-          </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.5</div>
-            <div class="substep-title">Выбор электронного сертификата</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">Выберите сертификат своей КЭП, чтобы перейти к следующему этапу.</div>
-            <img src="img/image9.jpeg" class="step-img" alt="Выбор сертификата КЭП">
-          </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.6</div>
-            <div class="substep-title">Заполнение сведений о доверителе</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">Все данные о вашей организации подтянутся из вашего USB-токена. Проверьте заполненность всех данных. Если необходимо заполнить детали адреса, сделайте это вручную. Затем нажмите <strong>«Далее»</strong>.</div>
-            <div class="step-img-group">
-              <img src="img/image10.jpeg" class="step-img" alt="Сведения о доверителе 1">
+          <div class="substep-row">
+            <span class="substep-num">3.1</span>
+            <div class="substep-body">
+              <div class="step-text">На открывшейся странице со списком доверенностей нажмите кнопку <strong>«Создать МЧД для сотрудников»</strong> (расположена в правом верхнем углу).</div>
+              <img src="img/image6.jpeg" class="step-img" alt="Создать МЧД для сотрудников">
             </div>
           </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.7</div>
-            <div class="substep-title">Проверка данных действующего лица</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">На этапе «Действующее лицо» проверьте или заполните данные сотрудника, действующего от имени доверителя (руководителя). Убедитесь, что поля с личной информацией (Пол, Фамилия, Имя, Отчество, ИНН, СНИЛС и Должность) заполнены корректно, если данные не подтянулись, введите вручную. После проверки нажмите кнопку <strong>«Далее»</strong>.</div>
-            <img src="img/image12.jpeg" class="step-img" alt="Действующее лицо">
-          </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.8</div>
-            <div class="substep-title">Проверка списка представителей</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">На этапе «Представители» (Шаг 4) система отобразит список сотрудников, на которых будет осуществлён выпуск МЧД, нажмите кнопку <strong>«Создать МЧД»</strong>.</div>
-            <div class="step-img-group">
-              <img src="img/image13.jpeg" class="step-img" alt="Представители">
+          <div class="substep-row">
+            <span class="substep-num">3.2</span>
+            <div class="substep-body">
+              <div class="step-text">В открывшемся окне на шаге «Параметры» будут указаны сроки доверенности, по умолчанию доверенность действует год. Нажмите <strong>«Далее»</strong>.</div>
+              <img src="img/image7.jpeg" class="step-img" alt="Параметры МЧД">
             </div>
           </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.9</div>
-            <div class="substep-title">Отслеживание статуса МЧД</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">После нажатия кнопки «Создать МЧД» вернитесь в общий список доверенностей. Вам необходимо дождаться изменения статуса обработки на <strong style="color: var(--accent)">«Ожидает подписи»</strong>. Используйте иконку обновления со стрелочками, чтобы проверить текущее состояние документа в реальном времени.</div>
-            <img src="img/image15.jpeg" class="step-img" alt="Статус МЧД">
-          </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.10</div>
-            <div class="substep-title">Переход к подписанию МЧД</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">Как только статус документа в реестре изменится на <strong style="color: var(--danger)">«Ожидает подписи»</strong>, кликните по соответствующей строке, чтобы открыть детали. В карточке МЧД найдите блок «Действия с МЧД» и нажмите кнопку <strong>«Подписать МЧД»</strong>.</div>
-            <div class="note note-yellow">⚠️ Необходимо подписать каждую из трёх МЧД по отдельности!</div>
-            <img src="img/image16.jpeg" class="step-img" alt="Подписать МЧД">
-          </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.11</div>
-            <div class="substep-title">Подтверждение доступа через КриптоПро</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">Вам может потребоваться подтверждение доступа для сайта. Необходимо дать согласие на действие программы. Нажмите <strong>«Да»</strong>.</div>
-            <img src="img/image8.jpeg" class="step-img" alt="Подтверждение КриптоПро">
-          </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.12</div>
-            <div class="substep-title">Выбор электронного сертификата для подписания</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">Выберите сертификат своей КЭП, чтобы перейти к подписанию, нажмите кнопку <strong>«Продолжить»</strong>.</div>
-            <img src="img/image9.jpeg" class="step-img" alt="Выбор сертификата для подписания">
-          </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.13</div>
-            <div class="substep-title">Регистрация МЧД</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">Как только статус документа в реестре изменится на <strong style="color: var(--primary)">«Готова к регистрации»</strong>, кликните по соответствующей строке, чтобы открыть детали. В карточке МЧД найдите блок «Действия с МЧД» и нажмите кнопку <strong>«Зарегистрировать МЧД»</strong>.</div>
-            <div class="note note-yellow">⚠️ Необходимо подписать каждую из трёх МЧД по отдельности!</div>
-            <img src="img/image17.jpeg" class="step-img" alt="Зарегистрировать МЧД">
-          </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.14</div>
-            <div class="substep-title">Проверка статуса отправки</div>
-          </div>
-          <div class="substep-body">
-            <div class="substep-text">Убедитесь, что у всех доверенностей статус <strong>«Отправлена на регистрацию»</strong>.</div>
-            <div class="step-img-group">
-              <img src="img/image18.jpeg" class="step-img" alt="Статус отправлена на регистрацию 1">
-              <img src="img/image19.jpeg" class="step-img" alt="Статус отправлена на регистрацию 2">
+          <div class="substep-row">
+            <span class="substep-num">3.3</span>
+            <div class="substep-body">
+              <div class="step-text">Вам может потребоваться подтверждение доступа для сайта. Необходимо дать согласие на действие программы. Нажмите <strong>«Да»</strong>.</div>
+              <img src="img/image8.jpeg" class="step-img" alt="Подтверждение КриптоПро">
             </div>
           </div>
-        </div>
-
-        <div class="substep">
-          <div class="substep-header">
-            <div class="substep-num">3.15</div>
-            <div class="substep-title">Успешное завершение регистрации МЧД</div>
+          <div class="substep-row">
+            <span class="substep-num">3.4</span>
+            <div class="substep-body">
+              <div class="step-text">Выберите сертификат своей КЭП, чтобы перейти к следующему этапу.</div>
+              <img src="img/image9.jpeg" class="step-img" alt="Выбор сертификата КЭП">
+            </div>
           </div>
-          <div class="substep-body">
-            <div class="substep-text">Периодически обновляйте страницу со списком МЧД. Как только в колонке «Статус обработки» появится итоговое <strong style="color: var(--accent)">«Готово»</strong>, процесс выпуска машиночитаемой доверенности считается полностью завершённым. Документ действителен и готов к использованию в работе!</div>
-            <div class="note note-green">✅ Документ действителен и готов к использованию в работе!</div>
+          <div class="substep-row">
+            <span class="substep-num">3.5</span>
+            <div class="substep-body">
+              <div class="step-text"><strong>Заполнение сведений о доверителе.</strong> Все данные о вашей организации подтянутся из вашего USB-токена. Проверьте заполненность всех данных. Если необходимо заполнить детали адреса, сделайте это вручную. Затем нажмите <strong>«Далее»</strong>.</div>
+              <div class="step-img-group">
+                <img src="img/image10.jpeg" class="step-img" alt="Сведения о доверителе">
+              </div>
+            </div>
+          </div>
+          <div class="substep-row">
+            <span class="substep-num">3.6</span>
+            <div class="substep-body">
+              <div class="step-text"><strong>Проверка данных действующего лица.</strong> На этапе «Действующее лицо» проверьте или заполните данные сотрудника, действующего от имени доверителя (руководителя). Убедитесь, что поля с личной информацией (Пол, Фамилия, Имя, Отчество, ИНН, СНИЛС и Должность) заполнены корректно, если данные не подтянулись, введите вручную. После проверки нажмите кнопку <strong>«Далее»</strong>.</div>
+              <img src="img/image12.jpeg" class="step-img" alt="Действующее лицо">
+            </div>
+          </div>
+          <div class="substep-row">
+            <span class="substep-num">3.7</span>
+            <div class="substep-body">
+              <div class="step-text"><strong>Проверка списка представителей.</strong> На этапе «Представители» система отобразит список сотрудников, на которых будет осуществлён выпуск МЧД, нажмите кнопку <strong>«Создать МЧД»</strong>.</div>
+              <div class="step-img-group">
+                <img src="img/image13.jpeg" class="step-img" alt="Представители">
+              </div>
+            </div>
+          </div>
+          <div class="substep-row">
+            <span class="substep-num">3.8</span>
+            <div class="substep-body">
+              <div class="step-text"><strong>Отслеживание статуса МЧД.</strong> После нажатия кнопки «Создать МЧД» вернитесь в общий список доверенностей. Вам необходимо дождаться изменения статуса обработки на <strong style="color: var(--accent)">«Ожидает подписи»</strong>. Используйте иконку обновления со стрелочками, чтобы проверить текущее состояние документа в реальном времени.</div>
+              <img src="img/image15.jpeg" class="step-img" alt="Статус МЧД">
+            </div>
+          </div>
+          <div class="substep-row">
+            <span class="substep-num">3.9</span>
+            <div class="substep-body">
+              <div class="step-text"><strong>Переход к подписанию МЧД.</strong> Как только статус документа в реестре изменится на <strong style="color: var(--danger)">«Ожидает подписи»</strong>, кликните по соответствующей строке, чтобы открыть детали. В карточке МЧД найдите блок «Действия с МЧД» и нажмите кнопку <strong>«Подписать МЧД»</strong>.</div>
+              <div class="note note-yellow">⚠️ Необходимо подписать каждую из трёх МЧД по отдельности!</div>
+              <img src="img/image16.jpeg" class="step-img" alt="Подписать МЧД">
+            </div>
+          </div>
+          <div class="substep-row">
+            <span class="substep-num">3.10</span>
+            <div class="substep-body">
+              <div class="step-text">Вам может потребоваться подтверждение доступа для сайта. Необходимо дать согласие на действие программы. Нажмите <strong>«Да»</strong>.</div>
+              <img src="img/image8.jpeg" class="step-img" alt="Подтверждение КриптоПро">
+            </div>
+          </div>
+          <div class="substep-row">
+            <span class="substep-num">3.11</span>
+            <div class="substep-body">
+              <div class="step-text">Выберите сертификат своей КЭП, чтобы перейти к подписанию, нажмите кнопку <strong>«Продолжить»</strong>.</div>
+              <img src="img/image9.jpeg" class="step-img" alt="Выбор сертификата для подписания">
+            </div>
+          </div>
+          <div class="substep-row">
+            <span class="substep-num">3.12</span>
+            <div class="substep-body">
+              <div class="step-text"><strong>Регистрация МЧД.</strong> Как только статус документа в реестре изменится на <strong style="color: var(--primary)">«Готова к регистрации»</strong>, кликните по соответствующей строке, чтобы открыть детали. В карточке МЧД найдите блок «Действия с МЧД» и нажмите кнопку <strong>«Зарегистрировать МЧД»</strong>.</div>
+              <div class="note note-yellow">⚠️ Необходимо подписать каждую из трёх МЧД по отдельности!</div>
+              <img src="img/image17.jpeg" class="step-img" alt="Зарегистрировать МЧД">
+            </div>
+          </div>
+          <div class="substep-row">
+            <span class="substep-num">3.13</span>
+            <div class="substep-body">
+              <div class="step-text">Убедитесь, что у всех доверенностей статус <strong>«Отправлена на регистрацию»</strong>.</div>
+              <div class="step-img-group">
+                <img src="img/image18.jpeg" class="step-img" alt="Статус отправлена на регистрацию 1">
+                <img src="img/image19.jpeg" class="step-img" alt="Статус отправлена на регистрацию 2">
+              </div>
+            </div>
+          </div>
+          <div class="substep-row">
+            <span class="substep-num">3.14</span>
+            <div class="substep-body">
+              <div class="step-text"><strong>Успешное завершение регистрации.</strong> Периодически обновляйте страницу со списком МЧД. Как только в колонке «Статус обработки» появится итоговое <strong style="color: var(--accent)">«Готово»</strong>, процесс выпуска машиночитаемой доверенности считается полностью завершённым. Документ действителен и готов к использованию в работе!</div>
+              <div class="note note-green">✅ Документ действителен и готов к использованию в работе!</div>
+            </div>
           </div>
         </div>
       </div>
@@ -487,17 +443,17 @@
     <div class="step">
       <div class="step-num danger">4</div>
       <div class="step-body">
-        <div class="step-text"><strong>Сообщите нам о завершении регистрации.</strong> После регистрации в ЭПД и выпуска МЧД (если требовалось) — сообщите техническому специалисту Санадор о готовности. Это необходимо для настройки дополнительных прав доступа в системе.</div>
-        <div class="note note-blue">💬 Свяжитесь с нами через любой удобный канал связи и сообщите: «Регистрация грузоотправителя завершена, прошу настроить доп. права».</div>
+        <div class="step-text"><strong>Говорим техспециалисту Санадор</strong> для настройки дополнительных прав пользователю грузоотправителя.</div>
+        <div class="note note-blue">ℹ️ Сообщите в техподдержку, что регистрация грузоотправителя завершена и необходимо настроить доп. права доступа.</div>
       </div>
     </div>
 
     <!-- Шаг 5 -->
     <div class="step">
-      <div class="step-num">5</div>
+      <div class="step-num danger">5</div>
       <div class="step-body">
-        <div class="step-text"><strong>Перезайдите в ЛК.</strong> После того как технический специалист подтвердит, что права настроены, необходимо выйти из Личного кабинета и войти заново. Это нужно для того, чтобы обновились права пользователя в системе.</div>
-        <div class="note note-yellow">⚠️ Без перезахода в ЛК новые права не вступят в силу!</div>
+        <div class="step-text"><strong>Перезайдите в ЛК</strong> для того, чтобы обновить права пользователя.</div>
+        <div class="note note-yellow">⚠️ Без перезахода в личный кабинет новые права не применятся!</div>
       </div>
     </div>
 
@@ -505,8 +461,8 @@
     <div class="step">
       <div class="step-num accent">6</div>
       <div class="step-body">
-        <div class="step-text"><strong>Добавление контрагентов.</strong> Когда права настроены и вы перезашли в ЛК, в личном кабинете грузоотправителя на сайте sanador.ru необходимо добавить контрагентов, с которыми будет работать данный грузоотправитель.</div>
-        <div class="note note-blue">📋 Для добавления контрагентов понадобятся их ИНН и наименования организаций.</div>
+        <div class="step-text"><strong>Добавление контрагентов.</strong> Когда права настроены, в ЛК грузоотправителя на сайте sanador.ru необходимо добавить контрагентов, с которыми будет работать данный грузоотправитель.</div>
+        <div class="note note-green">✅ После добавления контрагентов регистрация грузоотправителя полностью завершена!</div>
       </div>
     </div>
 
@@ -577,3 +533,4 @@
   </script>
 </body>
 </html>
+>
