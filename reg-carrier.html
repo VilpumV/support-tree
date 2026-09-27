@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Регистрация в ЭПД — Грузоотправитель/Перевозчик</title>
+  <title>Регистрация в ЭПД — Грузоотправитель / Перевозчик</title>
   <style>
     :root {
       --bg-color: #f7f9fc;
@@ -36,7 +36,7 @@
     .back-btn:hover { border-color: var(--primary); background: #f0f7ff; }
     h2 { color: var(--primary); font-weight: 700; margin: 0; font-size: 1.4rem; }
 
-    /* Документы для регистрации (Стиль как в инструкции КриптоПро) */
+    /* Документы для регистрации */
     .docs-section {
       background: #fff; border: 1px solid var(--border);
       border-radius: 14px; padding: 24px; margin-bottom: 20px;
@@ -46,9 +46,7 @@
       font-size: 1.1rem; font-weight: 700; color: var(--primary);
       margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
     }
-    .tabs {
-      display: flex; gap: 8px; margin-bottom: 16px;
-    }
+    .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
     .tab-btn {
       padding: 10px 24px; border-radius: 8px;
       font-size: 0.9rem; font-weight: 700; cursor: pointer;
@@ -60,18 +58,14 @@
     }
     .tab-content { display: none; }
     .tab-content.show { display: block; }
-    .doc-list {
-      list-style: none; padding: 0; margin: 0 0 14px 0;
-    }
+    .doc-list { list-style: none; padding: 0; margin: 0 0 14px 0; }
     .doc-list li {
       padding: 8px 0; border-bottom: 1px dashed var(--border);
       font-size: 0.92rem; line-height: 1.5;
       display: flex; gap: 8px;
     }
     .doc-list li:last-child { border-bottom: none; }
-    .doc-list li::before {
-      content: "●"; color: var(--accent); flex-shrink: 0;
-    }
+    .doc-list li::before { content: "●"; color: var(--accent); flex-shrink: 0; }
     .doc-group-title {
       font-weight: 700; color: var(--primary);
       font-size: 0.88rem; margin: 14px 0 6px 0;
@@ -87,7 +81,7 @@
     .copy-docs-btn:hover { background: #1f457a; }
     .copy-docs-btn.copied { background: var(--accent); }
 
-    /* Баннер предупреждения */
+    /* Баннер */
     .warning-banner {
       background: #fff8e1; border: 1px solid #ffe8a3;
       border-radius: 12px; padding: 14px 20px;
@@ -95,7 +89,7 @@
       display: flex; align-items: center; gap: 10px; line-height: 1.5;
     }
 
-    /* Секции шагов */
+    /* Секции */
     .section {
       background: #fff; border: 1px solid var(--border);
       border-radius: 14px; padding: 28px; margin-bottom: 20px;
@@ -126,14 +120,17 @@
       margin-bottom: 10px;
     }
     .step-text strong { color: var(--primary); }
-    
     .step-img {
       max-width: 100%; border-radius: 10px;
       border: 1px solid var(--border); display: block;
       margin-top: 8px;
     }
+    .step-img-group {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;
+    }
+    .step-img-group .step-img { max-width: calc(50% - 5px); }
 
-    /* Плашки заметок */
+    /* Плашки */
     .note {
       padding: 12px 16px; border-radius: 8px;
       font-size: 0.88rem; line-height: 1.5;
@@ -149,11 +146,15 @@
       border-left: 3px solid var(--border);
       margin-bottom: 16px;
     }
+    .substep-title {
+      font-weight: 700; color: var(--text);
+      font-size: 0.95rem; margin-bottom: 8px; margin-top: 12px;
+    }
 
     @media (max-width: 600px) {
       .step { flex-direction: column; }
-      .tabs { flex-wrap: wrap; }
-      .tab-btn { width: 100%; margin-bottom: 8px; }
+      .step-img-group .step-img { max-width: 100%; }
+      .tabs { flex-direction: column; }
     }
   </style>
 </head>
@@ -164,7 +165,7 @@
     <h2>Регистрация в ЭПД: Грузоотправитель / Перевозчик</h2>
   </div>
 
-  <!-- Блок документов (как в инструкции КриптоПро) -->
+  <!-- Документы для регистрации -->
   <div class="docs-section">
     <div class="docs-title">📋 Документы для регистрации</div>
     <div class="tabs">
@@ -174,16 +175,16 @@
 
     <div id="tab-ip" class="tab-content show">
       <ul class="doc-list">
-        <li>Паспорт ИП и всех водителей (первая страница и страница с пропиской)</li>
-        <li>ВУ (водительское удостоверение) всех водителей (фото с двух сторон)</li>
-        <li>СТС (свидетельство транспортного средства) на прицепы и тягачи (фото с двух сторон)</li>
+        <li>Паспорт ИП и всех водителей, первая страница паспорта и страница с пропиской</li>
+        <li>ВУ (водительское удостоверение) всех водителей, фото с двух сторон</li>
+        <li>СТС (свидетельство транспортного средства) на прицепы и тягачи, фото с двух сторон</li>
         <li>ИНН ИП</li>
         <li>Укажите, работаете с НДС или без. Если с НДС — узнать сколько процентов</li>
-        <li>Если ТС в аренде или лизинге — нужен договор аренды или лизинга</li>
+        <li>Если ваши ТС в аренде или лизинге — нужен договор аренды или лизинга</li>
         <li>Контактный номер телефона ИП и всех водителей</li>
         <li>Банковские реквизиты ИП</li>
       </ul>
-      <button class="copy-docs-btn" onclick="copyDocs('ip', this)">📋 Копировать список для ИП</button>
+      <button class="copy-docs-btn" onclick="copyDocs('ip', this)">📋 Копировать список</button>
     </div>
 
     <div id="tab-ooo" class="tab-content">
@@ -198,85 +199,272 @@
       </ul>
       <div class="doc-group-title">Транспортные средства</div>
       <ul class="doc-list">
-        <li>Свидетельство о регистрации ТС (с двух сторон)</li>
-        <li>Договор аренды/лизинга (если ТС не в собственности)</li>
+        <li>Свидетельство о регистрации ТС, с двух сторон на машины и на прицепы</li>
+        <li>Если транспорт в аренде / лизинге — договор аренды / лизинга</li>
       </ul>
-      <button class="copy-docs-btn" onclick="copyDocs('ooo', this)">📋 Копировать список для ООО</button>
+      <div class="doc-group-title">Водители</div>
+      <ul class="doc-list">
+        <li>Паспорт с пропиской каждого водителя</li>
+        <li>Водительские удостоверения с двух сторон каждого водителя</li>
+        <li>Номера телефонов</li>
+      </ul>
+      <button class="copy-docs-btn" onclick="copyDocs('ooo', this)">📋 Копировать список</button>
     </div>
   </div>
 
-  <!-- Важное предупреждение -->
+  <!-- Баннер -->
   <div class="warning-banner">
-    ⚠️ <strong>Важно:</strong> Перед началом регистрации убедитесь, что у вас установлен КриптоПро CSP и плагин для браузера. Без этого регистрация невозможна.
+    ⚠️ <strong>ОБЯЗАТЕЛЬНО работаем через Яндекс Браузер!</strong> Иначе подпись будет не видна!
   </div>
 
-  <!-- ИНСТРУКЦИЯ (Сюда вставить данные из файла) -->
+  <!-- Инструкция -->
   <div class="section">
-    <div class="section-title">📘 Инструкция по регистрации</div>
-    
-    <!-- ВСТАВЬТЕ СЮДА ИНСТРУКЦИЮ ИЗ ВАШЕГО ФАЙЛА -->
-    <!-- Пример структуры шага:
+    <div class="section-title">📖 Добавление МЧД в ЛК на сайте sanador.ru</div>
+
+    <!-- Шаг 1 -->
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-body">
-        <div class="step-text">Зайдите в личный кабинет ЭПД и нажмите кнопку «Регистрация».</div>
-        <img src="путь_к_картинке.png" alt="Скриншот шага 1" class="step-img">
+        <div class="step-text"><strong>Автоматизация на сайте Санадор.</strong> Выполните вход в свой Личный кабинет на сайте sanador.ru для дальнейшей работы.</div>
+        <img src="img/image2.jpeg" class="step-img" alt="Вход в ЛК">
       </div>
     </div>
-    -->
-    
-    <p style="color: #666;">
-      <em>Здесь будет размещена пошаговая инструкция из вашего файла. Пожалуйста, пришлите текст или содержимое файла, чтобы я вставил его в этот блок с сохранением стилей.</em>
-    </p>
-    <!-- Конец вставки инструкции -->
+
+    <!-- Шаг 2 -->
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Регистрация ЭПД.</strong> В левом боковом меню личного кабинета разверните вкладку ЭПД и выберите пункт Регистрация. Нажмите на поле <strong>«Выбрать сертификат»</strong>.</div>
+        <img src="img/image3.jpeg" class="step-img" alt="Регистрация ЭПД">
+      </div>
+    </div>
+
+    <!-- Шаг 3 -->
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Выбор сертификата.</strong> На выбор вам предложат все электронные сертификаты, которые записаны на ваш USB-токен. Выберите необходимый.</div>
+        <img src="img/image4.jpeg" class="step-img" alt="Выбор сертификата">
+      </div>
+    </div>
+
+    <!-- Шаг 4 -->
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-text">Дождитесь загрузки сертификата, при успехе данные подтянутся автоматически. Нажмите кнопку <strong>«Зарегистрироваться в ЭДО»</strong>.</div>
+        <img src="img/image5.jpeg" class="step-img" alt="Регистрация в ЭДО">
+      </div>
+    </div>
+
+    <!-- Шаг 5 -->
+    <div class="step">
+      <div class="step-num accent">5</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Создание МЧД.</strong> В левом боковом меню личного кабинета разверните вкладку ЭПД и выберите пункт МЧД.</div>
+        <img src="img/image6.jpeg" class="step-img" alt="Раздел МЧД">
+      </div>
+    </div>
+
+    <!-- Шаг 6 -->
+    <div class="step">
+      <div class="step-num accent">6</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Создание новой доверенности:</strong> На открывшейся странице со списком доверенностей нажмите кнопку <strong>«Создать МЧД для сотрудников»</strong> (расположена в правом верхнем углу).</div>
+        <img src="img/image6.jpeg" class="step-img" alt="Создать МЧД для сотрудников">
+      </div>
+    </div>
+
+    <!-- Шаг 7 -->
+    <div class="step">
+      <div class="step-num accent">7</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Заполнение параметров:</strong> В открывшемся окне на шаге «Параметры» будут указаны сроки доверенности, по умолчанию доверенность действует год. Нажмите <strong>«Далее»</strong>.</div>
+        <img src="img/image7.jpeg" class="step-img" alt="Параметры МЧД">
+      </div>
+    </div>
+
+    <!-- Шаг 8 -->
+    <div class="step">
+      <div class="step-num">8</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Подтверждение доступа через КриптоПро:</strong> Вам может потребоваться подтверждение доступа для сайта. Необходимо дать согласие на действие программы. Нажмите <strong>«Да»</strong>.</div>
+        <img src="img/image8.jpeg" class="step-img" alt="Подтверждение КриптоПро">
+      </div>
+    </div>
+
+    <!-- Шаг 9 -->
+    <div class="step">
+      <div class="step-num">9</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Выбор электронного сертификата.</strong> Выберите сертификат своей КЭП, чтобы перейти к следующему этапу.</div>
+        <img src="img/image9.jpeg" class="step-img" alt="Выбор сертификата КЭП">
+      </div>
+    </div>
+
+    <!-- Шаг 10 -->
+    <div class="step">
+      <div class="step-num">10</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Заполнение сведений о доверителе.</strong> Все данные о вашей организации подтянутся из вашего USB-токена. Проверьте заполненность всех данных. Если необходимо заполнить детали адреса, сделайте это вручную. Затем нажмите <strong>«Далее»</strong>.</div>
+        <div class="step-img-group">
+          <img src="img/image10.jpeg" class="step-img" alt="Сведения о доверителе 1">
+          <img src="img/image11.jpeg" class="step-img" alt="Сведения о доверителе 2">
+        </div>
+      </div>
+    </div>
+
+    <!-- Шаг 11 -->
+    <div class="step">
+      <div class="step-num">11</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Проверка данных действующего лица.</strong> На этапе «Действующее лицо» проверьте или заполните данные сотрудника, действующего от имени доверителя (руководителя). Убедитесь, что поля с личной информацией (Пол, Фамилия, Имя, Отчество, ИНН, СНИЛС и Должность) заполнены корректно, если данные не подтянулись, введите вручную. После проверки нажмите кнопку <strong>«Далее»</strong>.</div>
+        <img src="img/image12.jpeg" class="step-img" alt="Действующее лицо">
+      </div>
+    </div>
+
+    <!-- Шаг 12 -->
+    <div class="step">
+      <div class="step-num">12</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Проверка списка представителей.</strong> На этапе «Представители» (Шаг 4) система отобразит список сотрудников, на которых будет осуществлён выпуск МЧД, нажмите кнопку <strong>«Создать МЧД»</strong>.</div>
+        <div class="step-img-group">
+          <img src="img/image13.jpeg" class="step-img" alt="Представители 1">
+          <img src="img/image14.jpeg" class="step-img" alt="Представители 2">
+        </div>
+      </div>
+    </div>
+
+    <!-- Шаг 13 -->
+    <div class="step">
+      <div class="step-num accent">13</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Отслеживание статуса МЧД.</strong></div>
+        <img src="img/image15.jpeg" class="step-img" alt="Статус МЧД">
+        <div class="step-text" style="margin-top: 12px;">После нажатия кнопки «Создать МЧД» вернитесь в общий список доверенностей. Вам необходимо дождаться изменения статуса обработки на <strong style="color: var(--accent)">«Ожидает подписи»</strong>. Используйте иконку обновления со стрелочками, чтобы проверить текущее состояние документа в реальном времени.</div>
+      </div>
+    </div>
+
+    <!-- Шаг 14 -->
+    <div class="step">
+      <div class="step-num danger">14</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Переход к подписанию МЧД.</strong> Как только статус документа в реестре изменится на <strong style="color: var(--danger)">«Ожидает подписи»</strong>, кликните по соответствующей строке, чтобы открыть детали. В карточке МЧД найдите блок «Действия с МЧД» и нажмите кнопку <strong>«Подписать МЧД»</strong>.</div>
+        <div class="note note-yellow">⚠️ Необходимо подписать каждую из трёх МЧД по отдельности!</div>
+        <img src="img/image16.jpeg" class="step-img" alt="Подписать МЧД">
+      </div>
+    </div>
+
+    <!-- Шаг 15 -->
+    <div class="step">
+      <div class="step-num">15</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Подтверждение доступа через КриптоПро.</strong> Вам может потребоваться подтверждение доступа для сайта. Необходимо дать согласие на действие программы. Нажмите <strong>«Да»</strong>.</div>
+        <img src="img/image8.jpeg" class="step-img" alt="Подтверждение КриптоПро">
+      </div>
+    </div>
+
+    <!-- Шаг 16 -->
+    <div class="step">
+      <div class="step-num">16</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Выбор электронного сертификата.</strong> Выберите сертификат своей КЭП, чтобы перейти к подписанию, нажмите кнопку <strong>«Продолжить»</strong>.</div>
+        <img src="img/image9.jpeg" class="step-img" alt="Выбор сертификата для подписания">
+      </div>
+    </div>
+
+    <!-- Шаг 17 -->
+    <div class="step">
+      <div class="step-num danger">17</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Регистрация МЧД.</strong> Как только статус документа в реестре изменится на <strong style="color: var(--primary)">«Готова к регистрации»</strong>, кликните по соответствующей строке, чтобы открыть детали. В карточке МЧД найдите блок «Действия с МЧД» и нажмите кнопку <strong>«Зарегистрировать МЧД»</strong>.</div>
+        <div class="note note-yellow">⚠️ Необходимо подписать каждую из трёх МЧД по отдельности!</div>
+        <img src="img/image17.jpeg" class="step-img" alt="Зарегистрировать МЧД">
+      </div>
+    </div>
+
+    <!-- Шаг 18 -->
+    <div class="step">
+      <div class="step-num danger">18</div>
+      <div class="step-body">
+        <div class="step-text">Убедитесь, что у всех доверенностей статус <strong>«Отправлена на регистрацию»</strong>.</div>
+        <div class="step-img-group">
+          <img src="img/image18.jpeg" class="step-img" alt="Статус отправлена на регистрацию 1">
+          <img src="img/image19.jpeg" class="step-img" alt="Статус отправлена на регистрацию 2">
+        </div>
+      </div>
+    </div>
+
+    <!-- Шаг 19 -->
+    <div class="step">
+      <div class="step-num accent">19</div>
+      <div class="step-body">
+        <div class="step-text"><strong>Успешное завершение регистрации.</strong> Периодически обновляйте страницу со списком МЧД. Как только в колонке «Статус обработки» появится итоговое <strong style="color: var(--accent)">«Готово»</strong>, процесс выпуска машиночитаемой доверенности считается полностью завершённым. Документ действителен и готов к использованию в работе!</div>
+        <div class="note note-green">✅ Документ действителен и готов к использованию в работе!</div>
+      </div>
+    </div>
 
   </div>
 
   <script>
-    // Логика переключения вкладок документов
-    function switchTab(tabName, btn) {
-      // Убираем активный класс у всех кнопок
+    function switchTab(tab, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      // Скрываем все табы
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('show'));
-      
-      // Активируем нужный
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('show'));
       btn.classList.add('active');
-      document.getElementById('tab-' + tabName).classList.add('show');
+      document.getElementById('tab-' + tab).classList.add('show');
     }
 
-    // Логика копирования списка документов
     function copyDocs(type, btn) {
       let text = '';
       if (type === 'ip') {
-        text = `Документы для ИП:\n` + 
-               `1. Паспорт ИП и всех водителей (первая страница и прописка)\n` +
-               `2. ВУ всех водителей (2 стороны)\n` +
-               `3. СТС на прицепы и тягачи (2 стороны)\n` +
-               `4. ИНН ИП\n` +
-               `5. Информация по НДС\n` +
-               `6. Договор аренды/лизинга (если есть)\n` +
-               `7. Контактные телефоны\n` +
-               `8. Банковские реквизиты`;
-      } else if (type === 'ooo') {
-        text = `Документы для ООО:\n` +
-               `1. ИНН / ОГРН\n` +
-               `2. Банковские реквизиты\n` +
-               `3. Паспорт директора (первая страница и прописка)\n` +
-               `4. Приказ о назначении директора\n` +
-               `5. Устав\n` +
-               `6. Ставка НДС\n` +
-               `7. СТС на ТС (2 стороны)\n` +
-               `8. Договор аренды/лизинга (если есть)`;
+        text = 'Документы для регистрации (ИП):\n\n';
+        text += '1. Паспорт ИП и всех водителей, первая страница паспорта и страница с пропиской\n';
+        text += '2. ВУ (водительское удостоверение) всех водителей, фото с двух сторон\n';
+        text += '3. СТС (свидетельство транспортного средства) на прицепы и тягачи, фото с двух сторон\n';
+        text += '4. ИНН ИП\n';
+        text += '5. Укажите, работаете с НДС или без. Если с НДС — узнать сколько процентов\n';
+        text += '6. Если ваши ТС в аренде или лизинге — нужен договор аренды или лизинга\n';
+        text += '7. Контактный номер телефона ИП и всех водителей\n';
+        text += '8. Банковские реквизиты ИП';
+      } else {
+        text = 'Документы для регистрации (ООО):\n\n';
+        text += 'Документы организации:\n';
+        text += '1. ИНН / ОГРН\n';
+        text += '2. Банковские реквизиты (расчётного счёта)\n';
+        text += '3. Паспорт директора (первая страница, страница с пропиской)\n';
+        text += '4. Приказ о назначении директора\n';
+        text += '5. Устав\n';
+        text += '6. Ставка НДС\n\n';
+        text += 'Транспортные средства:\n';
+        text += '7. Свидетельство о регистрации ТС, с двух сторон на машины и на прицепы\n';
+        text += '8. Если транспорт в аренде / лизинге — договор аренды / лизинга\n\n';
+        text += 'Водители:\n';
+        text += '9. Паспорт с пропиской каждого водителя\n';
+        text += '10. Водительские удостоверения с двух сторон каждого водителя\n';
+        text += '11. Номера телефонов';
       }
 
       navigator.clipboard.writeText(text).then(() => {
-        const originalText = btn.textContent;
-        btn.textContent = '✓ Готово';
         btn.classList.add('copied');
+        btn.innerHTML = '✓ Скопировано!';
         setTimeout(() => {
-          btn.textContent = originalText;
           btn.classList.remove('copied');
+          btn.innerHTML = '📋 Копировать список';
+        }, 2000);
+      }).catch(() => {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch(e) {}
+        document.body.removeChild(ta);
+        btn.classList.add('copied');
+        btn.innerHTML = '✓ Скопировано!';
+        setTimeout(() => {
+          btn.classList.remove('copied');
+          btn.innerHTML = '📋 Копировать список';
         }, 2000);
       });
     }
