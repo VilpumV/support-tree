@@ -11,6 +11,7 @@
       --danger: #ff5252;
       --text: #333;
       --border: #e1e6ed;
+      --sidebar-w: 250px;
     }
     * { box-sizing: border-box; }
     body {
@@ -21,6 +22,96 @@
       margin: 0 auto;
       padding: 24px 16px 48px;
     }
+
+    /* === БОКОВОЕ МЕНЮ === */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: #fff;
+      border-right: 1px solid var(--border);
+      padding: 20px 0;
+      overflow-y: auto;
+      z-index: 1000;
+      transition: transform 0.3s ease;
+    }
+    .sidebar-logo {
+      padding: 0 24px 20px;
+      font-size: 1.15rem; font-weight: 700; color: var(--primary);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .sidebar-logo span { font-size: 0.72rem; color: #8a94a6; display: block; font-weight: 400; margin-top: 2px; }
+    .sidebar-section {
+      padding: 0 12px;
+      margin-bottom: 20px;
+    }
+    .sidebar-section-title {
+      font-size: 0.72rem; font-weight: 700; color: #8a94a6;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 0 12px 8px;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: 8px;
+      font-size: 0.88rem; font-weight: 500; color: #555;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+    .sidebar-link:hover {
+      background: #f0f7ff; color: var(--primary);
+    }
+    .sidebar-link.active {
+      background: var(--primary); color: #fff; font-weight: 600;
+    }
+    .sidebar-link .link-icon {
+      font-size: 1.1rem; flex-shrink: 0; width: 24px; text-align: center;
+    }
+    .sidebar-link .link-badge {
+      font-size: 0.68rem; font-weight: 700;
+      background: var(--accent); color: #fff;
+      padding: 2px 7px; border-radius: 10px;
+      margin-left: auto;
+    }
+    .sidebar-link.active .link-badge { background: rgba(255,255,255,0.25); }
+
+    /* Кнопка-гамбургер (мобильные) */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      top: 16px; left: 16px;
+      z-index: 1100;
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: #fff; border: 1px solid var(--border);
+      cursor: pointer;
+      align-items: center; justify-content: center;
+      font-size: 1.4rem; color: var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .sidebar-overlay {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4); z-index: 999;
+    }
+    .sidebar-overlay.show { display: block; }
+
+    @media (max-width: 900px) {
+      .sidebar {
+        transform: translateX(-100%);
+        box-shadow: 2px 0 20px rgba(0,0,0,0.15);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-toggle { display: flex; }
+      body { padding-left: 16px; }
+    }
+    @media (min-width: 901px) {
+      body { padding-left: calc(var(--sidebar-w) + 16px); }
+    }
+
+    /* === ОСТАЛЬНЫЕ СТИЛИ === */
     .header {
       display: flex; align-items: center; gap: 16px;
       margin-bottom: 24px;
@@ -36,52 +127,40 @@
     .back-btn:hover { border-color: var(--primary); background: #f0f7ff; }
     h2 { color: var(--primary); font-weight: 700; margin: 0; font-size: 1.4rem; }
 
-    /* Сводный блок отличий */
-    .summary-block {
-      background: linear-gradient(135deg, #e8f0fe 0%, #f0f7ff 100%);
-      border: 1px solid #c8dcf5;
-      border-radius: 14px; padding: 24px 28px;
-      margin-bottom: 20px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    }
-    .summary-title {
-      font-size: 1.1rem; font-weight: 700; color: var(--primary);
-      margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
-    }
-    .summary-list {
-      list-style: none; padding: 0; margin: 0;
-      counter-reset: summary-counter;
-    }
-    .summary-list li {
-      counter-increment: summary-counter;
-      padding: 10px 0 10px 48px;
-      position: relative;
-      font-size: 0.95rem; line-height: 1.5;
-      border-bottom: 1px dashed #c8dcf5;
-    }
-    .summary-list li:last-child { border-bottom: none; }
-    .summary-list li::before {
-      content: counter(summary-counter);
-      position: absolute; left: 0; top: 50%;
-      transform: translateY(-50%);
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      background: var(--primary); color: #fff;
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.9rem;
-    }
-    .summary-list li strong { color: var(--primary); }
-
-    /* Документы для регистрации */
+    /* Сворачиваемый раздел документов */
     .docs-section {
       background: #fff; border: 1px solid var(--border);
-      border-radius: 14px; padding: 24px; margin-bottom: 20px;
+      border-radius: 14px; margin-bottom: 20px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      overflow: hidden;
     }
+    .docs-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 24px; cursor: pointer;
+      user-select: none; transition: background 0.2s ease;
+    }
+    .docs-header:hover { background: #f8fafd; }
     .docs-title {
       font-size: 1.1rem; font-weight: 700; color: var(--primary);
-      margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+      display: flex; align-items: center; gap: 10px;
     }
+    .docs-chevron {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: #e8f0fe; color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+    .docs-section.collapsed .docs-chevron { transform: rotate(-90deg); }
+    .docs-content {
+      padding: 0 24px 24px;
+      max-height: 2000px; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .docs-section.collapsed .docs-content {
+      max-height: 0; padding-top: 0; padding-bottom: 0;
+    }
+
     .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
     .tab-btn {
       padding: 10px 24px; border-radius: 8px;
@@ -117,7 +196,6 @@
     .copy-docs-btn:hover { background: #1f457a; }
     .copy-docs-btn.copied { background: var(--accent); }
 
-    /* Баннер */
     .warning-banner {
       background: #fff8e1; border: 1px solid #ffe8a3;
       border-radius: 12px; padding: 14px 20px;
@@ -125,7 +203,6 @@
       display: flex; align-items: center; gap: 10px; line-height: 1.5;
     }
 
-    /* Секции */
     .section {
       background: #fff; border: 1px solid var(--border);
       border-radius: 14px; padding: 28px; margin-bottom: 20px;
@@ -137,7 +214,6 @@
       border-bottom: 2px solid var(--border);
     }
 
-    /* Шаги */
     .step {
       display: flex; gap: 16px; margin-bottom: 24px;
       align-items: flex-start;
@@ -173,7 +249,6 @@
       flex: 1 1 100%; max-width: 100%;
     }
 
-    /* Плашки */
     .note {
       padding: 12px 16px; border-radius: 8px;
       font-size: 0.88rem; line-height: 1.5;
@@ -211,68 +286,101 @@
 </head>
 <body>
 
+  <!-- Кнопка-гамбургер для мобильных -->
+  <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <!-- БОКОВОЕ МЕНЮ -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      🚚 Санадор
+      <span>Техподдержка</span>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Главная</div>
+      <a href="index.html" class="sidebar-link">
+        <span class="link-icon">🏠</span> Главная
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Инструкции</div>
+      <a href="crypto-pro.html" class="sidebar-link">
+        <span class="link-icon">🔐</span> КриптоПро
+      </a>
+      <a href="registration-epd.html" class="sidebar-link">
+        <span class="link-icon">🚛</span> Регистрация: Перевозчик
+      </a>
+      <a href="registration-epd-shipper.html" class="sidebar-link active">
+        <span class="link-icon">📦</span> Регистрация: Грузоотправитель
+        <span class="link-badge">здесь</span>
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Справочники</div>
+      <a href="links.html" class="sidebar-link">
+        <span class="link-icon">🔗</span> Важные ссылки
+      </a>
+    </div>
+  </nav>
+
+  <!-- Основной контент -->
   <div class="header">
     <a href="index.html" class="back-btn">← Назад</a>
     <h2>Регистрация в ЭПД: Грузоотправитель (ООО, ИП)</h2>
   </div>
 
-  <!-- СВОДНЫЙ БЛОК: Чем отличается от регистрации перевозчика -->
-  <div class="summary-block">
-    <div class="summary-title">📌 Порядок регистрации грузоотправителя</div>
-    <ol class="summary-list">
-      <li><strong>Регистрируем в личном кабинете (если нет аккаунта)</strong>Аналогично перевозчику (выбираем не ТЭК или Другие ,а ПЕРЕВОЗЧИК) </li>
-      <li><strong>Регистрируем в ЭПД</strong> Аналогично регистрации перевозчика(по инструкции,она ниже) </li>
-      <li>При необходимости (уточните у отправителя,расскажите про подпись "на сервере" без флешки ) <strong>выпускаем МЧД</strong></li>
-      <li><strong>Говорим Маше название грузоотправителя (ИП ИЛИ ООО)</strong> для настройки доп. прав</li>
-      <li><strong>Перезайдим в личный кабинет</strong> (для того, чтобы обновить права пользователя)</li>
-      <li>Когда права настроены, в лисном кабинете грузоотправителя на сайте sanador.ru необходимо <strong>добавить контрагентов</strong>, с которыми будет работать данный грузоотправитель(инструкция по гипер ссылке и добавить ниже)</li>
-    </ol>
-  </div>
-
-  <!-- Документы для регистрации -->
-  <div class="docs-section">
-    <div class="docs-title">📋 Документы для регистрации</div>
-    <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('ip', this)">ДЛЯ ИП</button>
-      <button class="tab-btn" onclick="switchTab('ooo', this)">ДЛЯ ООО</button>
+  <!-- Сворачиваемый раздел документов -->
+  <div class="docs-section" id="docsSection">
+    <div class="docs-header" onclick="toggleDocs()">
+      <div class="docs-title">📋 Документы для регистрации</div>
+      <div class="docs-chevron">▾</div>
     </div>
+    <div class="docs-content">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('ip', this)">ДЛЯ ИП</button>
+        <button class="tab-btn" onclick="switchTab('ooo', this)">ДЛЯ ООО</button>
+      </div>
 
-    <div id="tab-ip" class="tab-content show">
-      <ul class="doc-list">
-        <li>Паспорт ИП и всех водителей, первая страница паспорта и страница с пропиской</li>
-        <li>ВУ (водительское удостоверение) всех водителей, фото с двух сторон</li>
-        <li>СТС (свидетельство транспортного средства) на прицепы и тягачи, фото с двух сторон</li>
-        <li>ИНН ИП</li>
-        <li>Укажите, работаете с НДС или без. Если с НДС — узнать сколько процентов</li>
-        <li>Если ваши ТС в аренде или лизинге — нужен договор аренды или лизинга</li>
-        <li>Контактный номер телефона ИП и всех водителей</li>
-        <li>Банковские реквизиты ИП</li>
-      </ul>
-      <button class="copy-docs-btn" onclick="copyDocs('ip', this)">📋 Копировать список</button>
-    </div>
+      <div id="tab-ip" class="tab-content show">
+        <ul class="doc-list">
+          <li>Паспорт ИП и всех водителей, первая страница паспорта и страница с пропиской</li>
+          <li>ВУ (водительское удостоверение) всех водителей, фото с двух сторон</li>
+          <li>СТС (свидетельство транспортного средства) на прицепы и тягачи, фото с двух сторон</li>
+          <li>ИНН ИП</li>
+          <li>Укажите, работаете с НДС или без. Если с НДС — узнать сколько процентов</li>
+          <li>Если ваши ТС в аренде или лизинге — нужен договор аренды или лизинга</li>
+          <li>Контактный номер телефона ИП и всех водителей</li>
+          <li>Банковские реквизиты ИП</li>
+        </ul>
+        <button class="copy-docs-btn" onclick="copyDocs('ip', this)">📋 Копировать список</button>
+      </div>
 
-    <div id="tab-ooo" class="tab-content">
-      <div class="doc-group-title">Документы организации</div>
-      <ul class="doc-list">
-        <li>ИНН / ОГРН</li>
-        <li>Банковские реквизиты (расчётного счёта)</li>
-        <li>Паспорт директора (первая страница, страница с пропиской)</li>
-        <li>Приказ о назначении директора</li>
-        <li>Устав</li>
-        <li>Ставка НДС</li>
-      </ul>
-      <div class="doc-group-title">Транспортные средства</div>
-      <ul class="doc-list">
-        <li>Свидетельство о регистрации ТС, с двух сторон на машины и на прицепы</li>
-        <li>Если транспорт в аренде / лизинге — договор аренды / лизинга</li>
-      </ul>
-      <div class="doc-group-title">Водители</div>
-      <ul class="doc-list">
-        <li>Паспорт с пропиской каждого водителя</li>
-        <li>Водительские удостоверения с двух сторон каждого водителя</li>
-        <li>Номера телефонов</li>
-      </ul>
-      <button class="copy-docs-btn" onclick="copyDocs('ooo', this)">📋 Копировать список</button>
+      <div id="tab-ooo" class="tab-content">
+        <div class="doc-group-title">Документы организации</div>
+        <ul class="doc-list">
+          <li>ИНН / ОГРН</li>
+          <li>Банковские реквизиты (расчётного счёта)</li>
+          <li>Паспорт директора (первая страница, страница с пропиской)</li>
+          <li>Приказ о назначении директора</li>
+          <li>Устав</li>
+          <li>Ставка НДС</li>
+        </ul>
+        <div class="doc-group-title">Транспортные средства</div>
+        <ul class="doc-list">
+          <li>Свидетельство о регистрации ТС, с двух сторон на машины и на прицепы</li>
+          <li>Если транспорт в аренде / лизинге — договор аренды / лизинга</li>
+        </ul>
+        <div class="doc-group-title">Водители</div>
+        <ul class="doc-list">
+          <li>Паспорт с пропиской каждого водителя</li>
+          <li>Водительские удостоверения с двух сторон каждого водителя</li>
+          <li>Номера телефонов</li>
+        </ul>
+        <button class="copy-docs-btn" onclick="copyDocs('ooo', this)">📋 Копировать список</button>
+      </div>
     </div>
   </div>
 
@@ -469,6 +577,18 @@
   </div>
 
   <script>
+    // Боковое меню (мобильные)
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('show');
+    }
+
+    // Сворачивание документов
+    function toggleDocs() {
+      document.getElementById('docsSection').classList.toggle('collapsed');
+    }
+
+    // Вкладки
     function switchTab(tab, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('show'));
@@ -476,6 +596,7 @@
       document.getElementById('tab-' + tab).classList.add('show');
     }
 
+    // Копирование
     function copyDocs(type, btn) {
       let text = '';
       if (type === 'ip') {
@@ -533,4 +654,3 @@
   </script>
 </body>
 </html>
->
