@@ -120,15 +120,39 @@
       margin-bottom: 10px;
     }
     .step-text strong { color: var(--primary); }
+    
+    /* --- ИСПРАВЛЕННЫЙ СТИЛЬ ДЛЯ КАРТИНОК --- */
     .step-img {
-      max-width: 100%; border-radius: 10px;
-      border: 1px solid var(--border); display: block;
+      width: 100%;             /* Растягиваем на всю доступную ширину родителя */
+      max-width: 100%;         /* Но не больше, чем сама картинка */
+      height: auto;            /* Сохраняем пропорции */
+      object-fit: contain;     /* Вписываем целиком, не искажая */
+      border-radius: 10px;
+      border: 1px solid var(--border); 
+      display: block;
       margin-top: 8px;
     }
+    
     .step-img-group {
-      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px;
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 10px; 
+      margin-top: 8px;
+      width: 100%;             /* Группа занимает всю ширину */
     }
-    .step-img-group .step-img { max-width: calc(50% - 5px); }
+    
+    /* Для группы из двух картинок (если они есть) */
+    .step-img-group .step-img {
+      flex: 1 1 calc(50% - 5px); /* Две картинки: по 50% минус отступ */
+      max-width: calc(50% - 5px);
+    }
+    
+    /* Для группы из одной картинки (если вторую удалили) */
+    .step-img-group .step-img:only-child {
+      flex: 1 1 100%;           /* Одна картинка: занимает 100% */
+      max-width: 100%;
+    }
+    /* --------------------------------------- */
 
     /* Плашки */
     .note {
@@ -153,7 +177,11 @@
 
     @media (max-width: 600px) {
       .step { flex-direction: column; }
-      .step-img-group .step-img { max-width: 100%; }
+      /* На мобильных все картинки всегда 100% ширины */
+      .step-img-group .step-img {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
       .tabs { flex-direction: column; }
     }
   </style>
