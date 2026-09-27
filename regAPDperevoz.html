@@ -245,17 +245,6 @@
     .substep-row { display: flex; align-items: flex-start; gap: 4px; margin-bottom: 12px; }
     .substep-body { flex: 1; min-width: 0; }
 
-    .img-placeholder {
-      width: 100%;
-      min-height: 200px;
-      border: 2px dashed var(--border);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: #aab4c4; font-size: 0.9rem; font-style: italic;
-      background: #fafbfc;
-      margin-top: 8px;
-    }
-
     @media (max-width: 600px) {
       .step { flex-direction: column; }
       .step-img-group .step-img { flex: 1 1 100%; max-width: 100%; }
@@ -266,33 +255,33 @@
 <body>
 
   <!-- Кнопка-гамбургер -->
-  <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+  <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
   <!-- БОКОВОЕ МЕНЮ -->
   <nav class="sidebar" id="sidebar">
     <div class="sidebar-logo">
-      🚚 Санадор
+      &#128666; Санадор
       <span>Техподдержка</span>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-section-title">Главная</div>
       <a href="index.html" class="sidebar-link">
-        <span class="link-icon">🏠</span> Главная
+        <span class="link-icon">&#127968;</span> Главная
       </a>
     </div>
 
     <div class="sidebar-section">
       <div class="sidebar-section-title">Инструкции</div>
       <a href="crypto-pro.html" class="sidebar-link">
-        <span class="link-icon">🔐</span> КриптоПро
+        <span class="link-icon">&#128274;</span> КриптоПро
       </a>
       <a href="registration-epd.html" class="sidebar-link">
-        <span class="link-icon">🚛</span> Регистрация: Перевозчик
+        <span class="link-icon">&#128666;</span> Регистрация: Перевозчик
       </a>
       <a href="registration-epd-shipper.html" class="sidebar-link active">
-        <span class="link-icon">📦</span> Регистрация: Грузоотправитель
+        <span class="link-icon">&#128230;</span> Регистрация: Грузоотправитель
         <span class="link-badge">здесь</span>
       </a>
     </div>
@@ -300,22 +289,22 @@
     <div class="sidebar-section">
       <div class="sidebar-section-title">Справочники</div>
       <a href="links.html" class="sidebar-link">
-        <span class="link-icon">🔗</span> Важные ссылки
+        <span class="link-icon">&#128279;</span> Важные ссылки
       </a>
     </div>
   </nav>
 
   <!-- Основной контент -->
   <div class="header">
-    <a href="index.html" class="back-btn">← Назад</a>
+    <a href="index.html" class="back-btn">&larr; Назад</a>
     <h2>Регистрация в ЭПД: Грузоотправитель (ООО, ИП)</h2>
   </div>
 
   <!-- Документы -->
   <div class="docs-section" id="docsSection">
     <div class="docs-header" onclick="toggleDocs()">
-      <div class="docs-title">📋 Документы для регистрации</div>
-      <div class="docs-chevron">▾</div>
+      <div class="docs-title">&#128203; Документы для регистрации</div>
+      <div class="docs-chevron">&#9662;</div>
     </div>
     <div class="docs-content">
       <div class="tabs">
@@ -334,7 +323,7 @@
           <li>Контактный номер телефона ИП и всех водителей</li>
           <li>Банковские реквизиты ИП</li>
         </ul>
-        <button class="copy-docs-btn" onclick="copyDocs('ip', this)">📋 Копировать список</button>
+        <button class="copy-docs-btn" onclick="copyDocs('ip', this)">&#128203; Копировать список</button>
       </div>
 
       <div id="tab-ooo" class="tab-content">
@@ -358,19 +347,19 @@
           <li>Водительские удостоверения с двух сторон каждого водителя</li>
           <li>Номера телефонов</li>
         </ul>
-        <button class="copy-docs-btn" onclick="copyDocs('ooo', this)">📋 Копировать список</button>
+        <button class="copy-docs-btn" onclick="copyDocs('ooo', this)">&#128203; Копировать список</button>
       </div>
     </div>
   </div>
 
   <!-- Баннер -->
   <div class="warning-banner">
-    ⚠️ <strong>ОБЯЗАТЕЛЬНО работаем через Яндекс Браузер!</strong>
+    &#9888;&#65039; <strong>ОБЯЗАТЕЛЬНО работаем через Яндекс Браузер!</strong>
   </div>
 
   <!-- Инструкция -->
   <div class="section">
-    <div class="section-title">📖 Пошаговая инструкция</div>
+    <div class="section-title">&#128214; Пошаговая инструкция</div>
 
     <!-- Шаг 1 -->
     <div class="step">
@@ -381,7 +370,7 @@
           Если ранее уже регистрировались — вводим логин и пароль из SMS. Если нет — нажимаем «Зарегистрироваться», выбираем роль грузоотправителя и заполняем данные.
         </div>
         <div class="note note-red">
-          ❗ Если регистрация ООО — запрашиваем документы из списка выше. Регистрацию ООО выполняет специалист техподдержки, самостоятельная регистрация ООО невозможна!
+          &#10071; Если регистрация ООО — запрашиваем документы из списка выше. Регистрацию ООО выполняет специалист техподдержки, самостоятельная регистрация ООО невозможна!
         </div>
         <img src="img/image2.jpeg" class="step-img" alt="Вход в ЛК">
       </div>
@@ -425,7 +414,7 @@
           <strong>При необходимости выпускаем МЧД.</strong> В левом боковом меню личного кабинета разверните вкладку ЭПД и выберите пункт МЧД.
         </div>
         <div class="note note-yellow">
-          ℹ️ Уточняем грузоотправителю: если выпустим МЧД, он сможет подписывать документы без флешки. Выпускаем по необходимости.
+          &#8505;&#65039; Уточняем грузоотправителю: если выпустим МЧД, он сможет подписывать документы без флешки. Выпускаем по необходимости.
         </div>
         <img src="img/image6.jpeg" class="step-img" alt="Раздел МЧД">
 
@@ -494,7 +483,7 @@
             <span class="substep-num">3.9</span>
             <div class="substep-body">
               <div class="step-text"><strong>Переход к подписанию МЧД.</strong> Как только статус документа в реестре изменится на <strong style="color: var(--danger)">«Ожидает подписи»</strong>, кликните по соответствующей строке, чтобы открыть детали. В карточке МЧД найдите блок «Действия с МЧД» и нажмите кнопку <strong>«Подписать МЧД»</strong>.</div>
-              <div class="note note-yellow">⚠️ Необходимо подписать каждую из трёх МЧД по отдельности!</div>
+              <div class="note note-yellow">&#9888;&#65039; Необходимо подписать каждую из трёх МЧД по отдельности!</div>
               <img src="img/image16.jpeg" class="step-img" alt="Подписать МЧД">
             </div>
           </div>
@@ -516,7 +505,7 @@
             <span class="substep-num">3.12</span>
             <div class="substep-body">
               <div class="step-text"><strong>Регистрация МЧД.</strong> Как только статус документа в реестре изменится на <strong style="color: var(--primary)">«Готова к регистрации»</strong>, кликните по соответствующей строке, чтобы открыть детали. В карточке МЧД найдите блок «Действия с МЧД» и нажмите кнопку <strong>«Зарегистрировать МЧД»</strong>.</div>
-              <div class="note note-yellow">⚠️ Необходимо подписать каждую из трёх МЧД по отдельности!</div>
+              <div class="note note-yellow">&#9888;&#65039; Необходимо подписать каждую из трёх МЧД по отдельности!</div>
               <img src="img/image17.jpeg" class="step-img" alt="Зарегистрировать МЧД">
             </div>
           </div>
@@ -534,7 +523,7 @@
             <span class="substep-num">3.14</span>
             <div class="substep-body">
               <div class="step-text"><strong>Успешное завершение регистрации.</strong> Периодически обновляйте страницу со списком МЧД. Как только в колонке «Статус обработки» появится итоговое <strong style="color: var(--accent)">«Готово»</strong>, процесс выпуска машиночитаемой доверенности считается полностью завершённым. Документ действителен и готов к использованию в работе!</div>
-              <div class="note note-green">✅ Документ действителен и готов к использованию в работе!</div>
+              <div class="note note-green">&#9989; Документ действителен и готов к использованию в работе!</div>
             </div>
           </div>
         </div>
@@ -556,7 +545,7 @@
       <div class="step-num danger">5</div>
       <div class="step-body">
         <div class="step-text"><strong>Перезайдите в личный кабинет</strong> для того, чтобы обновить права пользователя.</div>
-        <div class="note note-yellow">⚠️ Без перезахода в личный кабинет новые права не применятся!</div>
+        <div class="note note-yellow">&#9888;&#65039; Без перезахода в личный кабинет новые права не применятся!</div>
       </div>
     </div>
 
@@ -567,41 +556,67 @@
         <div class="step-text">
           <strong>Добавление контрагентов.</strong> Когда права настроены, в ЛК грузоотправителя на сайте sanador.ru необходимо добавить контрагентов, с которыми будет работать данный грузоотправитель.
         </div>
-        <img src="img/contragents1.jpeg" class="step-img" alt="Раздел контрагентов"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-        <div class="img-placeholder" style="display: none;">Скриншот: раздел «Контрагенты» в левом меню</div>
 
         <div class="substep">
+          <!-- 6.1 -->
           <div class="substep-row">
             <span class="substep-num">6.1</span>
             <div class="substep-body">
-              <div class="step-text">В левом боковом меню откройте раздел <strong>«Контрагенты»</strong>. Нажмите кнопку <strong>«Добавить контрагента»</strong>.</div>
-              <img src="img/contragents2.jpeg" class="step-img" alt="Кнопка добавить контрагента"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-              <div class="img-placeholder" style="display: none;">Скриншот: кнопка «Добавить контрагента»</div>
+              <div class="step-text">Перейдите в раздел <strong>Справочники &rarr; «Контрагенты ЭПД»</strong> в левом боковом меню личного кабинета.</div>
+              <img src="img/contragents1.jpeg" class="step-img" alt="Раздел Контрагенты ЭПД в левом меню">
             </div>
           </div>
+
+          <!-- 6.2 -->
           <div class="substep-row">
             <span class="substep-num">6.2</span>
             <div class="substep-body">
-              <div class="step-text">Заполните данные контрагента: наименование, ИНН, КПП (для ООО), банковские реквизиты. Нажмите <strong>«Сохранить»</strong>.</div>
-              <img src="img/contragents3.jpeg" class="step-img" alt="Заполнение данных контрагента"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-              <div class="img-placeholder" style="display: none;">Скриншот: форма заполнения данных контрагента</div>
+              <div class="step-text">На открывшейся странице нажмите кнопку <strong>«Добавить контрагента»</strong>.</div>
+              <img src="img/contragents2.png" class="step-img" alt="Кнопка Добавить контрагента">
             </div>
           </div>
+
+          <!-- 6.3 -->
           <div class="substep-row">
             <span class="substep-num">6.3</span>
             <div class="substep-body">
-              <div class="step-text">Повторите для каждого контрагента, с которым будет работать грузоотправитель. Проверьте, что все контрагенты отображаются в списке.</div>
-              <img src="img/contragents4.jpeg" class="step-img" alt="Список добавленных контрагентов"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-              <div class="img-placeholder" style="display: none;">Скриншот: список добавленных контрагентов</div>
+              <div class="step-text">
+                В появившемся окне выберите вкладку <strong>«Создать нового»</strong>. Укажите <strong>ИНН</strong> (если ИП) или <strong>ИНН и КПП</strong> (если ООО). Наименование, ОГРН и адрес заполнятся автоматически. При необходимости отметьте галочки «Грузополучатель» и «Нужен номер ТТН». Нажмите <strong>«Создать и добавить»</strong>.
+              </div>
+              <img src="img/contragents3.png" class="step-img" alt="Форма создания нового контрагента">
+            </div>
+          </div>
+
+          <!-- 6.4 -->
+          <div class="substep-row">
+            <span class="substep-num">6.4</span>
+            <div class="substep-body">
+              <div class="step-text">После добавления контрагента воспользуйтесь поиском и найдите его карточку в общем списке.</div>
+              <img src="img/contragents4.jpeg" class="step-img" alt="Список добавленных контрагентов, поиск">
+            </div>
+          </div>
+
+          <!-- 6.5 -->
+          <div class="substep-row">
+            <span class="substep-num">6.5</span>
+            <div class="substep-body">
+              <div class="step-text">
+                В карточке контрагента выберите необходимый <strong>идентификатор ЭПД</strong> из выпадающего списка. Если найдено несколько идентификаторов — выберите нужный.
+              </div>
+              <img src="img/contragents5.jpeg" class="step-img" alt="Карточка контрагента, выбор идентификатора ЭПД">
+            </div>
+          </div>
+
+          <!-- 6.6 -->
+          <div class="substep-row">
+            <span class="substep-num">6.6</span>
+            <div class="substep-body">
+              <div class="step-text">Повторите шаги 6.2–6.5 для каждого контрагента. Когда все участники добавлены и выбраны идентификаторы — переходите к созданию ЭТрН.</div>
             </div>
           </div>
         </div>
 
-        <div class="note note-green">✅ После добавления всех контрагентов регистрация грузоотправителя полностью завершена!</div>
+        <div class="note note-green">&#9989; После добавления всех контрагентов и выбора идентификаторов ЭПД регистрация грузоотправителя полностью завершена!</div>
       </div>
     </div>
 
@@ -656,10 +671,10 @@
 
       navigator.clipboard.writeText(text).then(() => {
         btn.classList.add('copied');
-        btn.innerHTML = '✓ Скопировано!';
+        btn.innerHTML = '&#10003; Скопировано!';
         setTimeout(() => {
           btn.classList.remove('copied');
-          btn.innerHTML = '📋 Копировать список';
+          btn.innerHTML = '&#128203; Копировать список';
         }, 2000);
       }).catch(() => {
         const ta = document.createElement('textarea');
@@ -671,10 +686,10 @@
         try { document.execCommand('copy'); } catch(e) {}
         document.body.removeChild(ta);
         btn.classList.add('copied');
-        btn.innerHTML = '✓ Скопировано!';
+        btn.innerHTML = '&#10003; Скопировано!';
         setTimeout(() => {
           btn.classList.remove('copied');
-          btn.innerHTML = '📋 Копировать список';
+          btn.innerHTML = '&#128203; Копировать список';
         }, 2000);
       });
     }
